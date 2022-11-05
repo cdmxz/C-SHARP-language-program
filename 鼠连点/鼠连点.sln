@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "鼠连点", "鼠连点.csproj", "{B2691CD9-A52C-4E08-B9C4-E6DF6BF6B3DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2691CD9-A52C-4E08-B9C4-E6DF6BF6B3DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2691CD9-A52C-4E08-B9C4-E6DF6BF6B3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2691CD9-A52C-4E08-B9C4-E6DF6BF6B3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2691CD9-A52C-4E08-B9C4-E6DF6BF6B3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63653E7A-3D28-40C6-9170-EC08E410D4CE}
+	EndGlobalSection
+EndGlobal

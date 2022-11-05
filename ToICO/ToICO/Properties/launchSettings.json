@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ToICO": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}

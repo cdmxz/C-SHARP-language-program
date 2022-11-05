@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "清理文件", "清理文件\清理文件.csproj", "{C2B0E8FB-0621-48A8-8BF4-86CFA1D2349E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2B0E8FB-0621-48A8-8BF4-86CFA1D2349E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B0E8FB-0621-48A8-8BF4-86CFA1D2349E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B0E8FB-0621-48A8-8BF4-86CFA1D2349E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B0E8FB-0621-48A8-8BF4-86CFA1D2349E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67F0FA84-E74B-4B7D-96F1-E29E3DF6F37B}
+	EndGlobalSection
+EndGlobal

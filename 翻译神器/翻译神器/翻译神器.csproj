@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<Nullable>enable</Nullable>
+		<Version>3.4.0.0</Version>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<ApplicationIcon>Resources\翻译_128x128.ico</ApplicationIcon>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Remove="app.manifest" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="Resources\IconExit.png" />
+		<Content Include="Resources\IconHide.png" />
+		<Content Include="Resources\IconShow.png" />
+		<Content Include="Resources\翻译_128x128.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="RestSharp" Version="108.0.1" />
+		<PackageReference Include="TencentCloudSDK" Version="3.0.576" />
+		<Reference Include="System.Speech" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\AutoUpdate\DownloadUpdate\Update_OpenCloudUrl\Update_OpenCloudUrl.csproj" />
+		<ProjectReference Include="..\..\截图类库\截图\ScreenShot.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>

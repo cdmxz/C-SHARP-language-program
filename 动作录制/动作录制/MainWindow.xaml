@@ -1,0 +1,35 @@
+﻿<Window x:Class="动作录制.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:动作录制"
+        mc:Ignorable="d"
+        Title="动作录制" Height="470" Width="460" Loaded="Window_Loaded">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<DockPanel LastChildFill="False">
+			<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="0 10 0 5">
+				<ComboBox x:Name="ComboBox_RecItem" MinWidth="90" Margin="0 0 20 0" DisplayMemberPath="Type"/>
+				<Button x:Name="Button_Record" Content="录制(F6)" MinWidth="70" Click="Button_Record_Click"/>
+				<Button x:Name="Button_Execute" Content="执行(F7)" MinWidth="70" Margin="10 0 5 0" Click="Button_Execute_Click"/>
+				<TextBox x:Name="TextBox_Num" Width="45" Text="1" FontSize="14" VerticalContentAlignment="Center"/>
+				<Label Content="次" Margin="0 0 10 0"/>
+				<Button x:Name="Button_Clear" Content="清除" MinWidth="70" Margin="0 0 10 0" Click="Button_Clear_Click"/>
+			</StackPanel>
+		</DockPanel>
+
+		<RichTextBox x:Name="RichTextBox1" Grid.Row="1" FontFamily="微软雅黑" ScrollViewer.VerticalScrollBarVisibility="Auto" FocusManager.IsFocusScope="True"/>
+		
+		<StatusBar Grid.Row="2">
+			<StatusBarItem>
+				<TextBlock x:Name="TextBlock_Info" Text="欢迎使用" Margin="10 0 0 0"/>
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
+</Window>

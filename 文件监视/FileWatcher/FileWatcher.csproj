@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\icon.ico" />
+    <None Remove="Image\open.png" />
+    <None Remove="Image\reset.png" />
+    <None Remove="Image\save.png" />
+    <None Remove="Image\start.png" />
+    <None Remove="Image\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\open.png" />
+    <Resource Include="Image\stop.png" />
+    <Resource Include="Image\reset.png" />
+    <Resource Include="Image\save.png" />
+    <Resource Include="Image\start.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\icon.ico" />
+  </ItemGroup>
+
+</Project>

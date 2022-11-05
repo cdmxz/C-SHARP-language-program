@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileWatcher": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

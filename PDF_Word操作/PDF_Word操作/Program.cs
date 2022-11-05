@@ -32,7 +32,7 @@ namespace PDF_Word操作
                             PdfHelper.PrintPdfNumber();
                             break;
                         case 4:
-                            PdfHelper.PdfToImage();
+                            PdfToImage.ToImage();
                             break;
                         case 5:
                             WordHelper.WordToPdf();

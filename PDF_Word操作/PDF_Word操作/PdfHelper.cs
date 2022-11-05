@@ -1,7 +1,5 @@
 ﻿using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
-using PDFtoImage;
-using SkiaSharp;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -110,60 +108,6 @@ namespace PDF_Word操作
             }
             merger.Close();
             destDoc.Close();
-        }
-
-        public static void PdfToImage()
-        {
-            Console.WriteLine("\n请将本软件移动到没有中文的路径下");
-            Console.WriteLine("请输入源文件路径：");
-            bool sourceIsFile = PathHelper.InputPath(true, out string source);
-            if (sourceIsFile)
-            {
-                byte[] pdfData = File.ReadAllBytes(source);
-                var imgs = Conversion.ToImages(pdfData, dpi: 600, withAnnotations: true);
-                string savePath = Path.ChangeExtension(source, "").TrimEnd('.');
-                int i = 0;
-                if (Directory.Exists(savePath))
-                    Directory.Delete(savePath, true);
-                Directory.CreateDirectory(savePath);
-                foreach (var img in imgs)
-                {
-                    ToImage(img, $"{savePath}\\_{i}.png");
-                    i++;
-                }
-                return;
-            }
-            Console.WriteLine("请输入保存文件夹：");
-            string dest = Console.ReadLine();
-            string[] files = FileSort(Directory.GetFiles(source, "*.pdf"));
-            foreach (var file in files)
-            {
-                byte[] pdfData = File.ReadAllBytes(file);
-                var imgs = Conversion.ToImages(pdfData, dpi: 600, withAnnotations: true);
-                string savePath = dest + "\\" + Path.GetFileNameWithoutExtension(file);
-                if (Directory.Exists(savePath))
-                    Directory.Delete(savePath, true);
-                Directory.CreateDirectory(savePath);
-                int i = 0;
-                foreach (var img in imgs)
-                {
-                    ToImage(img, $"{savePath}\\_{i}.png");
-                    i++;
-                }
-            }
-        }
-
-        private static void ToImage(SKBitmap img, string fileName)
-        {
-            SKData data = img.Encode(SKEncodedImageFormat.Png, 300);
-            MemoryStream ms = new MemoryStream();
-            data.SaveTo(ms);
-            System.Drawing.Image saveImg = System.Drawing.Image.FromStream(ms);
-            saveImg.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
-
-            data.Dispose();
-            ms.Dispose();
-            saveImg.Dispose();
         }
     }
 }

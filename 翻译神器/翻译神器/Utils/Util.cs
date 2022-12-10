@@ -43,7 +43,7 @@ namespace 翻译神器.Utils
             int num = fileName.LastIndexOf('.');
             if (num != -1)
             {
-                return fileName.Substring(0, num);
+                return fileName[..num];
             }
             return fileName;
         }
@@ -87,6 +87,8 @@ namespace 翻译神器.Utils
         Del,
         Query
     }
+
+
 
 
 }

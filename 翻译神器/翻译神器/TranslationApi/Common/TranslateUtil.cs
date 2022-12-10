@@ -16,7 +16,7 @@ namespace 翻译神器.TranslationApi.Common
         /// <returns>转换后的base64数据</returns>
         public static string ImageToBase64(Image img)
         {
-            using MemoryStream ms = new MemoryStream();
+            using MemoryStream ms = new();
             img.Save(ms, ImageFormat.Png);
             return Convert.ToBase64String(ms.ToArray());
         }

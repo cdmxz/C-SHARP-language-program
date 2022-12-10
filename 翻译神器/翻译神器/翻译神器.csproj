@@ -2,15 +2,20 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
-		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<Nullable>enable</Nullable>
-		<Version>3.4.0.0</Version>
 		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
 		<ApplicationIcon>Resources\翻译_128x128.ico</ApplicationIcon>
-		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
+	
+	<!--程序版本信息-->
+	<PropertyGroup>
+		<Copyright>Copyright ©  2020-2022 翻译神器</Copyright>
+		<Product>翻译神器</Product>
+		<AssemblyTitle>翻译神器</AssemblyTitle>
+		<Version>3.7.1.0</Version>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<AdditionalFiles Remove="app.manifest" />
 	</ItemGroup>
@@ -21,10 +26,10 @@
 		<Content Include="Resources\翻译_128x128.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="RestSharp" Version="108.0.1" />
-		<PackageReference Include="TencentCloudSDK" Version="3.0.576" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="RestSharp" Version="108.0.3" />
+		<PackageReference Include="System.Speech" Version="7.0.0" />
+		<PackageReference Include="TencentCloudSDK" Version="3.0.660" />
 		<Reference Include="System.Speech" />
 	</ItemGroup>
 	<ItemGroup>

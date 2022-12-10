@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -7,6 +8,10 @@ namespace 翻译神器.WinApi
 {
     class Api
     {
+        public const int SC_NOMAL = 0xF120;   // 窗体还原消息
+        public const int SC_MINIMIZE = 0xF020;// 窗体最小化消息
+        public const int SC_MAXIMIZE = 0xF030;// 窗体最大化消息
+
         [StructLayout(LayoutKind.Sequential)]
         public struct TagRECT
         {
@@ -32,6 +37,10 @@ namespace 翻译神器.WinApi
         public const int MAPVK_VK_TO_VSC = 0;      // 虚拟密钥代码转换为扫描代码
 
 
+        [DllImport("user32.dll", EntryPoint = "GetKeyNameTextW")]
+        public static extern int GetKeyNameTextW(int lParam, [Out()][MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder lpString, int cchSize);
+
+
         // 发送键盘消息
         [DllImport("user32.dll")]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
@@ -41,24 +50,12 @@ namespace 翻译神器.WinApi
         public static extern bool SetForegroundWindow(IntPtr hwnd);
 
         // 查找窗口句柄
-        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Unicode)]
         public extern static IntPtr FindWindow(string? lpClassName, string? lpWindowName);
 
         // 屏幕坐标转窗口坐标
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        public static extern bool ClientToScreen(IntPtr hWnd, ref POINT pt);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct POINT
-        {
-            public POINT(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-            public int X;
-            public int Y;
-        }
+        public static extern bool ClientToScreen(IntPtr hWnd, ref Point pt);
 
         // 指定窗口的显示状态
         [DllImport("user32.dll", EntryPoint = "ShowWindow", CharSet = CharSet.Auto)]
@@ -90,7 +87,7 @@ namespace 翻译神器.WinApi
             string? className = string.IsNullOrEmpty(windowClass) ? null : windowClass;
             if (title is null && className is null)
                 throw new ArgumentException("请设置 窗口标题或窗口类名！");
-            IntPtr hwnd = FindWindow(title, className);
+            IntPtr hwnd = FindWindow(className, title);
             if (IntPtr.Zero == hwnd)
                 throw new Exception("找不到对应的窗口句柄！");
             return hwnd;
@@ -107,8 +104,7 @@ namespace 翻译神器.WinApi
             Thread.Sleep(millisec);
         }
 
-        public static int WAIT_MILLISECONDS = 500;
-
+        public const int WAIT_MILLISECONDS = 500;
 
         /// <summary>
         /// 发送按键

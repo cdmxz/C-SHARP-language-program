@@ -6,7 +6,7 @@ using System.Text;
 
 namespace 翻译神器
 {
-    class ConfigFile
+    internal class ConfigFile
     {
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
         private static extern int GetPrivateProfileString(string lpAppName, string lpKeyName, string lpDefault, StringBuilder lpReturnedString, int nSize, string lpFileName);
@@ -28,7 +28,13 @@ namespace 翻译神器
         /// <summary>
         /// 文件是否存在
         /// </summary>
-        public static bool Exist { get; } = File.Exists(ConfigPath);
+        public static bool Exist
+        {
+            get
+            {
+                return File.Exists(ConfigPath);
+            }
+        }
 
         /// <summary>
         /// 缓冲区大小
@@ -57,6 +63,20 @@ namespace 翻译神器
                     throw new Exception("写入文件错误！");
                 }
             }
+        }
+
+        /// <summary>
+        /// 写入配置文件
+        /// </summary>
+        /// <param name="key"></param>
+        /// <exception cref="Exception"></exception>
+        public static void WriteFile(string key, string value)
+        {
+            var dir = Path.GetDirectoryName(ConfigPath);
+            // 判断目录是否存在
+            if (dir != null && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+            WritePrivateProfileString(Section, key, value, ConfigPath);
         }
 
         /// <summary>

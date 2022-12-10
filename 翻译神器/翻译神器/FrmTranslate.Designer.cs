@@ -91,7 +91,7 @@
             this.button1_Tran.Text = "翻译";
             this.toolTip1.SetToolTip(this.button1_Tran, "按钮仅翻译，要翻译并输入请回车");
             this.button1_Tran.UseVisualStyleBackColor = true;
-            this.button1_Tran.Click += new System.EventHandler(this.button1_Tran_Click);
+            this.button1_Tran.Click += new System.EventHandler(this.button_Translate_Click);
             // 
             // checkBox1_AutoSend
             // 

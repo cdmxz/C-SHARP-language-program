@@ -51,11 +51,14 @@ namespace 翻译神器.TranslationApi.Api
             request.AddParameter("version", "3");
             request.AddParameter("sign", sign);
             request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddParameter("mediaType", "image/png");
             PictureTranslateJson? list = SendRequest<PictureTranslateJson>(request);
-            if (list is null || list.data is null || list.data.content is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
             if (list.error_code != 0) // 如果调用Api出现错误
                 throw new Exception("调用百度图片翻译失败" + "\n原因：" + list.error_msg);
+            if (list.data is null || list.data.content is null)
+                throw new Exception("识别结果为空");
             // 接收序列化后的数据
             StringBuilder dst = new();
             StringBuilder src = new();
@@ -94,10 +97,12 @@ namespace 翻译神器.TranslationApi.Api
             var content = new StringContent(str, Encoding.UTF8, "application/x-www-form-urlencoded");
             string result = SendRequest(url, content);
             var list = JsonConvert.DeserializeObject<TranslateJson>(result);  // 将json数据转化为对象类型并赋值给list
-            if (list is null || list.Trans_result is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
             if (list.Error_code != null) // 如果调用Api出现错误
                 throw new Exception("调用百度翻译失败" + "\n原因：" + list.Error_msg);
+            if (list.Trans_result is null)
+                throw new Exception("识别结果为空");
             // 接收序列化后的数据
             StringBuilder dst = new();
             StringBuilder src = new();
@@ -140,6 +145,9 @@ namespace 翻译神器.TranslationApi.Api
             return client.Post<T>(request);
         }
 
+        /// <summary>
+        /// 测试key 失败抛出异常
+        /// </summary>
         public void KeyTest()
         {
             PictureTranslate(Properties.Resources.KeyTest, LangDict["中文"], LangDict["英语"], out _, out _);

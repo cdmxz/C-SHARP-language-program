@@ -1,30 +1,44 @@
-﻿using ScreenShot;
-using System;
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using 翻译神器.TranslationApi;
-using 翻译神器.TranslationApi.Api;
 using 翻译神器.WinApi;
 
 namespace 翻译神器
 {
+    public delegate void RefreshFrmTranslateInfoDelegate(FrmTranslateInfo frmTranslateInfo);
+
     public partial class FrmTranslate : Form
     {
         // **************************************翻译窗口**************************************
+        /// <summary>
+        /// 刷新FrmTranslateInfo委托
+        /// </summary>
+        public RefreshFrmTranslateInfoDelegate? RefreshFrmTranslateInfoDelegate;
 
-        public FrmTranslate(ITranslateApi translateApi, string name, string Class)
+        /// <summary>
+        /// 翻译窗口
+        /// </summary>
+        /// <param name="translateApi"></param>
+        /// <param name="frmTranslateInfo"></param>
+        /// <param name="windowName"></param>
+        /// <param name="windowClass"></param>
+        public FrmTranslate(ITranslateApi translateApi, FrmTranslateInfo frmTranslateInfo, string windowName, string windowClass)
         {
             InitializeComponent();
-
             //  comboBox1_SourceLang.SelectedIndex = FrmMain.AutoPressKey;
-            comboBox2_DestLang.SelectedIndex = FrmMain.TranDestLang;
-            checkBox1_AutoSend.Checked = FrmMain.AutoSend;
+            if (frmTranslateInfo.DestLang is not null)
+                comboBox2_DestLang.SelectedItem = frmTranslateInfo.DestLang;
+            checkBox1_AutoSend.Checked = frmTranslateInfo.AutoSend;
             this.translateApi = translateApi;
             comboBox1_SourceLang.SelectedIndex = 0;
             comboBox2_DestLang.SelectedIndex = 0;
             textBox2_Dest.ReadOnly = true;
-            windowName = name;
-            windowClass = Class;
+            this.windowName = windowName;
+            this.windowClass = windowClass;
         }
 
         private readonly ITranslateApi translateApi;
@@ -35,7 +49,6 @@ namespace 翻译神器
         private readonly string windowName;
         private readonly string windowClass;
 
-
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -44,18 +57,16 @@ namespace 翻译神器
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                Translate(true);
+                string dst = Translate();
+                this.WindowState = FormWindowState.Minimized;
+                SendText(dst);  // 将译文发送到窗口
+                this.Close();
             }
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            bool visible;
-            if (string.IsNullOrEmpty(textBox1_Source.Text))
-                visible = true;
-            else
-                visible = false;
-
+            bool visible = !string.IsNullOrEmpty(textBox1_Source.Text);
             label3_Source.Visible = visible;
             label4_Dest.Visible = visible;
         }
@@ -116,57 +127,74 @@ namespace 翻译神器
         #endregion
 
 
-        private void button1_Tran_Click(object sender, EventArgs e)
+        private void button_Translate_Click(object sender, EventArgs e)
         {
-            textBox2_Dest.Text = Translate(false);
+            textBox2_Dest.Text = Translate();
         }
 
-
         // 翻译
-        private string Translate(bool sendToWindow)
+        private string Translate()
         {
-            string from = "auto", dst = "";
+            string from = "auto";
+            string to = GetDestLangCode();
+            string dst = "";
             try
             {
-                if (textBox1_Source.Text == "")
-                    return "";
-
+                if (string.IsNullOrEmpty(textBox1_Source.Text))
+                    return string.Empty;
+                // 调用翻译接口
                 if (comboBox2_DestLang.SelectedItem.ToString() != "不翻译")
-                    translateApi.TextTranslate(textBox1_Source.Text, from, Baidu_to[comboBox2_DestLang.SelectedIndex], out string src, out dst);
-                else
-                    dst = textBox1_Source.Text;
-
-                // 保存当前选项
-                FrmMain.TranDestLang = comboBox2_DestLang.SelectedIndex;
-                FrmMain.AutoPressKey = comboBox1_SourceLang.SelectedIndex;
-                FrmMain.AutoSend = checkBox1_AutoSend.Checked;
-
-                if (!sendToWindow) // 不将译文发送到窗口
-                    return dst;
+                {
+                    translateApi.TextTranslate(textBox1_Source.Text, from, to, out string src, out dst);
+                }
                 else
                 {
-                    this.WindowState = FormWindowState.Minimized;
-                    SendText(dst);
+                    dst = textBox1_Source.Text;
                 }
+                // 保存当前选项
+                RefreshFrmTranslateInfo();
+                return dst;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "翻译", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                if (sendToWindow) // 如果是不将译文发送到窗口，则不会关闭本窗口
-                    this.Close();
-            }
-
             return dst;
+        }
+
+        /// <summary>
+        /// 刷新FrmTranslateInfo
+        /// </summary>
+        private void RefreshFrmTranslateInfo()
+        {
+            var info = new FrmTranslateInfo()
+            {
+                AutoSend = checkBox1_AutoSend.Checked,
+                DestLang = comboBox2_DestLang.SelectedItem.ToString(),
+                Key = this.Key[comboBox1_SourceLang.SelectedIndex],
+            };
+            this.RefreshFrmTranslateInfoDelegate?.Invoke(info);
+        }
+
+        /// <summary>
+        /// 获取目标语言代码
+        /// </summary>
+        /// <returns></returns>
+        private string GetDestLangCode()
+        {
+            if (translateApi.ApiChineseName.Contains("百度"))
+                return Baidu_to[comboBox2_DestLang.SelectedIndex];
+            else if (translateApi.ApiChineseName.Contains("有道"))
+                return Youdao_to[comboBox2_DestLang.SelectedIndex];
+            else
+                return Tengxun_to[comboBox2_DestLang.SelectedIndex];
         }
 
         // 向gta窗口发送文本
         private void SendText(string txt)
         {
             // 查找窗口句柄
-            IntPtr hwnd = WinApi.Api.FindWindowHandle(windowName, windowClass);
+            IntPtr hwnd = Api.FindWindowHandle(windowName, windowClass);
             // 激活窗口
             Api.SetForegroundWindowAndWait(hwnd, Api.WAIT_MILLISECONDS);
             Api.SendKey(Key[comboBox1_SourceLang.SelectedIndex]);

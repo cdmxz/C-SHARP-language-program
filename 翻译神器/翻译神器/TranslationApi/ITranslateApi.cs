@@ -45,9 +45,24 @@ namespace 翻译神器.TranslationApi
         /// </summary>
         public string ApiChineseName { get; }
 
+        /// <summary>
+        /// 获取 支持的 语言代码
+        /// </summary>
+        /// <returns></returns>
         public string[] GetSupportedLanguageCode();
+
+        /// <summary>
+        /// 获取支持的 目标 语言名称
+        /// </summary>
+        /// <returns></returns>
         public string[] GetSupportedTargetLanguageNames();
+
+        /// <summary>
+        /// 获取 默认 语言代码
+        /// </summary>
+        /// <returns></returns>
         public string GetDefaultLangCode();
+
 
 
     }

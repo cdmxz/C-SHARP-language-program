@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using TencentCloud.Common;
 using TencentCloud.Common.Profile;
 using TencentCloud.Tmt.V20180321;
@@ -15,25 +14,23 @@ namespace 翻译神器.TranslationApi.Api
 {
     public class Tengxun : ITranslateApi
     {
+
         public string ApiChineseName { get; } = ApiNames.GetApiChineseNameByApiCode(ApiCode.TexngXun);
 
         private readonly TmtClient client;
 
         public Tengxun()
         {
-            Credential cred = new()
-            {
-                SecretId = TengxunKey.SecretId,
-                SecretKey = TengxunKey.SecretKey
-            };
-
-            ClientProfile clientProfile = new();
+            Credential cred = new();
             HttpProfile httpProfile = new()
             {
                 Timeout = 6,
                 Endpoint = "tmt.tencentcloudapi.com"
             };
-            clientProfile.HttpProfile = httpProfile;
+            ClientProfile clientProfile = new()
+            {
+                HttpProfile = httpProfile
+            };
             client = new(cred, "ap-guangzhou", clientProfile);
         }
 
@@ -66,11 +63,22 @@ namespace 翻译神器.TranslationApi.Api
                 Target = to,
                 ProjectId = 0
             };
+            // 在每次使用之前初始化密钥，
+            // 而不是在构造函数初始化
+            // 避免在调用构造函数时密钥还未被初始化，导致错误
+            var cred = new Credential()
+            {
+                SecretId = TengxunKey.SecretId,
+                SecretKey = TengxunKey.SecretKey
+            };
+            client.Credential = cred;
             ImageTranslateResponse resp = client.ImageTranslateSync(req);
             string result = AbstractModel.ToJsonString(resp);
             var list = JsonConvert.DeserializeObject<PictureTranslationJson>(result);
-            if (list is null || list.ImageRecord is null || list.ImageRecord.Value is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
+            if(list.ImageRecord is null || list.ImageRecord.Value is null)
+                    throw new Exception("识别结果为空");
             if (list.ImageRecord.Value.Count == 0)
                 throw new Exception("未识别到文字！");
             // 接收序列化后的数据
@@ -107,11 +115,19 @@ namespace 翻译神器.TranslationApi.Api
                 Target = to,
                 ProjectId = 0
             };
+            var cred = new Credential()
+            {
+                SecretId = TengxunKey.SecretId,
+                SecretKey = TengxunKey.SecretKey
+            };
+            client.Credential = cred;
             TextTranslateResponse response = client.TextTranslateSync(request);
             string result = AbstractModel.ToJsonString(response);
             var list = JsonConvert.DeserializeObject<TranslationJson>(result);
-            if (list is null || list.TargetText is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
+            if(list.TargetText is null)
+                throw new Exception("识别结果为空");
             src_text = srcText;
             dst_text = list.TargetText;
         }

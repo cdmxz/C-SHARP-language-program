@@ -17,7 +17,7 @@ namespace 翻译神器.HotKey
             if (string.IsNullOrEmpty(combinationKey))
                 throw new ArgumentException("参数异常！\r\n传入的组合键格式应为：C, Control或C, Control,Shift");
             string[] arr = combinationKey.Split(',');
-           
+
             // 解析组合键
             uint fun1 = 0, fun2 = 0;
             // 前一个键为单键（a-z）

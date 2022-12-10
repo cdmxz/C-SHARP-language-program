@@ -38,13 +38,15 @@ namespace 翻译神器.TranslationApi.Api
             string str = $"from={from}&to={to}&type=1&q={HttpUtility.UrlEncode(q)}&appKey={appKey}&salt={salt}&sign={sign}";
             string result = Post(url, str);
             var list = JsonConvert.DeserializeObject<PictureTranslationJson>(result);
-            if (list is null || list.resRegions is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
             if (list.errorCode != "0")
                 throw new Exception("错误代码：" + list.errorCode);
+            if (list.resRegions == null)
+                throw new Exception(nameof(list.resRegions) + "为空");
             // 接收序列化后的数据
-            StringBuilder dst = new StringBuilder();
-            StringBuilder src = new StringBuilder();
+            StringBuilder dst = new();
+            StringBuilder src = new();
             foreach (var item in list.resRegions)
             {
                 src.Append(item.context + "\r\n");
@@ -112,10 +114,12 @@ namespace 翻译神器.TranslationApi.Api
             string str = $"q={HttpUtility.UrlEncode(q)}&from={from}&to={to}&appKey={appKey}&salt={salt}&sign={sign}&signType=v3&curtime={curTime}";
             string result = Post(url, str);
             TranslationJson? list = JsonConvert.DeserializeObject<TranslationJson>(result);
-            if (list is null || list.translation is null)
+            if (list is null)
                 throw new Exception("解析Json数据失败");
             if (list.errorCode != "0")
                 throw new Exception("错误代码：" + list.errorCode);
+            if (list.translation == null)
+                throw new Exception(nameof(list.translation) + "为空");
             result = "";
             foreach (var item in list.translation)
                 result += item;
@@ -128,7 +132,7 @@ namespace 翻译神器.TranslationApi.Api
         /// <returns></returns>
         public void KeyTest()
         {
-            PictureTranslate(Properties.Resources.KeyTest, LangDict["中文"], LangDict["英文"], out string s, out string d);
+            PictureTranslate(Properties.Resources.KeyTest, LangDict["中文"], LangDict["英文"], out _, out _);
         }
 
         private static string Truncate(string q)
@@ -136,7 +140,7 @@ namespace 翻译神器.TranslationApi.Api
             if (string.IsNullOrEmpty(q))
                 return string.Empty;
             int len = q.Length;
-            return len <= 20 ? q : q.Substring(0, 10) + len + q.Substring(len - 10, 10);
+            return len <= 20 ? q : q[..10] + len + q.Substring(len - 10, 10);
         }
 
         private static string GetSign(string str)

@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
+using System.Drawing.Imaging;
 using System.Reflection;
 using System.Speech.Synthesis;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,13 +33,13 @@ namespace 翻译神器
 
             // 下面代码要在 InitializeComponent之后
             InitializeComponent();
-
+            // 下面代码要在 InitializeComponent之后
             notifyIcon1.Text = "点击此处显示窗口";
             comboBox_TranApiName.Items.AddRange(ApiNames.GetApiChineseNames());
             comboBox_TranApiName.SelectedIndex = 0;
+            comboBox_ShowTextPosition.SelectedIndex = 0;
             // 添加版本号到标题
-            string ver = Application.ProductVersion;
-            this.Text += " V" + ver.Remove(ver.Length - 4);
+            this.Text += GetProductVersion();
             label_Version.Text = this.Text;
             checkBox_AddAutoStart.Checked = IsAddAutoStart();
             // 初始化字典 
@@ -48,17 +49,16 @@ namespace 翻译神器
         private readonly string updateUrl = "https://gitee.com/fuhohua/DownloadUpdate/raw/master/fanyishenqi.xml";
         private readonly SpeechSynthesizer speech = new();
         private Dictionary<string, string> config = new();
-        private Rectangle screenRect = new();// 固定截图坐标
         private bool isSpeak;                        // 翻译后是否朗读译文
         private bool copySourceTextToClip, copyDestTextToClip;     // 翻译后是否复制到剪切板（原本、译文）
-        private int showSec = 5;                     // 翻译后延迟显示翻译后内容的时间（单位：秒）
-        private string destLang = string.Empty;                     // 翻译目标语言
-        private string windowName = string.Empty, windowClass = string.Empty;      // 窗口标题，窗口类名
         private bool installAllHotkeys = false;
+        private Rectangle formShowTextRect = Rectangle.Empty;
         private FrmShowText? st;                      // 显示翻译后的文本
         private FrmScreenShot? shot;                  // 截图窗口（使用全局变量方便多次按下热键时释放资源）
         private ITranslateApi translateApi;
         private HotKeyInfo[]? keyInfos;
+        private FrmTranslateInfo frmTranslateInfo = new();
+        private FixedScreenInfo fixedScreenInfo = new();
 
 
         #region 配置数据
@@ -74,12 +74,12 @@ namespace 翻译神器
             config[checkBox_ReadAloud.Text] = checkBox_ReadAloud.Checked.ToString();                 // 翻译后朗读译文
             config[label_TranApiName.Text] = (string)comboBox_TranApiName.SelectedItem;//翻译来源 
             config[label_DestLang.Text] = (string)comboBox_DestLang.SelectedItem;
-            config["固定截图X坐标"] = screenRect.X.ToString();      // 固定翻译截图横坐标
-            config["固定截图Y坐标"] = screenRect.Y.ToString();      // 固定翻译截图竖坐标
-            config["固定截图宽度"] = screenRect.Width.ToString();   // 固定翻译截图宽度
-            config["固定截图高度"] = screenRect.Height.ToString();  // 固定翻译截图高度
+            config["固定截图矩形"] = fixedScreenInfo.FixedRect.ToString();
             config[label_WindowName.Text] = textBox_WindowName.Text;  // 窗口标题
             config[label_WindowClass.Text] = textBox_WindowClass.Text;// 固定翻译类名
+            config["译文窗口矩形"] = formShowTextRect.ToString();
+            config[label_Opacity.Text] = this.trackBar_Opacity.Value.ToString();
+            config[label_ShowTextPosition.Text] = (string)this.comboBox_ShowTextPosition.SelectedItem;
         }
 
         // 初始化数据
@@ -91,23 +91,60 @@ namespace 翻译神器
             SaveTengXunKeyToDict();
         }
 
+        private static Rectangle RectangleParse(string str)
+        {
+            var col = MatchNumbers(str);
+            int[] nums = new int[col.Count];
+            for (int i = 0; i < col.Count; i++)
+                nums[i] = int.Parse(col[i].Value);
+
+            return new Rectangle(nums[0], nums[1], nums[2], nums[3]);
+        }
+
+        private static Rectangle RectangleParse(string pointStr, string sizeStr)
+        {
+            Size size = SizeParse(sizeStr);
+            Point point = PointParse(pointStr);
+            return new Rectangle(point, size);
+        }
+
+        private static Size SizeParse(string sizeStr)
+        {
+            var col = MatchNumbers(sizeStr);
+            int width = int.Parse(col[0].Value);
+            int height = int.Parse(col[1].Value);
+            return new Size(width, height);
+        }
+        private static Point PointParse(string pointStr)
+        {
+            var col = MatchNumbers(pointStr);
+            int x = int.Parse(col[0].Value);
+            int y = int.Parse(col[1].Value);
+            return new Point(x, y);
+        }
+
+        private static MatchCollection MatchNumbers(string input)
+        {
+            Regex re = new("(-)*\\d+(,\\d+)*");
+            if (!re.IsMatch(input))
+                throw new ArgumentException("参数异常！" + nameof(input));
+            return re.Matches(input);
+        }
+
         // 从字典config恢复数据
         private void DataRecovery()
         {
-            // 翻译后延迟显示的时间（秒）
-            showSec = Convert.ToInt32(config[label_Delay.Text]);
             // 翻译后是否复制到剪切板
             copySourceTextToClip = Convert.ToBoolean(config[checkBox_CopyOriginalText.Text]);
             copyDestTextToClip = Convert.ToBoolean(config[checkBox_CopyTranText.Text]);
             // 翻译后是否朗读译文
             isSpeak = Convert.ToBoolean(config[checkBox_ReadAloud.Text]);
             // 固定截图翻译坐标
-            screenRect.X = Convert.ToInt32(config["固定截图X坐标"]);
-            screenRect.Y = Convert.ToInt32(config["固定截图Y坐标"]);
-            screenRect.Width = Convert.ToInt32(config["固定截图宽度"]);
-            screenRect.Height = Convert.ToInt32(config["固定截图高度"]);
+            fixedScreenInfo.FixedRect = RectangleParse(config["固定截图矩形"]);
+            formShowTextRect = RectangleParse(config["译文窗口矩形"]);
+
             // 显示固定截图坐标到界面
-            label_ScreenRect.Text = screenRect.ToString();
+            label_ScreenRect.Text = fixedScreenInfo.FixedRect.ToString();
 
             // 恢复数据到窗口
             textBox_ScreenHotkey.Text = config[label_ScreenHotkey.Text];
@@ -115,6 +152,8 @@ namespace 翻译神器
             textBox_FixedTranHotkey.Text = config[label_FixedTranHotkey.Text];
 
             numericUpDown_Delay.Value = Convert.ToDecimal(config[label_Delay.Text]);
+            trackBar_Opacity.Value = Convert.ToInt32(config[label_Opacity.Text]);
+            comboBox_ShowTextPosition.SelectedItem = config[label_ShowTextPosition.Text];
 
             checkBox_CopyOriginalText.Checked = Convert.ToBoolean(config[checkBox_CopyOriginalText.Text]);
             checkBox_CopyTranText.Checked = Convert.ToBoolean(config[checkBox_CopyTranText.Text]);
@@ -122,11 +161,10 @@ namespace 翻译神器
             // 翻译接口
             comboBox_TranApiName.SelectedItem = config[label_TranApiName.Text];
 
-            destLang = (string)(comboBox_DestLang.SelectedItem = config[label_DestLang.Text]);
+            comboBox_DestLang.SelectedItem = config[label_DestLang.Text];
             // 固定翻译窗口标题或类名
-            windowName = textBox_WindowName.Text = config[label_WindowName.Text];
-            windowClass = textBox_WindowClass.Text = config[label_WindowClass.Text];
-
+            fixedScreenInfo.WindowName = textBox_WindowName.Text = config[label_WindowName.Text];
+            fixedScreenInfo.WindowClass = textBox_WindowClass.Text = config[label_WindowClass.Text];
 
             // 读取Key
             BaiduKey.AppId = textBox_BaiduAppId.Text = config[label_BaiduAppId.Text];
@@ -142,7 +180,7 @@ namespace 翻译神器
         }
 
         /// <summary>
-        /// 创建待注册的热键，的数组
+        /// 创建待注册的热键 的数组
         /// </summary>
         /// <returns></returns>
         private HotKeyInfo[] CrateHotKeyInfos()
@@ -165,7 +203,12 @@ namespace 翻译神器
             return list.ToArray();
         }
 
-
+        /// <summary>
+        /// 加载翻译APi
+        /// </summary>
+        /// <param name="ApiChineseName"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         private static ITranslateApi LoadTranslateApi(string ApiChineseName)
         {
             ApiCode code = ApiNames.GetApiCodeByApiChineseName(ApiChineseName);
@@ -206,10 +249,18 @@ namespace 翻译神器
         }
         #endregion
 
+        // 线程消息，显示主窗体
         private void MsgFilter_ShowWindow()
         {
             if (this.Handle != IntPtr.Zero)
                 Api.ShowWindow(this.Handle, Api.SW_SHOWNORMAL);
+        }
+
+        // 获取程序版本号
+        private string GetProductVersion()
+        {
+            string ver = Application.ProductVersion;
+            return "V" + ver.Remove(ver.Length - 4);
         }
 
         // 退出
@@ -220,13 +271,28 @@ namespace 翻译神器
             UnRegHotKeys(); // 卸载热键
             notifyIcon1?.Dispose();  // 释放notifyIcon1的所有资源，保证托盘图标在程序关闭时立即消失
             speech?.Dispose();
+            // 保存窗体坐标数据
+            // 译文窗口矩形
+            config["译文窗口矩形"] = formShowTextRect.ToString();
+            ConfigFile.WriteFile("译文窗口矩形", config["译文窗口矩形"]);
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.notifyIcon1.ShowBalloonTip(5000, this.Text, "欢迎使用" + this.Text, ToolTipIcon.Info);
-            if (LoadFile())
-                this.WindowState = FormWindowState.Minimized;
+            // 判断配置文件是否存在
+            if (ConfigFile.Exist)
+            {
+                if (LoadFile())
+                {
+                    MinimizedWindow();
+                    DataRecovery();
+                    RegHotKeys();
+                }
+            }
+            else
+                MessageBox.Show("首次使用请先设定热键和翻译Key。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             try
             {
                 AutoUpdate();
@@ -284,16 +350,12 @@ namespace 翻译神器
         {
             // 判断配置文件是否存在
             if (!ConfigFile.Exist)
-            {
-                MessageBox.Show("首次使用请先设定热键和翻译Key。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
-            }
             try
             {
                 // 读取配置文件
                 if (!ConfigFile.ReadFile(ref config))
                     throw new Exception("");
-                DataRecovery();
             }
             catch //(Exception ex)
             {
@@ -302,6 +364,7 @@ namespace 翻译神器
             }
             return true;
         }
+
 
         // 通过监视系统消息，判断是否按下热键
         protected override void WndProc(ref Message m)
@@ -357,7 +420,13 @@ namespace 翻译神器
                 InitDictionary();
                 ConfigFile.WriteFile(config);
                 MessageBox.Show("保存成功，立即生效！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadFile(); // 重新加载配置文件
+                // 重新加载配置文件
+                if (LoadFile())
+                {
+                    DataRecovery();
+                    UnRegHotKeys();
+                    RegHotKeys();
+                }
             }
             catch (Exception ex)
             {
@@ -368,25 +437,24 @@ namespace 翻译神器
         // 将按下的键显示到text
         private void textBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+
             ((TextBox)sender).Text = e.KeyData.ToString();
         }
 
-        // 查找并激活窗口
-        private IntPtr FindAndActiveWindow()
+        private static bool IsModifierKey(Keys key)
         {
-            if (string.IsNullOrEmpty(textBox_WindowClass.Text) && string.IsNullOrEmpty(textBox_WindowName.Text))
-            {
-                throw new Exception("\n请填写 窗口标题 或 窗口类名！");
-            }
-            else
-            {
-                windowName = textBox_WindowName.Text;
-                windowClass = textBox_WindowClass.Text;
-            }
-            IntPtr hwnd = Api.FindWindowHandle(windowName, windowClass);
-            SetWindowState(true);
-            Api.SetForegroundWindowAndWait(hwnd, Api.WAIT_MILLISECONDS);
-            return hwnd;
+            return (key == Keys.Control) || (key == Keys.Shift) || (key == Keys.ControlKey) || (key == Keys.ShiftKey);
+        }
+        private static string ToKeyName(Keys key)
+        {
+            if (key == Keys.Control)
+                key = Keys.ControlKey;
+            if (key == Keys.Shift)
+                key = Keys.ShiftKey;
+            StringBuilder sb = new StringBuilder(260);
+            uint scanCode = Api.MapVirtualKey((uint)key, 0);
+            Api.GetKeyNameTextW((int)(scanCode << 16 | (1 << 25)), sb, sb.Capacity);
+            return sb.ToString();
         }
 
         // 设置固定翻译坐标
@@ -394,13 +462,19 @@ namespace 翻译神器
         {
             try
             {
-                IntPtr hwnd = FindAndActiveWindow();
+                if (string.IsNullOrEmpty(textBox_WindowClass.Text) && string.IsNullOrEmpty(textBox_WindowName.Text))
+                    throw new Exception("\n请填写 窗口标题 或 窗口类名！");
+                fixedScreenInfo.WindowName = textBox_WindowName.Text;
+                fixedScreenInfo.WindowClass = textBox_WindowClass.Text;
+                IntPtr hwnd = Api.FindWindowHandle(fixedScreenInfo.WindowName, fixedScreenInfo.WindowClass);
+                MinimizedWindow();
+                Thread.Sleep(200);
                 // 显示截图窗口
                 using var shot = new FrmScreenShot(hwnd);
                 if (shot.Start() == DialogResult.Cancel)
                     throw new Exception("用户取消截图！");
                 // 保存截图坐标高宽
-                screenRect = shot.SelectedRect;
+                fixedScreenInfo.FixedRect = shot.SelectedRect;
                 MessageBox.Show("设置成功！\n请点击“保存配置”按钮。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -409,30 +483,21 @@ namespace 翻译神器
             }
             finally
             {
-                SetWindowState(false);
+                if (!this.IsDisposed)
+                    NormalWindow();
             }
-        }
-
-
-        // 设置窗口状态，隐藏或显示
-        private void SetWindowState(bool hide)
-        {
-            if (hide && this.WindowState != FormWindowState.Minimized)
-                this.WindowState = FormWindowState.Minimized;
-            else if (!hide && this.WindowState != FormWindowState.Normal)
-                this.WindowState = FormWindowState.Normal;
         }
 
         // 固定区域截图
         private Bitmap FixedScreen()
         {
-            if (screenRect.Width <= 0 || screenRect.Height <= 0)
+            if (fixedScreenInfo.FixedRect.Width <= 0 || fixedScreenInfo.FixedRect.Height <= 0)
                 throw new Exception("请设置固定截图翻译坐标！");
-            IntPtr hwnd = Api.FindWindowHandle(windowName, windowClass);
+            IntPtr hwnd = Api.FindWindowHandle(fixedScreenInfo.WindowName, fixedScreenInfo.WindowClass);
             Api.SetForegroundWindowAndWait(hwnd, Api.WAIT_MILLISECONDS);
-            Api.POINT p = new(screenRect.X, screenRect.Y);
-            Api.ClientToScreen(hwnd, ref p);
-            return ScreenShotHelper.CopyScreen(p.X, p.Y, screenRect.Width, screenRect.Height);
+            Point destWindowLocation = new Point(fixedScreenInfo.RectLocation.X, fixedScreenInfo.RectLocation.Y);
+            Api.ClientToScreen(hwnd, ref destWindowLocation);
+            return ScreenShotHelper.CopyScreen(destWindowLocation.X, destWindowLocation.Y, fixedScreenInfo.FixedRect.Width, fixedScreenInfo.FixedRect.Height);
         }
 
         // 截图翻译
@@ -440,16 +505,19 @@ namespace 翻译神器
         {
             try
             {   // 隐藏窗口
-                this.Invoke(() => SetWindowState(true));
+                this.Invoke(MinimizedWindow);
                 Thread.Sleep(200);
                 Image? captureImage;
                 // 如果是固定区域翻译（isFixedScreen = true则视为固定区域翻译）
                 if (isFixedScreen)
                 {
                     captureImage = FixedScreen();
+                    captureImage.Save(@"C:\Users\Administrator\Desktop\1.png", ImageFormat.Png);
                 }
                 else
                 {
+                    if (st != null && !st.IsDisposed)
+                        st.Close();
                     if (shot != null && !shot.IsDisposed)
                         shot.Dispose();
                     shot = new FrmScreenShot();
@@ -476,6 +544,7 @@ namespace 翻译神器
               {
                   try
                   {
+                      string destLang = config[label_DestLang.Text];
                       translateApi.PictureTranslate(captureImage, translateApi.GetDefaultLangCode(), translateApi.LangDict[destLang], out src, out dst);
                   }
                   catch (Exception ex)
@@ -489,7 +558,7 @@ namespace 翻译神器
                 Clipboard.SetText(dst);// 复制译文到剪切板
             if (isSpeak)
                 Speech(dst);           // 文字转语音
-            this.Invoke(new Action(() => ShowText(dst)));// 显示到桌面
+            this.Invoke(() => ShowText(dst));// 显示到桌面
         }
 
         // 文字转语音
@@ -505,12 +574,25 @@ namespace 翻译神器
         private void ShowText(string text)
         {
             if (st != null && !st.IsDisposed)
-                st.Dispose();
-            st = new FrmShowText(showSec)
+                st.Close();
+            // 翻译后延迟显示的时间（秒）
+            int showSec = Convert.ToInt32(config[label_Delay.Text]);
+            double opacity = Convert.ToDouble(config[label_Opacity.Text]) / 10;
+            string mode = config[label_ShowTextPosition.Text];
+            st = new FrmShowText(showSec, opacity)
             {
                 Owner = this
             };
-            st.ShowText(text);
+            st.FormMovedEvent += St_FormMovedEvent;
+            if (mode == "浮动")
+                st.ShowTextFloat(text, formShowTextRect.Location);
+            else
+                st.ShowTextTopCenter(text);
+        }
+
+        private void St_FormMovedEvent(Rectangle newRect)
+        {
+            formShowTextRect = newRect;
         }
 
         // 在显示文本窗口关闭时关闭发音
@@ -520,15 +602,13 @@ namespace 翻译神器
         }
 
         #region 翻译窗体
-        public static int AutoPressKey { get; set; }
-        public static int TranDestLang { get; set; }
-        public static bool AutoSend { get; set; }
+
         // 显示翻译窗口
         private void ShowTranForm()
         {
             try
             {
-                var ft = new FrmTranslate(translateApi, windowName, windowClass);
+                var ft = new FrmTranslate(translateApi, frmTranslateInfo, fixedScreenInfo.WindowName, fixedScreenInfo.WindowClass);
                 ft.Show();
             }
             catch
@@ -570,7 +650,7 @@ namespace 翻译神器
                 return;
             TextBoxRemoveSpace(groupBox2);// 移除空格
             SaveYoudaoKeyToDict();// 先保存翻译Key
-            if (KeyTest(new Youdao())) // 有道翻译
+            if (!KeyTest(new Youdao())) // 有道翻译
                 return;
             try
             {
@@ -589,7 +669,7 @@ namespace 翻译神器
                 return;
             TextBoxRemoveSpace(groupBox3);// 移除空格
             SaveTengXunKeyToDict();// 先保存数据
-            if (KeyTest(new Tengxun())) // 腾讯翻译
+            if (!KeyTest(new Tengxun())) // 腾讯翻译
                 return;
             try
             {
@@ -659,7 +739,7 @@ namespace 翻译神器
         {
             // 卸载热键再重新注册，避免失效
             UnRegHotKeys();
-            this.ShowInTaskbar = (this.WindowState != FormWindowState.Minimized);
+            this.ShowInTaskbar = !IsMinimizedWindow();
             try
             {
                 RegHotKeys();
@@ -683,16 +763,12 @@ namespace 翻译神器
         #region 右下角任务栏图标
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal; // 窗体恢复正常大小
-            this.ShowInTaskbar = true;
+            NormalWindow();
         }
 
         private void 隐藏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            this.Hide();
-            this.ShowInTaskbar = false;
+            MinimizedWindow();
         }
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -713,7 +789,7 @@ namespace 翻译神器
                 if (sender is not CheckBox box)
                     throw new Exception("box is null");
                 if (box.Checked)
-                    Utils.Util.SetAutoStart(Application.ProductName, Environment.ProcessPath, SetMode.Add);
+                    Util.SetAutoStart(Application.ProductName, Environment.ProcessPath, SetMode.Add);
                 else
                     Util.SetAutoStart(Application.ProductName, null, SetMode.Del);
             }
@@ -751,7 +827,46 @@ namespace 翻译神器
         private void notifyIcon1_Click(object sender, EventArgs e)
         {
             if ((e as MouseEventArgs)?.Button == MouseButtons.Left)
-                this.WindowState = (this.WindowState == FormWindowState.Minimized) ? FormWindowState.Normal : FormWindowState.Minimized;
+            {
+                if (IsMinimizedWindow())
+                    NormalWindow();
+                else
+                    MinimizedWindow();
+            }
+        }
+
+        // 窗体 是否 最小化
+        private bool IsMinimizedWindow() => this.WindowState == FormWindowState.Minimized;
+
+        // 窗体恢复正常大小
+        private void NormalWindow()
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+        private void trackBar_Opacity_ValueChanged(object sender, EventArgs e)
+        {
+            double num = this.trackBar_Opacity.Value / 10.0;
+            this.label_TrackBarValue.Text = num.ToString("N1");
+        }
+
+        private void trackBar_Opacity_Scroll(object sender, EventArgs e)
+        {
+            Point p = new(this.Location.X + this.Width, this.Location.Y);
+            if (st == null || st.IsDisposed)
+            {
+                st = new FrmShowText(10, 1.0);
+                st.ShowTextFloat("测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n", p);
+            }
+            st.Opacity = this.trackBar_Opacity.Value / 10.0;
+        }
+
+        // 窗体最小化
+        private void MinimizedWindow()
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
         }
         #endregion
     }

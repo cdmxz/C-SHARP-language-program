@@ -21,6 +21,7 @@ namespace 翻译神器
                 // 高Dpi模式设置为PerMonitorV2，截图功能显示的鼠标坐标才正常
                 Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
                 Application.SetCompatibleTextRenderingDefault(defaultValue: false);
+                //Application.Run(new FrmShowText(10000, 1));
                 Application.Run(new FrmMain());
             }
             else

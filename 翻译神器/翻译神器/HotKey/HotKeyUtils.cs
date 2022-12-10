@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using 翻译神器.WinApi;
 
 namespace 翻译神器.HotKey
@@ -44,7 +42,7 @@ namespace 翻译神器.HotKey
         /// 卸载所有的热键
         /// </summary>
         /// <param name="handle"></param>
-        /// <param name="keyInfo"></param>
+        /// <param name="keyInfos"></param>
         public static void UnAllRegHotKeys(IntPtr handle, HotKeyInfo[]? keyInfos)
         {
             if (keyInfos == null)

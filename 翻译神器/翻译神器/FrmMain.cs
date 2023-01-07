@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Reflection;
 using System.Speech.Synthesis;
 using System.Text;
@@ -273,8 +272,11 @@ namespace 翻译神器
             speech?.Dispose();
             // 保存窗体坐标数据
             // 译文窗口矩形
-            config["译文窗口矩形"] = formShowTextRect.ToString();
-            ConfigFile.WriteFile("译文窗口矩形", config["译文窗口矩形"]);
+           if(ConfigFile.Exist)
+            {
+                config["译文窗口矩形"] = formShowTextRect.ToString();
+                ConfigFile.WriteFile("译文窗口矩形", config["译文窗口矩形"]);
+            }
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -500,7 +502,10 @@ namespace 翻译神器
             return ScreenShotHelper.CopyScreen(destWindowLocation.X, destWindowLocation.Y, fixedScreenInfo.FixedRect.Width, fixedScreenInfo.FixedRect.Height);
         }
 
-        // 截图翻译
+        /// <summary>
+        /// 截图翻译
+        /// </summary>
+        /// <param name="isFixedScreen"></param>
         private void ScreenTranslation(bool isFixedScreen)
         {
             try
@@ -512,12 +517,13 @@ namespace 翻译神器
                 if (isFixedScreen)
                 {
                     captureImage = FixedScreen();
-                    captureImage.Save(@"C:\Users\Administrator\Desktop\1.png", ImageFormat.Png);
                 }
                 else
                 {
+                    // 关闭译文窗口
                     if (st != null && !st.IsDisposed)
                         st.Close();
+                    // 为了快速关闭截图窗口
                     if (shot != null && !shot.IsDisposed)
                         shot.Dispose();
                     shot = new FrmScreenShot();
@@ -585,7 +591,7 @@ namespace 翻译神器
             };
             st.FormMovedEvent += St_FormMovedEvent;
             if (mode == "浮动")
-                st.ShowTextFloat(text, formShowTextRect.Location);
+                st.ShowTextFloat(text, formShowTextRect);
             else
                 st.ShowTextTopCenter(text);
         }
@@ -857,7 +863,7 @@ namespace 翻译神器
             if (st == null || st.IsDisposed)
             {
                 st = new FrmShowText(10, 1.0);
-                st.ShowTextFloat("测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n", p);
+                st.ShowTextFloat("测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n测试文字\r\n", new Rectangle(p, st.Size));
             }
             st.Opacity = this.trackBar_Opacity.Value / 10.0;
         }

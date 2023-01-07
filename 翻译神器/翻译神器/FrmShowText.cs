@@ -61,13 +61,13 @@ namespace 翻译神器
             this.AutoSize = true;
             this.ShowInTaskbar = false;
 
-            double width = GetChineseWidth();
-            int max = (int)(GetScreenWidth() * (3.0 / 4.0) / width); // 求出屏幕宽度的3/4能容纳的汉字字符数
-            label_ShowText.Text = InsertNewLine(text, max);  // 将要显示的文本显示到label 
+            double fontWidth = GetChineseWidth();
+            double screenWidth = GetScreenWidth();
+            int max = (int)(screenWidth * (3.0 / 4.0) / fontWidth); // 求出屏幕宽度的3/4能容纳的汉字字符数
+            label_ShowText.Text = InsertNewLine(text, max);         // 将要显示的文本显示到label 
             for (int i = 1; label_ShowText.Text.Length < 10 && label_ShowText.Width <= 10; i++)
                 label_ShowText.Font = new Font("微软雅黑", 12 + i);  // 如果label宽度太小就增加字号
-                                                                 // 窗体属性
-            int x = (int)((GetScreenWidth() / 2.0) - this.Width / 2.0) - 20;// 在顶部中间显示（屏幕宽 - 窗口宽）/2
+            int x = (int)((screenWidth / 2.0) - label_ShowText.Width / 2.0);  // 在顶部中间显示 x坐标=（屏幕宽度/2 - 窗口宽度/2）
             this.FormBorderStyle = FormBorderStyle.None;
             this.Size = label_ShowText.Size;
             this.StartPosition = FormStartPosition.Manual;
@@ -79,15 +79,16 @@ namespace 翻译神器
         /// 浮动显示窗口
         /// </summary>
         /// <param name="text">要显示的文本</param>
-        /// <param name="location">显示位置</param>
-        public void ShowTextFloat(string text, Point location)
+        /// <param name="locationAndSize">显示位置大小</param>
+        public void ShowTextFloat(string text, Rectangle locationAndSize)
         {
             if (string.IsNullOrEmpty(text))
                 return;
             this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             this.MinimumSize = new Size(100, 100);
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = location;
+            this.Location = locationAndSize.Location;
+            this.Size = locationAndSize.Size;
             this.label_ShowText.TextAlign = ContentAlignment.TopLeft;
             this.label_ShowText.ContextMenuStrip = this.contextMenuStrip1;
             label_ShowText.Text = text;

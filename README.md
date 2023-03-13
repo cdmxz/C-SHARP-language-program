@@ -4,8 +4,6 @@
 
 - 开发环境： Win10 22H2 + VS2022
 
-- 
-
-**注意：**需要安装.net framework 4.7或.net 6.0才能编译运行。
+- **注意：** 需要安装.net framework 4.7或.net 6.0 sdk才能编译运行。
 
 

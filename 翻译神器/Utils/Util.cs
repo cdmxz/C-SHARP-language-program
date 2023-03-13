@@ -88,8 +88,5 @@ namespace 翻译神器.Utils
         Query
     }
 
-
-
-
 }
 

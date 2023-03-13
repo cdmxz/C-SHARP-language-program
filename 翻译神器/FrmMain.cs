@@ -256,7 +256,7 @@ namespace 翻译神器
         }
 
         // 获取程序版本号
-        private string GetProductVersion()
+        private static string GetProductVersion()
         {
             string ver = Application.ProductVersion;
             return "V" + ver.Remove(ver.Length - 4);
@@ -272,7 +272,7 @@ namespace 翻译神器
             speech?.Dispose();
             // 保存窗体坐标数据
             // 译文窗口矩形
-           if(ConfigFile.Exist)
+            if (ConfigFile.Exist)
             {
                 config["译文窗口矩形"] = formShowTextRect.ToString();
                 ConfigFile.WriteFile("译文窗口矩形", config["译文窗口矩形"]);
@@ -767,6 +767,11 @@ namespace 翻译神器
             }
         }
         #region 右下角任务栏图标
+        private void 截图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScreenTranslation(false);
+        }
+
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NormalWindow();
@@ -875,5 +880,7 @@ namespace 翻译神器
             this.ShowInTaskbar = false;
         }
         #endregion
+
+      
     }
 }

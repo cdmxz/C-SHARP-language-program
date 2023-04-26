@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "查询单词翻译", "查询单词翻译\查询单词翻译.csproj", "{0CA5CD24-52A4-414F-A6E5-2319834A6F85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "合并mp3", "合并mp3\合并mp3.csproj", "{21D5F75A-4119-4ECA-BD87-2AF5903B9FA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "查询单词翻译GUI", "查询单词翻译GUI\查询单词翻译GUI.csproj", "{37F67113-C58F-4A6A-97B5-A999F88A1E83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryWordLib", "QueryWordTranslationLib\QueryWordLib.csproj", "{6B2BA17F-C91A-4947-B431-2BD640A566A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CA5CD24-52A4-414F-A6E5-2319834A6F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA5CD24-52A4-414F-A6E5-2319834A6F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA5CD24-52A4-414F-A6E5-2319834A6F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA5CD24-52A4-414F-A6E5-2319834A6F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21D5F75A-4119-4ECA-BD87-2AF5903B9FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D5F75A-4119-4ECA-BD87-2AF5903B9FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D5F75A-4119-4ECA-BD87-2AF5903B9FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D5F75A-4119-4ECA-BD87-2AF5903B9FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F67113-C58F-4A6A-97B5-A999F88A1E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F67113-C58F-4A6A-97B5-A999F88A1E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F67113-C58F-4A6A-97B5-A999F88A1E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F67113-C58F-4A6A-97B5-A999F88A1E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2BA17F-C91A-4947-B431-2BD640A566A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2BA17F-C91A-4947-B431-2BD640A566A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2BA17F-C91A-4947-B431-2BD640A566A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2BA17F-C91A-4947-B431-2BD640A566A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1667328B-E353-4DB4-A27E-5C290F5309D1}
+	EndGlobalSection
+EndGlobal

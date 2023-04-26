@@ -19,6 +19,7 @@ namespace 卸载软件
             {
                 Console.WriteLine("卸载：adb shell pm uninstall -k --user 0 包名");
                 Console.WriteLine("禁用：adb shell pm disable-user 包名");
+                Console.WriteLine("启用：adb shell pm enable 包名");
                 Console.WriteLine("请输入包名：");
                 cont = Console.ReadLine();
                 Console.WriteLine("\n\n");

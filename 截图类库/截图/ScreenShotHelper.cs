@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace ScreenShot
-{    // 避免出现“仅在windows上受支持”警告
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:验证平台兼容性", Justification = "<挂起>")]
+{
+    /// <summary>
+    /// 截图助手类
+    /// </summary>
     public class ScreenShotHelper
     {
         /// <summary>
@@ -33,7 +35,7 @@ namespace ScreenShot
         /// <returns></returns>
         public static Bitmap CopyScreen(int x, int y, int w, int h)
         {
-            Bitmap bmp = new Bitmap(w, h);
+            Bitmap bmp = new(w, h);
             using (Graphics g = Graphics.FromImage(bmp))
                 g.CopyFromScreen(x, y, 0, 0, new Size(w, h));
             return bmp;

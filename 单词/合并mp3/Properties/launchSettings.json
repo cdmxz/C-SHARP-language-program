@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "合并mp3": {
+      "commandName": "Project",
+      "commandLineArgs": " D:\\单词\\1021.txt\r\n"
+    }
+  }
+}

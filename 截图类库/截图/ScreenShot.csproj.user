@@ -5,6 +5,14 @@
     <StartArguments>
     </StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <StartArguments />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <StartArguments />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Update="FrmScreenShot.cs">
       <SubType>Form</SubType>

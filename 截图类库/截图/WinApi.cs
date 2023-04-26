@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -8,6 +9,9 @@ using System.Windows.Forms;
 
 namespace ScreenShot
 {
+    /// <summary>
+    /// 封装的WindowsApi
+    /// </summary>
     public static class WinApi
     {
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -48,12 +52,13 @@ namespace ScreenShot
         private static extern IntPtr ChildWindowFromPointEx(IntPtr pHwnd, Point pt, uint uFlgs);// 在父窗体中查找子窗体
         private const int CWP_SKIPDISABLED = 0x2;   // 忽略不可用窗体
         private const int CWP_SKIPINVISIBL = 0x1;   // 忽略隐藏的窗体
-        private const int CWP_All = 0x0;    //一个都不忽略
+        private const int CWP_All = 0x0;            // 一个都不忽略
 
 
         [DllImport("user32.dll", EntryPoint = "ShowWindow", CharSet = CharSet.Auto)]
         private static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
-        public const int SW_SHOWNORMAL = 1;// 激活并显示窗口。如果窗口最小化或最大化，系统将窗口恢复到其原始大小和位置。
+        public const int SW_SHOW = 5;// 在窗口原来的位置以原来的尺寸激活和显示窗口
+        public const int SW_SHOWNORMAL = 1;
 
         [DllImport("dwmapi.dll", EntryPoint = "DwmGetWindowAttribute")]
         private static extern int DwmGetWindowAttribute(IntPtr hwnd, DWMWINDOWATTRIBUTE dwAttribute, out TagRECT pvAttribute, int cbAttribute);
@@ -79,6 +84,11 @@ namespace ScreenShot
             DWMWA_LAST
         };
 
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongW")]
+        public static extern int GetWindowLongW([In()] IntPtr hWnd, int nIndex);
+        const int GWL_STYLE = 16;
+        const int WS_VISIBLE = 0x10000000;
+
 
         [DllImport("user32", EntryPoint = "SetWindowPos")]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndlnsertAfter, int X, int Y, int cx, int cy, int flags);
@@ -87,14 +97,14 @@ namespace ScreenShot
 
         public static Point ScreenToClient(IntPtr hWnd, Point p)
         {
-            POINT pt = new POINT(p);
+            POINT pt = new(p);
             ScreenToClient(hWnd, ref pt);// 屏幕坐标转为客户端窗口坐标
             return pt.ToPoint();
         }
 
         public static Point ClientToScreen(IntPtr hWnd, Point p)
         {
-            POINT pt = new POINT(p);
+            POINT pt = new(p);
             ClientToScreen(hWnd, ref pt);// 屏幕坐标转为客户端窗口坐标
             return pt.ToPoint();
         }
@@ -118,14 +128,14 @@ namespace ScreenShot
             form.Enabled = false;// 禁用本窗体，防止阻挡其它窗体
             // 在桌面根据鼠标坐标查找窗口（此时被找到的窗口作为父窗口）
             IntPtr parentHwnd = ChildWindowFromPointEx(GetDesktopWindow(), mousePoint, CWP_SKIPDISABLED | CWP_SKIPINVISIBL);
-            POINT lp = new POINT(mousePoint);
+            POINT lp = new(mousePoint);
             IntPtr childHwnd = parentHwnd;
             // 在父窗口中继续查找子窗口句柄，直到为null
             while (true)
             {
                 ScreenToClient(childHwnd, ref lp);  // 把屏幕坐标转换为窗口内部坐标
                 // 在父窗口中继续查找子窗口句柄
-                childHwnd = ChildWindowFromPointEx(childHwnd, new Point(lp.X, lp.Y), CWP_All);
+                childHwnd = ChildWindowFromPointEx(childHwnd, new Point(lp.X, lp.Y), 0x0004);
                 if (childHwnd == IntPtr.Zero || childHwnd == parentHwnd)
                     break;
                 // 将找到的子窗口作为父窗口，继续查找子窗口中的子窗口
@@ -136,7 +146,6 @@ namespace ScreenShot
             form.Enabled = true;
             return parentHwnd;
         }
-
 
         /// <summary>
         /// 窗口是否为父窗口
@@ -155,6 +164,9 @@ namespace ScreenShot
             GetWindowRect(hWnd, out TagRECT tagRect);
             return tagRect.ToRectangle();
         }
+        // 激活并显示窗口
+        [DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
+        public static extern bool SetForegroundWindow(IntPtr hwnd);
 
         /// <summary>
         /// 通过窗体句柄获取窗体大小（不包括阴影部分）
@@ -186,21 +198,29 @@ namespace ScreenShot
         }
 
         /// <summary>
-        /// 显示窗口并等待waitMillisec毫秒
+        /// 把窗口显示到最前方并等待millisec毫秒
         /// </summary>
-        /// <param name="hwnd"></param>
-        /// <param name="nCmd"></param>
-        /// <param name="waitMillisec"></param>
-        public static void ShowWindowAndWait(IntPtr hwnd, int nCmd, int waitMillisec)
+        /// <param name="hwnd">窗口句柄</param>
+        /// <param name="millisec">等待毫秒数</param>
+        public static void SetForegroundWindowAndWait(IntPtr hwnd, int millisec)
         {
-            _ = ShowWindow(hwnd, nCmd);
-            Thread.Sleep(waitMillisec);
+            SetForegroundWindow(hwnd);
+            Thread.Sleep(millisec);
         }
 
 
+        /// <summary>
+        /// 顶置窗口
+        /// </summary>
+        /// <param name="hwnd"></param>
+        public static void TopWindow(IntPtr hwnd)
+        {
+            SetWindowPos(hwnd, new IntPtr(-1), 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+        }
+
         public static string GetClassNamebyHandle(IntPtr hWnd)
         {
-            StringBuilder sb = new StringBuilder(260);
+            StringBuilder sb = new(260);
             _ = GetClassName(hWnd, sb, sb.Capacity);
             return sb.ToString();
         }
@@ -210,7 +230,13 @@ namespace ScreenShot
         /// </summary>
         /// <param name="rect"></param>
         /// <returns></returns>
-        public static Rectangle ToRectangle(this TagRECT rect) => new Rectangle(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
-        public static Point ToPoint(this POINT pt) => new Point(pt.X, pt.Y);
+        public static Rectangle ToRectangle(this TagRECT rect) => new(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+
+        /// <summary>
+        /// 扩展方法
+        /// </summary>
+        /// <param name="pt"></param>
+        /// <returns></returns>
+        public static Point ToPoint(this POINT pt) => new(pt.X, pt.Y);
     }
 }

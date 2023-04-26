@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "截图测试", "截图测试.csproj", "{6B7FEA6A-86C1-4045-B241-35738594EC87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenShot", "..\截图\ScreenShot.csproj", "{FD853460-3644-47B5-B9F2-3F9D25011D7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B7FEA6A-86C1-4045-B241-35738594EC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7FEA6A-86C1-4045-B241-35738594EC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7FEA6A-86C1-4045-B241-35738594EC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7FEA6A-86C1-4045-B241-35738594EC87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD853460-3644-47B5-B9F2-3F9D25011D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD853460-3644-47B5-B9F2-3F9D25011D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD853460-3644-47B5-B9F2-3F9D25011D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD853460-3644-47B5-B9F2-3F9D25011D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E826A1F2-AB6D-4E79-B82A-BF4D9853AF45}
+	EndGlobalSection
+EndGlobal

@@ -77,7 +77,7 @@ namespace ScreenShot
             if (destWindowHandle != IntPtr.Zero)
             {
                 // destWindowHandle不为空，则表示只针对某个窗口截图，而不是全屏截图
-                WinApi.ShowWindowAndWait(destWindowHandle, WinApi.SW_SHOWNORMAL, 500);
+                WinApi.SetForegroundWindowAndWait(destWindowHandle, 500);
                 screenImage = ScreenShotHelper.CopyWindowByHandle(destWindowHandle);// 截取这个窗口的图片
             }
             else
@@ -171,9 +171,16 @@ namespace ScreenShot
                 e.Graphics.FillRectangle(sb, ClientRectangle);
             // 对窗体显示的图片进行灰度处理
             if (MouseButtons == MouseButtons.Left)
+            {
                 DrawSelectedRect(e.Graphics);// 绘制选择的矩形
+            }
             else
-                AutoDrawRect(e.Graphics);// 自动绘制鼠标所在的窗口
+            {   // 不是 指定窗口截图 才会自动根据鼠标坐标选择窗口
+                if (destWindowHandle != IntPtr.Zero)
+                    DrawMouseAndWindowInfo(e.Graphics, destWindowHandle);
+                else
+                    AutoDrawRect(e.Graphics);// 自动绘制鼠标所在的窗口
+            }
         }
 
         // 自动查找鼠标所在的窗口并绘制窗口矩形
@@ -188,10 +195,24 @@ namespace ScreenShot
                 g.DrawImage(screenImage, rect, rect, GraphicsUnit.Pixel);
                 g.DrawRectangle(pen, rect.X, rect.Y, rect.Width - 1, rect.Height - 1);
             }
+            DrawMouseAndWindowInfo(g, rect);
+        }
+
+        // 绘制鼠标坐标和窗体信息
+        private void DrawMouseAndWindowInfo(Graphics g, Rectangle rect)
+        {
             string str = $"鼠标坐标：{MousePosition.X},{MousePosition.Y}\r\n窗口坐标：{rect.X},{rect.Y}\r\n窗口大小：{rect.Width}x{rect.Height}";
-            Point displayPos = new(rect.Left, rect.Top);
+            Point displayPos = new(rect.X, rect.Y);
             DrawStr(g, displayPos, str);
         }
+
+        // 绘制鼠标坐标和窗体信息
+        private void DrawMouseAndWindowInfo(Graphics g, IntPtr handle)
+        {
+            Rectangle rect = WinApi.GetWindowRect(handle);
+            DrawMouseAndWindowInfo(g, rect);
+        }
+
         private void DrawStr(Graphics g, Point displayPos, string str)
         {
             Font font = new("微软雅黑", 10f);
@@ -227,7 +248,7 @@ namespace ScreenShot
                     new RectangleF(selectedRect.Left - 2.5F, selectedRect.Bottom - 2.5F, 5, 5),
                     new RectangleF(selectedRect.Left - 2.5F, selectedRect.Bottom / 2F + selectedRect.Top / 2F - 2.5F, 5, 5)
                 };
-            using SolidBrush brush = new SolidBrush(Color.FromArgb(30, 144, 255));
+            using SolidBrush brush = new(Color.FromArgb(30, 144, 255));
             for (int i = 0; i < rects.Length; i++)
             {
                 g.FillRectangle(brush, rects[i]);
@@ -290,6 +311,7 @@ namespace ScreenShot
                     CaptureImage = bmpImage.Clone(rect, bmpImage.PixelFormat);
                 //CaptureImage.Save("0.png", ImageFormat.Png);
                 if (destWindowHandle != IntPtr.Zero)
+                    //selectedRect = new Rectangle(WinApi.ScreenToClient(destWindowHandle, rect.Location), rect.Size);
                     selectedRect = new Rectangle(WinApi.ScreenToClient(destWindowHandle, WinApi.ClientToScreen(this.Handle, rect.Location)), rect.Size);
                 else
                     selectedRect = rect;
@@ -309,11 +331,6 @@ namespace ScreenShot
         }
 
         /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer? components = null;
-
-        /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
@@ -323,18 +340,14 @@ namespace ScreenShot
             {
                 screenImage?.Dispose();
                 CaptureImage?.Dispose();
+                base.Dispose(disposing);
             }
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         private void FrmScreenShot_Shown(object sender, EventArgs e)
         {
             // 顶置窗口
-            WinApi.SetWindowPos(Handle, new IntPtr(-1), 0, 0, 0, 0, WinApi.SWP_NOSIZE | WinApi.SWP_NOMOVE);
+            WinApi.SetForegroundWindowAndWait(this.Handle, 200);
         }
     }
 }

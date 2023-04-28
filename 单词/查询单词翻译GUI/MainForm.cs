@@ -3,7 +3,6 @@ using QueryWordLib.WordHelper;
 using QueryWordLib.WordHelper.Api;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -88,6 +87,7 @@ namespace 查询单词翻译GUI
                         AppendToRichtextbox(result);
                     }
                 }
+                sr.Close();
                 this.Invoke(new Action(() => SaveToFile(saveFileDialog1.FileName)));
             });
             thread.SetApartmentState(ApartmentState.STA);

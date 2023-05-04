@@ -40,11 +40,10 @@ namespace QueryWordLib.WordHelper
         /// <param name="str"></param>
         public static WordInfo Parse(string str)
         {
-            var arr = str.Split(' ');
-            var arr1 = arr.Where(item => !string.IsNullOrEmpty(item)).ToArray();
+            var arr1 = str.Split(' ').Where(item => !string.IsNullOrEmpty(item)).ToArray();
             
-            string explanation = arr1.Length > 2 ? arr[2] : arr[1];
-            string phonetic = arr1.Length > 2 ? arr[1] : "";
+            string explanation = arr1.Length > 2 ? arr1[2] : arr1[1];
+            string phonetic = arr1.Length > 2 ? arr1[1] : "";
             return new WordInfo(arr1[0], phonetic, explanation);           
         }
 

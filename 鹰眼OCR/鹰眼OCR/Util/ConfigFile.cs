@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace 鹰眼OCR
+namespace 鹰眼OCR.Util
 {
+    /// <summary>
+    /// 配置文件
+    /// </summary>
     class ConfigFile
     {
         [DllImport("kernel32", CharSet = CharSet.Unicode)]

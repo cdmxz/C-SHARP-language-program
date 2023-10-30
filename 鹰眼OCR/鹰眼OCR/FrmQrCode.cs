@@ -37,7 +37,7 @@ namespace 鹰眼OCR
             }
         }
 
-        private Bitmap CreateQrCode(int size, string text) => LocalQRCode.LocalGenerateQRCode(size, text);
+        private Bitmap CreateQrCode(int size, string text) => QRCode.QRCode.GenerateQRCode(size, text);
 
         private void FrmQRCode_Load(object sender, EventArgs e)
         {

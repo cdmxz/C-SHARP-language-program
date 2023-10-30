@@ -19,12 +19,12 @@ namespace 鹰眼OCR
             speakUrl = null;
             string url = "https://openapi.youdao.com/api";
             string salt = DateTime.Now.Millisecond.ToString();
-            string curTime = WebExt.GetTimeSpan();
+            string curTime = WebHelper.GetTimeSpan();
             string sign = ComputeHash(YoudaoKey.AppKey + Truncate(text) + salt + curTime + YoudaoKey.AppSecret);
             string str = string.Format($"q={HttpUtility.UrlEncode(text)}" +
                 $"&from={GetTranLang(from)}&to={GetTranLang(to)}&appKey={YoudaoKey.AppKey}" +
                 $"&salt={salt}&sign={sign}&signType=v3&curtime={curTime}");
-            string result = WebExt.Request(url, null, str);
+            string result = WebHelper.Request(url, null, str);
             // 解析json数据
             YoudaoTranslate list = JsonConvert.DeserializeObject<YoudaoTranslate>(result);
             if (list.errorCode != "0")
@@ -72,14 +72,14 @@ namespace 鹰眼OCR
             string ak = appKey ?? YoudaoKey.AppKey;
             string secret = appSecret ?? YoudaoKey.AppSecret;
             string url = "https://openapi.youdao.com/ocrapi";
-            string base64 = WebExt.ImageToBase64(img);
+            string base64 = WebHelper.ImageToBase64(img);
             string salt = DateTime.Now.Millisecond.ToString();
-            string curTime = WebExt.GetTimeSpan();
+            string curTime = WebHelper.GetTimeSpan();
             string sign = ComputeHash(ak + Truncate(base64) + salt + curTime + secret);
             string str = string.Format($"img={HttpUtility.UrlEncode(base64)}" +
                 $"&langType=auto&detectType=10012&imageType=1&appKey={ak}" +
                 $"&salt={salt}&sign={sign}&docType=json&signType=v3&curtime={curTime}");
-            string result = WebExt.Request(url, null, str);
+            string result = WebHelper.Request(url, null, str);
             // 解析json数据
             
             string json_result = GetDictResult(result);
@@ -103,14 +103,14 @@ namespace 鹰眼OCR
         public static string FormOcrRequest(string downloadDir, Image img)
         {
             string url = "https://openapi.youdao.com/ocr_table";
-            string base64 = WebExt.ImageToBase64(img);
+            string base64 = WebHelper.ImageToBase64(img);
             string salt = DateTime.Now.Millisecond.ToString();
-            string curTime = WebExt.GetTimeSpan();
+            string curTime = WebHelper.GetTimeSpan();
             string sign = ComputeHash(YoudaoKey.AppKey + Truncate(base64) + salt + curTime + YoudaoKey.AppSecret);
             string str = string.Format($"q={HttpUtility.UrlEncode(base64)}" +
                 $"&type=1&appKey={YoudaoKey.AppKey}" +
                 $"&salt={salt}&sign={sign}&docType=excel&signType=v3&curtime={curTime}");
-            string result = WebExt.Request(url, null, str);
+            string result = WebHelper.Request(url, null, str);
 
             // 解析json数据
             
@@ -148,14 +148,14 @@ namespace 鹰眼OCR
         public static string Idcard(Image img)
         {
             string url = "https://openapi.youdao.com/ocr_structure";
-            string base64 = WebExt.ImageToBase64(img);
+            string base64 = WebHelper.ImageToBase64(img);
             string salt = DateTime.Now.Millisecond.ToString();
-            string curTime = WebExt.GetTimeSpan();
+            string curTime = WebHelper.GetTimeSpan();
             string sign = ComputeHash(YoudaoKey.AppKey + Truncate(base64) + salt + curTime + YoudaoKey.AppSecret);
             string str = string.Format($"q={HttpUtility.UrlEncode(base64)}" +
                 $"&structureType=idcard&appKey={YoudaoKey.AppKey}" +
                 $"&salt={salt}&sign={sign}&docType=json&signType=v3&curtime={curTime}");
-            string result = WebExt.Request(url, null, str);
+            string result = WebHelper.Request(url, null, str);
             // 解析json数据
             
             string json_result = GetDictResult(result);
@@ -195,15 +195,15 @@ namespace 鹰眼OCR
         public static string Asr(string audioPath, string rate, string lang)
         {
             string url = "https://openapi.youdao.com/asrapi";
-            string base64 = WebExt.FileToBase64(audioPath);
+            string base64 = WebHelper.FileToBase64(audioPath);
             string salt = DateTime.Now.Millisecond.ToString();
-            string curTime = WebExt.GetTimeSpan();
+            string curTime = WebHelper.GetTimeSpan();
             string sign = ComputeHash(YoudaoKey.AppKey + Truncate(base64) + salt + curTime + YoudaoKey.AppSecret);
             string str = string.Format($"q={HttpUtility.UrlEncode(base64)}" +
                 $"&langType={GetRecLang(lang)}&appKey={YoudaoKey.AppKey}" +
                 $"&salt={salt}&sign={sign}&signType=v3&curtime={curTime}" +
                 $"&format=wav&rate={rate}&channel=1&type=1");
-            string result = WebExt.Request(url, null, str);
+            string result = WebHelper.Request(url, null, str);
             
             JsonRecognition lst = JsonConvert.DeserializeObject<JsonRecognition>(result);
             if (lst.errorCode != "0")
@@ -310,7 +310,7 @@ namespace 鹰眼OCR
         /// <returns></returns>
         private static string ComputeHash(string input)
         {
-            HashAlgorithm algorithm = new SHA256CryptoServiceProvider();
+            HashAlgorithm algorithm = SHA256.Create();
             byte[] inputBytes = Encoding.UTF8.GetBytes(input);
             byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
             return BitConverter.ToString(hashedBytes).Replace("-", "");

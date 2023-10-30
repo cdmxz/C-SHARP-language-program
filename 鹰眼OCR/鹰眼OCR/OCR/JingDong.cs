@@ -27,23 +27,21 @@ namespace 鹰眼OCR.OCR
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "post";
             request.Timeout = 30_000;// 30秒超时
-            request.ContentType = (contentType != null) ? contentType : "image/jpg";
+            request.ContentType = contentType ?? "image/jpg";
             if (headers != null)
                 request.Headers = headers;
             request.KeepAlive = true;
             request.ContentLength = buffer.Length;
             request.GetRequestStream().Write(buffer, 0, buffer.Length);
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                    return reader.ReadToEnd();
-            }
+            using HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            return reader.ReadToEnd();
         }
 
         public static string BankCard(Image img)
         {
             string url = "https://aiapi.jd.com/jdai/ocr_bankcard";
-            byte[] bArr = WebExt.ImageToBytes(img);
+            byte[] bArr = WebHelper.ImageToBytes(img);
             string result = Post(url, bArr);
             return BankCardParseJson(result);
         }
@@ -75,7 +73,7 @@ namespace 鹰眼OCR.OCR
         public static string Idcard(Image img)
         {
             string url = "https://aiapi.jd.com/jdai/ocr_idcard";
-            byte[] bArr = WebExt.ImageToBytes(img);
+            byte[] bArr = WebHelper.ImageToBytes(img);
             string result = Post(url, bArr);
             return IdcardParseJSON(result);
         }
@@ -123,7 +121,7 @@ namespace 鹰眼OCR.OCR
         public static string GeneralBasic(Image img, string appkey = null, string secretkey = null)
         {
             string url = "https://aiapi.jd.com/jdai/ocr_universal";
-            byte[] bArr = WebExt.ImageToBytes(img);
+            byte[] bArr = WebHelper.ImageToBytes(img);
             string result = Post(url: url, buffer: bArr, contentType: null, headers: null, appkey: appkey, secretkey: secretkey);
             return GeneralParseJSON(result);
         }
@@ -232,7 +230,7 @@ namespace 鹰眼OCR.OCR
             return sb.ToString();
         }
 
-        private static string GetSign(string sk, string ts) => WebExt.GetMD5(sk + ts);
+        private static string GetSign(string sk, string ts) => WebHelper.GetMD5(sk + ts);
 
         private static string TimeSpan()
         {

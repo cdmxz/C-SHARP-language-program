@@ -96,6 +96,7 @@ namespace 鹰眼OCR.Audio
         {
             DisposeObject(ref waveIn);
             DisposeObject(ref waveFile);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -28,99 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmQrCode));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label_ShowErr = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label_ShowSize = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            this.SuspendLayout();
+            pictureBox1 = new PictureBox();
+            label_ShowErr = new Label();
+            toolTip1 = new ToolTip(components);
+            label2 = new Label();
+            label_ShowSize = new Label();
+            trackBar1 = new TrackBar();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(253, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "左键双击刷新\r\n右键单击保存");
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            pictureBox1.Dock = DockStyle.Top;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(4, 4, 4, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(338, 250);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            toolTip1.SetToolTip(pictureBox1, "左键双击刷新\r\n右键单击保存");
+            pictureBox1.MouseClick += pictureBox1_MouseClick;
+            pictureBox1.MouseDoubleClick += pictureBox1_MouseDoubleClick;
             // 
             // label_ShowErr
             // 
-            this.label_ShowErr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_ShowErr.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_ShowErr.Location = new System.Drawing.Point(42, 79);
-            this.label_ShowErr.Name = "label_ShowErr";
-            this.label_ShowErr.Size = new System.Drawing.Size(154, 36);
-            this.label_ShowErr.TabIndex = 1;
-            this.label_ShowErr.Text = "此控件用于错误提示，\r\n没有错误时此控件会隐藏。";
-            this.label_ShowErr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_ShowErr.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            label_ShowErr.BorderStyle = BorderStyle.FixedSingle;
+            label_ShowErr.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label_ShowErr.Location = new Point(56, 99);
+            label_ShowErr.Margin = new Padding(4, 0, 4, 0);
+            label_ShowErr.Name = "label_ShowErr";
+            label_ShowErr.Size = new Size(205, 45);
+            label_ShowErr.TabIndex = 1;
+            label_ShowErr.Text = "此控件用于错误提示，\r\n没有错误时此控件会隐藏。";
+            label_ShowErr.TextAlign = ContentAlignment.MiddleCenter;
+            label_ShowErr.MouseDoubleClick += pictureBox1_MouseDoubleClick;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(6, 220);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "宽和高：";
+            label2.AutoSize = true;
+            label2.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label2.Location = new Point(8, 275);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 20);
+            label2.TabIndex = 3;
+            label2.Text = "宽和高：";
             // 
             // label_ShowSize
             // 
-            this.label_ShowSize.AutoSize = true;
-            this.label_ShowSize.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_ShowSize.Location = new System.Drawing.Point(204, 220);
-            this.label_ShowSize.Name = "label_ShowSize";
-            this.label_ShowSize.Size = new System.Drawing.Size(44, 17);
-            this.label_ShowSize.TabIndex = 4;
-            this.label_ShowSize.Text = "100PX";
+            label_ShowSize.AutoSize = true;
+            label_ShowSize.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label_ShowSize.Location = new Point(272, 275);
+            label_ShowSize.Margin = new Padding(4, 0, 4, 0);
+            label_ShowSize.Name = "label_ShowSize";
+            label_ShowSize.Size = new Size(55, 20);
+            label_ShowSize.TabIndex = 4;
+            label_ShowSize.Text = "100PX";
             // 
             // trackBar1
             // 
-            this.trackBar1.LargeChange = 100;
-            this.trackBar1.Location = new System.Drawing.Point(56, 206);
-            this.trackBar1.Maximum = 1000;
-            this.trackBar1.Minimum = 50;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(152, 45);
-            this.trackBar1.SmallChange = 50;
-            this.trackBar1.TabIndex = 5;
-            this.trackBar1.Value = 200;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            trackBar1.LargeChange = 100;
+            trackBar1.Location = new Point(75, 257);
+            trackBar1.Margin = new Padding(4, 4, 4, 4);
+            trackBar1.Maximum = 1000;
+            trackBar1.Minimum = 50;
+            trackBar1.Name = "trackBar1";
+            trackBar1.Size = new Size(203, 56);
+            trackBar1.SmallChange = 50;
+            trackBar1.TabIndex = 5;
+            trackBar1.Value = 200;
+            trackBar1.Scroll += trackBar1_Scroll;
             // 
-            // FrmQRCode
+            // FrmQrCode
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(253, 251);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.label_ShowSize);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label_ShowErr);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "FrmQRCode";
-            this.Text = "二维码—右键单击保存";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.FrmQRCode_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(338, 314);
+            Controls.Add(trackBar1);
+            Controls.Add(label_ShowSize);
+            Controls.Add(label2);
+            Controls.Add(label_ShowErr);
+            Controls.Add(pictureBox1);
+            Font = new Font("宋体", 9F);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            Name = "FrmQrCode";
+            Text = "二维码—右键单击保存";
+            TopMost = true;
+            Load += FrmQRCode_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

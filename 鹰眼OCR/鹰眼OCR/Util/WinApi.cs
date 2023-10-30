@@ -2,9 +2,12 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace 鹰眼OCR
+namespace 鹰眼OCR.Util
 {
-    class Api
+    /// <summary>
+    /// 封装WindowsApi
+    /// </summary>
+    class WinApi
     {
         [DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
         public static extern bool SetForegroundWindow(IntPtr hwnd);// 将窗口显示到前方

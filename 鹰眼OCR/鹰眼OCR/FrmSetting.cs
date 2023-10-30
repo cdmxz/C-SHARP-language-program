@@ -1,17 +1,15 @@
-﻿using ScreenShot;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using Update_DirectDownload;
 using 鹰眼OCR.OCR;
+using 鹰眼OCR.Util;
+using ScreenShot;
 
 namespace 鹰眼OCR
 {
@@ -403,25 +401,25 @@ namespace 鹰眼OCR
             try
             {
                 SaveWindowNameAndWindowClass();
-                using (var shot = new FrmScreenShot())
+                using (var shot = new FrmScreenShot(hwnd))
                 {
                     if (!FixedScreen.WindowNameAndClassIsNull)
                     {
                         // 通过窗口类名或窗口标题获的窗口句柄
-                        hwnd = Api.FindWindowHandle(FixedScreen.WindowName, FixedScreen.WindowClass);
+                        hwnd = Util.WinApi.FindWindowHandle(FixedScreen.WindowName, FixedScreen.WindowClass);
                         // 激活目标窗口，让目标窗口显示在最前方
-                        Api.SetForegroundWindow(hwnd);
+                        Util.WinApi.SetForegroundWindow(hwnd);
                         Thread.Sleep(300);// 延时，等待窗口显示到最前方
                     }
                     // 开始截图
-                    if (shot.Start(hwnd) == DialogResult.Cancel)
+                    if (shot.Start() == DialogResult.Cancel)
                         return;
-                    rect = shot.SelectedArea;
+                    rect = shot.SelectedRect;
                 }
                 if (!FixedScreen.WindowNameAndClassIsNull)
                 {
-                    Api.POINT p = new Api.POINT(rect.X, rect.Y);
-                    Api.ScreenToClient(hwnd, ref p); // 屏幕坐标转为客户端窗口坐标
+                    Util.WinApi.POINT p = new Util.WinApi.POINT(rect.X, rect.Y);
+                    Util.WinApi.ScreenToClient(hwnd, ref p); // 屏幕坐标转为客户端窗口坐标
                     screenRect = new Rectangle(p.X, p.Y, rect.Width, rect.Height);  // 保存截图坐标高宽
                 }
                 else
@@ -540,9 +538,12 @@ namespace 鹰眼OCR
         // 刷新进度条
         private void RefreshProgress(double progress)
         {
-            int p = (int)(progress + 0.5);
-            progressBar1.Value = p > 100 ? 100 : p;
-            label_Progress.Text = $"{p}%";
+            this.Invoke(new Action(() =>
+            {
+                int p = (int)(progress + 0.5);
+                progressBar1.Value = p > 100 ? 100 : p;
+                label_Progress.Text = $"{p}%";
+            }));
         }
 
         private void button_CanelUpdate_Click(object sender, EventArgs e)
@@ -576,7 +577,7 @@ namespace 鹰眼OCR
                     return;
                 }
                 button_Update.Enabled = false;
-                AutoUpdate.RefreshProgressEvent += RefreshProgress;
+                AutoUpdate.ProgressDelegate += RefreshProgress;
                 CloseThread();
                 newThread = new Thread(AutoUpdate.DownloadAndReplaceFile);
                 newThread.SetApartmentState(ApartmentState.STA);

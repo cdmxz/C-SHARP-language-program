@@ -1,20 +1,20 @@
-﻿using ScreenShot;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
+﻿/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+using ScreenShot;
 using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using 鹰眼OCR.Audio;
 using 鹰眼OCR.OCR;
 using 鹰眼OCR.PDF;
-using 鹰眼OCR.QRCode;
 using 鹰眼OCR.TTS;
+using 鹰眼OCR.Util;
+
 
 namespace 鹰眼OCR
 {
@@ -196,14 +196,34 @@ namespace 鹰眼OCR
         FixedScreen,
     }
 
+    /// <summary>
+    /// 当前模式
+    /// </summary>
     enum CurMode
     {
+        /// <summary>
+        /// 截图识别
+        /// </summary>
         Screenshot,
+        /// <summary>
+        /// 拍照识别
+        /// </summary>
         Photograph,
+        /// <summary>
+        /// 录音
+        /// </summary>
         Record,
+        /// <summary>
+        /// 固定截图
+        /// </summary>
         FixedScreen,
+        /// <summary>
+        /// 无
+        /// </summary>
         None
     }
+
+
 
     public partial class MainForm : Form
     {
@@ -251,7 +271,7 @@ namespace 鹰眼OCR
 
             button_SwitchTranLang.Enabled = false;
             comboBox_SourceLang.Items.AddRange(new string[] { "自动检测", "中文", "英语", "俄语", "日语", "韩语", "文言文", "繁体中文" });
-            comboBox_DestLang.Items.AddRange(new string[] { "英语", "中文", "俄语", "日语", "韩语", "文言文", "繁体中文" });
+            comboBox_DestLang.Items.AddRange(new string[] { "中文", "英语", "俄语", "日语", "韩语", "文言文", "繁体中文" });
             comboBox_SourceLang.SelectedIndex = 0;
             comboBox_DestLang.SelectedIndex = 0;
             comboBox_SelectTranApi.SelectedIndex = 0;
@@ -277,7 +297,7 @@ namespace 鹰眼OCR
         private Image _CaptureImage;// 截取的图像
         private FrmQrCode qRCode; // 二维码生成窗体
         private FrmAsr frmSound;// 语音识别窗体
-        private FrmPhotograph frmPhotograph;// 拍照窗体
+        //private FrmPhotograph frmPhotograph;// 拍照窗体
         private FrmSetting frmSetting;      // 设置窗体
         private FrmFind frmFind;            // 查找窗体
         private PlayAudio playAudio = new PlayAudio();// 播放mp3
@@ -286,9 +306,9 @@ namespace 鹰眼OCR
         private string speakUrl, speakFileName; // 有翻译下载的音频文件的链接
         private bool firstStart;// 首次启动
         private CurMode curMode = CurMode.None;// 正在截图
-        private DateTime lastTime = DateTime.Now;
         private Thread pdfThread;// PDF识别线程
         private Thread batchOCRThread;// 批量OCR线程
+
 
         // 百度搜索
         const string BAIDU_URL = "https://www.baidu.com/s?ie=UTF-8&wd=";
@@ -308,11 +328,11 @@ namespace 鹰眼OCR
         {
             try
             {
-                this.Close();
+                Environment.Exit(0);
             }
-            finally
+            catch { }
             {
-                // Environment.Exit(0);
+
             }
         }
 
@@ -327,14 +347,14 @@ namespace 鹰眼OCR
             ConfigFile.WriteFile(KeyName.SpeechRecognitionInterface_KeyName, KeyName.SpeechRecognitionInterface);
             UninstallAllHotkeys();
             My_Dispose();
-            Environment.Exit(0);
+            //  Environment.Exit(0);
         }
 
         private void My_Dispose()
         {
             qRCode?.Dispose();
             frmSound?.Dispose();
-            frmPhotograph?.Dispose();
+            //frmPhotograph?.Dispose();
             frmSetting?.Dispose();
             frmFind?.Dispose();
             playAudio?.Dispose();
@@ -358,6 +378,7 @@ namespace 鹰眼OCR
                 currentPos = MousePosition;
             }
         }
+
         #endregion
 
 
@@ -551,7 +572,7 @@ namespace 鹰眼OCR
 
                 for (int j = i + 1; j < dropDown.Items.Count; j++)
                 {
-                    if (!(dropDown.Items[j] is ToolStripMenuItem))
+                    if (dropDown.Items[j] is not ToolStripMenuItem)
                         continue;
 
                     if (((ToolStripMenuItem)dropDown.Items[j]).Text == endText)
@@ -569,7 +590,7 @@ namespace 鹰眼OCR
         {
             try
             {
-                Updater();
+                //Updater();
                 InitPath();
                 SetForm();
                 // 加载配置文件
@@ -615,8 +636,8 @@ namespace 鹰眼OCR
 
         public void SetForm()
         {
-            int windowLong = Api.GetWindowLong(new HandleRef(this, this.Handle), -16);
-            Api.SetWindowLong(new HandleRef(this, this.Handle), -16, windowLong | Api.WS_SYSMENU | Api.WS_MINIMIZEBOX);
+            int windowLong = Util.WinApi.GetWindowLong(new HandleRef(this, this.Handle), -16);
+            Util.WinApi.SetWindowLong(new HandleRef(this, this.Handle), -16, windowLong | Util.WinApi.WS_SYSMENU | Util.WinApi.WS_MINIMIZEBOX);
         }
 
         #region 读取配置文件
@@ -707,8 +728,8 @@ namespace 鹰眼OCR
             ConfigFile.ReadFile(KeyName.Position_Y, ref pos_y);
             int.TryParse(pos_x, out int x);
             int.TryParse(pos_y, out int y);
-            int w = (int)System.Windows.SystemParameters.PrimaryScreenWidth;
-            int h = (int)System.Windows.SystemParameters.PrimaryScreenHeight;
+            int w = (int)Screen.PrimaryScreen.Bounds.Width;
+            int h = (int)Screen.PrimaryScreen.Bounds.Height;
             if (x > 0 && y > 0 && x < w && y < h)
                 this.Location = new Point(x, y);
         }
@@ -778,7 +799,7 @@ namespace 鹰眼OCR
                 return;
             // 分解热键
             SplitHotKey(hotKey, out Keys key, out uint fun1, out uint fun2);
-            if (!Api.RegisterHotKey(this.Handle, id, fun1 | fun2, key)) // 注册热键
+            if (!Util.WinApi.RegisterHotKey(this.Handle, id, fun1 | fun2, key)) // 注册热键
                 throw new Exception("注册热键失败！");
         }
 
@@ -796,7 +817,7 @@ namespace 鹰眼OCR
 
         private void UnRegHotKey(int id)
         {
-            Api.UnregisterHotKey(this.Handle, id); // 卸载热键
+            Util.WinApi.UnregisterHotKey(this.Handle, id); // 卸载热键
         }
 
         private void UninstallAllHotkeys()
@@ -840,7 +861,7 @@ namespace 鹰眼OCR
         {
             get
             {
-                base.CreateParams.Style |= Api.WS_MINIMIZEBOX;   // 允许最小化操作
+                base.CreateParams.Style |= Util.WinApi.WS_MINIMIZEBOX;   // 允许最小化操作
                 return base.CreateParams;
             }
         }
@@ -848,39 +869,42 @@ namespace 鹰眼OCR
         // 通过监视系统消息，判断是否按下热键
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
-            HotKeyId keyId = (HotKeyId)Enum.Parse(typeof(HotKeyId), m.WParam.ToString());
-            //// 如果此次按热键的时间距离上次不足200毫秒则忽略掉
-            //if ((DateTime.Now - lastTime).TotalMilliseconds < 200)
-            //    return;
-            //lastTime = DateTime.Now;
-            if (curMode != CurMode.None)
-                return;
-            curMode = (CurMode)Enum.Parse(typeof(CurMode), keyId.ToString());
-            switch (keyId)
+            if (m.Msg == 0x0312) // 如果m.Msg的值为0x0312那么表示用户按下了热键
             {
-                case HotKeyId.Screenshot: // 截图翻译
-                    {
-                        toolStripButton_Screen_Click(null, null);
-                        break;
-                    }
-                case HotKeyId.Photograph: // 拍照
-                    {
-                        toolStripButton_Photograph_Click(null, null);
-                        break;
-                    }
-                case HotKeyId.Record: // 录音
-                    {
-                        toolStripButton_SpeechRecognition_Click(null, null);
-                        break;
-                    }
-                case HotKeyId.FixedScreen: // 固定区域截图翻译
-                    {
-                        FixedScreenshot();
-                        break;
-                    }
+                //// 如果此次按热键的时间距离上次不足200毫秒则忽略掉
+                //if ((DateTime.Now - lastTime).TotalMilliseconds < 200)
+                //    return;
+                //lastTime = DateTime.Now;
+                HotKeyId keyId = (HotKeyId)Enum.Parse(typeof(HotKeyId), m.WParam.ToString());
+                if (curMode != CurMode.None)
+                    return;
+                curMode = (CurMode)Enum.Parse(typeof(CurMode), keyId.ToString());
+                switch (keyId)
+                {
+                    case HotKeyId.Screenshot: // 截图翻译
+                        {
+                            toolStripButton_Screen_Click(null, null);
+                            break;
+                        }
+                    case HotKeyId.Photograph: // 拍照
+                        {
+                            toolStripButton_Photograph_Click(null, null);
+                            break;
+                        }
+                    case HotKeyId.Record: // 录音
+                        {
+                            toolStripButton_SpeechRecognition_Click(null, null);
+                            break;
+                        }
+                    case HotKeyId.FixedScreen: // 固定区域截图翻译
+                        {
+                            FixedScreenshot();
+                            break;
+                        }
+                }
+                curMode = CurMode.None;
             }
-            curMode = CurMode.None;
+            base.WndProc(ref m);
         }
         #endregion
 
@@ -914,9 +938,10 @@ namespace 鹰眼OCR
             try
             {
                 ClearLog();
-                if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
-                    return;
-                StartBatchOCRThread(folderBrowserDialog1.SelectedPath);
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    StartBatchOCRThread(folderBrowserDialog1.SelectedPath);
+                }
             }
             catch (Exception ex)
             {
@@ -925,11 +950,10 @@ namespace 鹰眼OCR
         }
 
         // 批量图片识别
-        private void BatchOCR(object par)
+        private void BatchOCR(string path)
         {
             try
             {
-                string path = (string)par;
                 if (!Directory.Exists(path))
                     throw new Exception("路径不存在");
                 string[] images = GetImages(path);
@@ -969,10 +993,10 @@ namespace 鹰眼OCR
         private void StartBatchOCRThread(string path)
         {
             CloseThread(batchOCRThread);
-            batchOCRThread = new Thread(new ParameterizedThreadStart(BatchOCR));
+            batchOCRThread = new Thread(() => BatchOCR(path));
             batchOCRThread.SetApartmentState(ApartmentState.STA);
-            batchOCRThread.IsBackground = false;
-            batchOCRThread.Start(path); // 启动新线程
+            batchOCRThread.IsBackground = true;
+            batchOCRThread.Start(); // 启动新线程
         }
 
         // pdf识别
@@ -1007,7 +1031,7 @@ namespace 鹰眼OCR
         private void StartPDFThread(string fileName)
         {   // 启动新线程
             CloseThread(pdfThread);
-            if (!PdfOperation.IsPDFile(fileName))
+            if (!PdfHelper.IsPDFile(fileName))
                 throw new Exception("不是PDF文件！");
             if (!Setting_Other.AddTextToEnd)
                 richTextBox1.Clear();
@@ -1020,11 +1044,10 @@ namespace 鹰眼OCR
                 catch (Exception ex)
                 {
                     RefreshLog(ex.Message);
-                    return;
                 }
             });
             pdfThread.SetApartmentState(ApartmentState.STA);
-            pdfThread.IsBackground = false;
+            pdfThread.IsBackground = true;
             pdfThread.Start(); // 启动新线程
         }
 
@@ -1073,43 +1096,46 @@ namespace 鹰眼OCR
         // 拍照
         private void toolStripButton_Photograph_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (frmPhotograph == null || frmPhotograph.IsDisposed)
-                {
-                    ClearLog();
-                    frmPhotograph = new FrmPhotograph();
-                    frmPhotograph.Position = new Point(this.Location.X + (this.Width / 2 - frmPhotograph.Width / 2), this.Location.Y + (this.Height / 2 - frmPhotograph.Height / 2));
-                    frmPhotograph.PhotographEvent += PhotoRecognition;
-                    frmPhotograph.Show();
-                }
-                else
-                    frmPhotograph.Activate();
-            }
-            catch (Exception ex)
-            {
-                RefreshLog(ex.Message);
-                if (frmPhotograph != null && !frmPhotograph.IsDisposed)
-                    frmPhotograph.Close();
-            }
+            //try
+            //{
+            //    if (frmPhotograph == null || frmPhotograph.IsDisposed)
+            //    {
+            //        ClearLog();
+            //        frmPhotograph = new FrmPhotograph();
+            //        frmPhotograph.Position = new Point(this.Location.X + (this.Width / 2 - frmPhotograph.Width / 2), this.Location.Y + (this.Height / 2 - frmPhotograph.Height / 2));
+            //        frmPhotograph.PhotographEvent += PhotoRecognition;
+            //        frmPhotograph.Show();
+            //    }
+            //    else
+            //        frmPhotograph.Activate();
+            //}
+            //catch (Exception ex)
+            //{
+            //    RefreshLog(ex.Message);
+            //    if (frmPhotograph != null && !frmPhotograph.IsDisposed)
+            //    {
+            //        frmPhotograph.Close();
+            //        frmPhotograph.Dispose();
+            //    }
+            //}
         }
 
         // 拍照识别
         private void PhotoRecognition(Image img)
         {
-            if (frmPhotograph == null || frmPhotograph.IsDisposed || img == null)
-                return;
-            try
-            {
-                CaptureImage = img;
-                StartOCR(CaptureImage);
-                if (Setting_Other.SavePhotograph)
-                    SaveImage(img, savePath.PhotographPath);
-            }
-            catch (Exception ex)
-            {
-                RefreshLog(ex.Message);
-            }
+            //if (frmPhotograph == null || frmPhotograph.IsDisposed || img == null)
+            //    return;
+            //try
+            //{
+            //    CaptureImage = img;
+            //    StartOCR(CaptureImage);
+            //    if (Setting_Other.SavePhotograph)
+            //        SaveImage(img, savePath.PhotographPath);
+            //}
+            //catch (Exception ex)
+            //{
+            //    RefreshLog(ex.Message);
+            //}
         }
 
         private void SaveImage(Image img, string dir)
@@ -1145,23 +1171,22 @@ namespace 鹰眼OCR
             }
             finally
             {
-                if (e == null && Setting_Other.CopyText)// 热键触发时此参数传入null
-                    ;
-                else
+                if (e != null)// 热键触发时此参数传入null
                     this.WindowState = FormWindowState.Normal;
+
             }
         }
 
         // 截图
         private Image ScreenShot()
         {
-            bool topMost = this.TopMost;
-            this.TopMost = true;
+            //bool topMost = this.TopMost;
+            //  this.TopMost = true;
             using (var shot = new FrmScreenShot())
             {
                 // 显示截图窗口
                 var flag = shot.Start();
-                this.TopMost = topMost;
+                //    this.TopMost = topMost;
                 Image img = shot.CaptureImage;
                 if ((flag != DialogResult.Cancel) && (img?.Width > 0 && img?.Height > 0))
                     return (Image)shot.CaptureImage.Clone();
@@ -1226,7 +1251,10 @@ namespace 鹰眼OCR
         {
             try
             {
-                System.Diagnostics.Process.Start(url);
+                System.Diagnostics.Process p = new();
+                p.StartInfo.FileName = url;
+                p.StartInfo.UseShellExecute = true;
+                p.Start();
             }
             catch (Exception ex)
             {
@@ -1254,8 +1282,10 @@ namespace 鹰眼OCR
                 if (frmSound == null || frmSound.IsDisposed)
                 {
                     ClearLog();
-                    frmSound = new FrmAsr();
-                    frmSound.SaveDir = savePath.VoicePath;
+                    frmSound = new FrmAsr
+                    {
+                        SaveDir = savePath.VoicePath
+                    };
                     frmSound.Position = new Point(this.Location.X + (this.Width / 2 - frmSound.Width / 2), this.Location.Y + (this.Height / 2 - frmSound.Height / 2));
                     frmSound.SpeechRecognition += new SpeechRecognitionHandler(SpeechRecognition);
                     RefreshAsrLanguage();
@@ -1308,10 +1338,10 @@ namespace 鹰眼OCR
             WavInfo info = new WavInfo(openFileDialog1.FileName);
             if (!info.IsWavFile)
                 throw new Exception("不是Wav文件！");
-            if (info.Channel != 1)
-                throw new Exception("Wav文件声道数必须为2！");
-            if (info.Rate != 16000)
-                throw new Exception("Wav文件采样率必须为16000！");
+            //if (info.Channel != 1)
+            //    throw new Exception("Wav文件声道数必须为2！");
+            //if (info.Rate != 16000)
+            //    throw new Exception("Wav文件采样率必须为16000！");
             if ((百度短语音识别ToolStripMenuItem.Checked || 京东短语音识别ToolStripMenuItem.Checked) && info.Len > 60)
                 throw new Exception("Wav文件不能长度超过60秒！");
             if (有道短语音识别ToolStripMenuItem.Checked && info.Len > 120)
@@ -1399,8 +1429,14 @@ namespace 鹰眼OCR
         private string[] GetImages(string path)
         {
             string[] files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
-            var images = files.Where(s => s.EndsWith("png") || s.EndsWith("jpg") || s.EndsWith("bmp") || s.EndsWith("webp") || s.EndsWith("jpeg"));
+            var images = files.Where(s => IsImageExt(s));
             return images.ToArray();
+        }
+
+        private bool IsImageExt(string ext)
+        {
+            string s = ext.ToLower();
+            return s.EndsWith("png") || s.EndsWith("jpg") || s.EndsWith("bmp") || s.EndsWith("webp") || s.EndsWith("jpeg");
         }
 
         private void PlayStopped(string audioName, string mode)
@@ -1440,8 +1476,10 @@ namespace 鹰眼OCR
 
                 if (qRCode == null || qRCode.IsDisposed)
                 {
-                    qRCode = new FrmQrCode();
-                    qRCode.Content = richTextBox1.Text;
+                    qRCode = new FrmQrCode
+                    {
+                        Content = richTextBox1.Text
+                    };
                     qRCode.Position = new Point(this.Location.X + (this.Width / 2 - qRCode.Width / 2), this.Location.Y + (this.Height / 2 - qRCode.Height / 2));
                     qRCode.Show();
                 }
@@ -1477,14 +1515,20 @@ namespace 鹰眼OCR
         // 显示翻译面板
         private void toolStripButton_Translate_Click(object sender, EventArgs e)
         {
-            if (panel_Main.Dock == DockStyle.None)
-            {
-                button_Translate_Click(null, null);
-                return;
-            }
+            Show_Panel_Translate();
             button_Translate_Click(null, null);
-            panel_Translate.Visible = true;
-            panel_Main.Dock = DockStyle.None;
+        }
+
+        /// <summary>
+        ///  显示翻译面板
+        /// </summary>
+        private void Show_Panel_Translate()
+        {
+            if (panel_Main.Dock != DockStyle.None)
+            {
+                panel_Translate.Visible = true;
+                panel_Main.Dock = DockStyle.None;
+            }
         }
 
         // 查找
@@ -1558,7 +1602,7 @@ namespace 鹰眼OCR
             string text;
             bool addEnd = Setting_Other.AddTextToEnd;
             // 截图时按下Alt键将文本添加到末尾，或则取消将文本添加到末尾
-            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.LeftAlt))
+            if ((Control.ModifierKeys & Keys.Alt) == Keys.Alt) //判断LeftAlt键
                 addEnd = !addEnd;
             try
             {
@@ -1629,7 +1673,7 @@ namespace 鹰眼OCR
             else if (toolStripDropDownButton1.Text == toolStripMenuItem_QRCode.Text)
             {
                 if (selectedAPI == 本地二维码ToolStripMenuItem.Text)
-                    text = LocalQRCode.LocalIdentifyQRCode(img);
+                    text = QRCode.QRCode.IdentifyQRCode(img);
                 else if (selectedAPI == 百度二维码ToolStripMenuItem.Text)
                     text = Baidu.QRCode(img);
             }
@@ -1684,17 +1728,25 @@ namespace 鹰眼OCR
 
             try
             {
-                string fileName = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-                string ext = Path.GetExtension(fileName);
-                if (openFileDialog1.Filter.IndexOf(ext) == -1)
+                string path = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                // 如果是文件夹
+                if (Directory.Exists(path))
+                {
+                    StartBatchOCRThread(path);
+                    return;
+                }
+                string ext = Path.GetExtension(path);
+                if (!openFileDialog1.Filter.Contains(ext))
                     throw new Exception("不支持的文件类型");
                 if (ext == ".pdf")
                 {
-                    RecognitionPdf(fileName);
-                    return;
+                    RecognitionPdf(path);
                 }
-                ImageFromFile(fileName);
-                StartOCR(CaptureImage);
+                else
+                {
+                    ImageFromFile(path);
+                    StartOCR(CaptureImage);
+                }
             }
             catch (Exception ex)
             {
@@ -1702,22 +1754,41 @@ namespace 鹰眼OCR
             }
         }
 
-        #region richBoxText
+        #region All RichBoxText
+
+        #region richBoxText1
         private void 撤销ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.Undo();
         private void 剪切ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.Cut();
         private void 复制ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.Copy();
         private void 粘贴ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.Paste();
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.SelectedText = "";
         private void 全选ToolStripMenuItem_Click(object sender, EventArgs e) => richTextBox1.SelectAll();
-        private void 从右到左的顺序RToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (richTextBox1.RightToLeft == RightToLeft.No)
-                richTextBox1.RightToLeft = RightToLeft.Yes;
-            else
-                richTextBox1.RightToLeft = RightToLeft.No;
-        }
         private void 导出EToolStripMenuItem_Click(object sender, EventArgs e) => ExportText(richTextBox1);
 
+        private void 翻译所选RToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearLog();
+                Show_Panel_Translate();
+                string text = richTextBox1.SelectedText;
+                if (text == "")
+                    throw new Exception("待翻译内容为空！");
+                TranslateAndDisplayToRichtextbox2(text);
+            }
+            catch (Exception ex)
+            {
+                RefreshLog(ex.Message);
+            }
+        }
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "字符数：";
+            statusLabel_wordNum.Text = richTextBox1.Text.Length.ToString();
+        }
+        #endregion
+
+        #region richBoxText2
         private void 撤销toolStripMenuItem2_Click(object sender, EventArgs e) => richTextBox2.Undo();
         private void 剪切toolStripMenuItem2_Click(object sender, EventArgs e) => richTextBox2.Cut();
         private void 复制toolStripMenuItem2_Click(object sender, EventArgs e) => richTextBox2.Copy();
@@ -1733,14 +1804,12 @@ namespace 鹰眼OCR
                 richTextBox2.RightToLeft = RightToLeft.No;
         }
         private void 导出ToolStripMenuItem2_Click(object sender, EventArgs e) => ExportText(richTextBox2);
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "字符数：";
-            statusLabel_wordNum.Text = richTextBox1.Text.Length.ToString();
-        }
+        #endregion
+
+
         private void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.LeftCtrl))
+            if ((Control.ModifierKeys & Keys.Control) == Keys.Control) //判断Ctrl键
                 OpenUrl(e.LinkText);
             else
                 statusLabel_Log.Text = "请按下LCtrl键时点击超链接";
@@ -1872,25 +1941,33 @@ namespace 鹰眼OCR
             try
             {
                 ClearLog();
-                if (richTextBox1.Text == "")
+                string text = richTextBox1.Text;
+                if (text == "")
                     throw new Exception("待翻译内容为空！");
-
-                string from = (string)comboBox_SourceLang.SelectedItem;
-                string to = (string)comboBox_DestLang.SelectedItem;
-
-                // 翻译并将结果显示到richtextbox2
-                if (comboBox_SelectTranApi.SelectedItem.ToString().IndexOf("百度") != -1)
-                    richTextBox2.Text = Baidu.Translate(richTextBox1.Text, from, to);
-                else if ((comboBox_SelectTranApi.SelectedItem.ToString().IndexOf("有道") != -1))
-                {
-                    speakFileName = savePath.YoudaoAudioSavePath + DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss") + ".mp3";
-                    richTextBox2.Text = Youdao.Translate(richTextBox1.Text, from, to, out speakUrl);
-                    button_PlayDestText.Enabled = !string.IsNullOrEmpty(speakUrl);
-                }
+                TranslateAndDisplayToRichtextbox2(text);
             }
             catch (Exception ex)
             {
                 RefreshLog(ex.Message);
+            }
+        }
+
+        /// <summary>
+        ///  翻译并将结果显示到richtextbox2
+        /// </summary>
+        /// <param name="text"></param>
+        private void TranslateAndDisplayToRichtextbox2(string text)
+        {
+
+            string from = (string)comboBox_SourceLang.SelectedItem;
+            string to = (string)comboBox_DestLang.SelectedItem;
+            if (comboBox_SelectTranApi.SelectedItem.ToString().IndexOf("百度") != -1)
+                richTextBox2.Text = Baidu.Translate(text, from, to);
+            else if ((comboBox_SelectTranApi.SelectedItem.ToString().IndexOf("有道") != -1))
+            {
+                speakFileName = savePath.YoudaoAudioSavePath + DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss") + ".mp3";
+                richTextBox2.Text = Youdao.Translate(text, from, to, out speakUrl);
+                button_PlayDestText.Enabled = !string.IsNullOrEmpty(speakUrl);
             }
         }
 
@@ -1960,6 +2037,21 @@ namespace 鹰眼OCR
             }
         }
 
+        private void 格式化GToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (richTextBox1.SelectedText == "")
+                    throw new Exception("请用鼠标选择要搜索的文本！");
+                richTextBox1.SelectedText = richTextBox1.SelectedText.Replace("\r", "").Replace("\n", "");
+            }
+            catch (Exception ex)
+            {
+                RefreshLog(ex.Message);
+            }
+
+        }
+
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F5)
@@ -2019,7 +2111,7 @@ namespace 鹰眼OCR
                     throw new Exception("请点击翻译按钮再点击小喇叭。");
                 if (!Directory.Exists(Path.GetDirectoryName(speakFileName)))
                     Directory.CreateDirectory(Path.GetDirectoryName(speakFileName));
-                if (!WebExt.DownloadFile(speakUrl, speakFileName))// 下载音频文件
+                if (!WebHelper.DownloadFile(speakUrl, speakFileName))// 下载音频文件
                     throw new Exception("下载音频文件失败！");
                 if (File.Exists(speakFileName))
                     playAudio.PlayAsync(speakFileName);
@@ -2032,14 +2124,23 @@ namespace 鹰眼OCR
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            // 如果是粘贴内容
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
             {
+                e.Handled = true;// 屏蔽Ctrl+ V组合按键
+                // 粘贴剪切板图片
                 IDataObject data = Clipboard.GetDataObject();
                 if (data.GetDataPresent(typeof(Bitmap)))
                 {
                     CaptureImage = (Image)data.GetData(typeof(Bitmap));
                     toolStripButton_Retry_Click(null, null);
                 }
+                DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Text);
+                richTextBox1.Paste(myFormat);
+            }
+            else
+            {
+                MainForm_KeyDown(sender, e);
             }
         }
 
@@ -2047,6 +2148,11 @@ namespace 鹰眼OCR
         {
             toolStripStatusLabel1.Text = "选择的字符数：";
             statusLabel_wordNum.Text = richTextBox1.SelectedText.Length.ToString();
+        }
+
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+
         }
 
         // 固定截图
@@ -2060,13 +2166,13 @@ namespace 鹰眼OCR
 
                 if (!FixedScreen.WindowNameAndClassIsNull)
                 {
-                    IntPtr hwnd = Api.FindWindowHandle(FixedScreen.WindowName, FixedScreen.WindowClass);
-                    Api.POINT p = new Api.POINT(FixedScreen.X, FixedScreen.Y);
-                    Api.ClientToScreen(hwnd, ref p);
-                    CaptureImage = SpecifyScreenshot.Screenshot(p.X, p.Y, FixedScreen.Width, FixedScreen.Height);
+                    IntPtr hwnd = Util.WinApi.FindWindowHandle(FixedScreen.WindowName, FixedScreen.WindowClass);
+                    Util.WinApi.POINT p = new Util.WinApi.POINT(FixedScreen.X, FixedScreen.Y);
+                    Util.WinApi.ClientToScreen(hwnd, ref p);
+                    CaptureImage = ScreenShotHelper.CopyScreen(p.X, p.Y, FixedScreen.Width, FixedScreen.Height);
                 }
                 else
-                    CaptureImage = SpecifyScreenshot.Screenshot(FixedScreen.X, FixedScreen.Y, FixedScreen.Width, FixedScreen.Height);
+                    CaptureImage = ScreenShotHelper.CopyScreen(FixedScreen.X, FixedScreen.Y, FixedScreen.Width, FixedScreen.Height);
 
                 toolStripButton_Retry_Click(null, null);
                 if (FixedScreen.AutoTranslate)

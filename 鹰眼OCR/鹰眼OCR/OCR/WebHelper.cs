@@ -4,12 +4,13 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace 鹰眼OCR.OCR
 {
-    class WebExt
+    class WebHelper
     {
         /// <summary>
         /// 发送post请求
@@ -21,22 +22,16 @@ namespace 鹰眼OCR.OCR
         public static string Request(string host, string token, string param, string contentType = null)
         {
             host += string.IsNullOrEmpty(token) ? "" : token;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host);
-            request.Method = "post";
-            request.Timeout = 30_000;
-            request.ContentType = string.IsNullOrEmpty(contentType) ? "application/x-www-form-urlencoded" : contentType;
-            request.KeepAlive = true;
-            byte[] buffer = Encoding.UTF8.GetBytes(param);
-            request.ContentLength = buffer.Length;
-            request.GetRequestStream().Write(buffer, 0, buffer.Length);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+            var httpClient = new HttpClient
             {
-                string result = reader.ReadToEnd();
-                response.Dispose();
-                return result;
-            }
+                Timeout = TimeSpan.FromMilliseconds(30000)
+            };
+
+            string mediaType = string.IsNullOrEmpty(contentType) ? "application/x-www-form-urlencoded" : contentType;
+            var content = new StringContent(param, Encoding.UTF8, mediaType);
+            var response = httpClient.PostAsync(host, content).Result;
+            var result = response.Content.ReadAsStringAsync().Result;
+            return result;
         }
 
         /// <summary>
@@ -132,6 +127,17 @@ namespace 鹰眼OCR.OCR
                 response?.Dispose();
             }
         }
+
+        /// <summary>
+        /// 获取文件大小
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static long GetFileSize(string file)
+        {
+            return new FileInfo(file).Length;
+        }
+
         ///// <summary>
         ///// 下载文件
         ///// </summary>

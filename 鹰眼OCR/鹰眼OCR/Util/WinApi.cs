@@ -45,6 +45,33 @@ namespace 鹰眼OCR.Util
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);// 释放注册的的热键
 
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
+        public static extern int GetWindowLong(HandleRef hWnd, int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
+        public static extern IntPtr SetWindowLong(HandleRef hWnd, int nIndex, int dwNewLong);
+        public const int WS_SYSMENU = 0x00080000; // 系统菜单
+        public const int WS_MINIMIZEBOX = 0x00020000;  // 最大最小化按钮
+
+        // 判断按键是否按下
+        [DllImport("user32.dll")]
+        public static extern int GetAsyncKeyState(int vKey);
+
+        public const int VK_MENU = 0x12;
+        public const int VK_CONTROL = 0x17;
+        
+        // 发送键盘消息
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+        // 将 虚拟密钥代码转换为扫描代码
+
+        [DllImport("user32.dll")]
+        public extern static uint MapVirtualKey(uint uCode, uint uMapType);
+
+        public const int KEYEVENTF_KEYUP = 0x0002; // 释放按键
+        public const int MAPVK_VK_TO_VSC = 0;      // 虚拟密钥代码转换为扫描代码
+
         /// <summary>
         /// 获取窗口句柄，并判断是否有效，无效则抛出异常
         /// </summary>
@@ -65,13 +92,19 @@ namespace 鹰眼OCR.Util
             return hwnd;
         }
 
+        // 判断键盘任一按键是否按下
+        public static bool IsKeyDown(Keys key) => GetAsyncKeyState((int)key) != 0;
 
-        [DllImport("user32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
-        public static extern int GetWindowLong(HandleRef hWnd, int nIndex);
-
-        [DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
-        public static extern IntPtr SetWindowLong(HandleRef hWnd, int nIndex, int dwNewLong);
-        public const int WS_SYSMENU = 0x00080000; // 系统菜单
-        public const int WS_MINIMIZEBOX = 0x00020000;  // 最大最小化按钮
+        /// <summary>
+        /// 发送按键
+        /// </summary>
+        /// <param name="key"></param>
+        public static void SendKey(Keys key)
+        {
+            // 模拟按下按键
+            keybd_event((byte)key, (byte)MapVirtualKey((uint)key, MAPVK_VK_TO_VSC), 0, 0);
+            Thread.Sleep(50);
+            keybd_event((byte)key, (byte)MapVirtualKey((uint)key, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP, 0);
+        }
     }
 }

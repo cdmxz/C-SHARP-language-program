@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ScreenShot;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
 using 鹰眼OCR.OCR;
 using 鹰眼OCR.Util;
-using ScreenShot;
 
 namespace 鹰眼OCR
 {

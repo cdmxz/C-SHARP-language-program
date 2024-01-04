@@ -40,6 +40,8 @@
 		<PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
 		<PackageReference Include="NAudio.WinForms" Version="2.2.1" />
 		<PackageReference Include="NAudio.WinMM" Version="2.2.1" />
+		<PackageReference Include="OpenCvSharp4" Version="4.9.0.20240103" />
+		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.9.0.20240103" />
 		<PackageReference Include="PDFtoImage" Version="2.4.1" />
 		<PackageReference Include="ZXing.Net" Version="0.16.9" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

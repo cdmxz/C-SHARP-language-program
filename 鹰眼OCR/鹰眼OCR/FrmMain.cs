@@ -14,6 +14,7 @@ using 鹰眼OCR.OCR;
 using 鹰眼OCR.PDF;
 using 鹰眼OCR.TTS;
 using 鹰眼OCR.Util;
+using WinApi = 鹰眼OCR.Util.WinApi;
 
 
 namespace 鹰眼OCR
@@ -297,7 +298,7 @@ namespace 鹰眼OCR
         private Image _CaptureImage;// 截取的图像
         private FrmQrCode qRCode; // 二维码生成窗体
         private FrmAsr frmSound;// 语音识别窗体
-        //private FrmPhotograph frmPhotograph;// 拍照窗体
+        private FrmPhotograph frmPhotograph;// 拍照窗体
         private FrmSetting frmSetting;      // 设置窗体
         private FrmFind frmFind;            // 查找窗体
         private PlayAudio playAudio = new PlayAudio();// 播放mp3
@@ -354,7 +355,7 @@ namespace 鹰眼OCR
         {
             qRCode?.Dispose();
             frmSound?.Dispose();
-            //frmPhotograph?.Dispose();
+            frmPhotograph?.Dispose();
             frmSetting?.Dispose();
             frmFind?.Dispose();
             playAudio?.Dispose();
@@ -1096,46 +1097,46 @@ namespace 鹰眼OCR
         // 拍照
         private void toolStripButton_Photograph_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (frmPhotograph == null || frmPhotograph.IsDisposed)
-            //    {
-            //        ClearLog();
-            //        frmPhotograph = new FrmPhotograph();
-            //        frmPhotograph.Position = new Point(this.Location.X + (this.Width / 2 - frmPhotograph.Width / 2), this.Location.Y + (this.Height / 2 - frmPhotograph.Height / 2));
-            //        frmPhotograph.PhotographEvent += PhotoRecognition;
-            //        frmPhotograph.Show();
-            //    }
-            //    else
-            //        frmPhotograph.Activate();
-            //}
-            //catch (Exception ex)
-            //{
-            //    RefreshLog(ex.Message);
-            //    if (frmPhotograph != null && !frmPhotograph.IsDisposed)
-            //    {
-            //        frmPhotograph.Close();
-            //        frmPhotograph.Dispose();
-            //    }
-            //}
+            try
+            {
+                if (frmPhotograph == null || frmPhotograph.IsDisposed)
+                {
+                    ClearLog();
+                    frmPhotograph = new FrmPhotograph();
+                    frmPhotograph.Position = new Point(this.Location.X + (this.Width / 2 - frmPhotograph.Width / 2), this.Location.Y + (this.Height / 2 - frmPhotograph.Height / 2));
+                    frmPhotograph.PhotographEvent += PhotoRecognition;
+                    frmPhotograph.Show();
+                }
+                else
+                    frmPhotograph.Activate();
+            }
+            catch (Exception ex)
+            {
+                RefreshLog(ex.Message);
+                if (frmPhotograph != null && !frmPhotograph.IsDisposed)
+                {
+                    frmPhotograph.Close();
+                    frmPhotograph.Dispose();
+                }
+            }
         }
 
         // 拍照识别
         private void PhotoRecognition(Image img)
         {
-            //if (frmPhotograph == null || frmPhotograph.IsDisposed || img == null)
-            //    return;
-            //try
-            //{
-            //    CaptureImage = img;
-            //    StartOCR(CaptureImage);
-            //    if (Setting_Other.SavePhotograph)
-            //        SaveImage(img, savePath.PhotographPath);
-            //}
-            //catch (Exception ex)
-            //{
-            //    RefreshLog(ex.Message);
-            //}
+            if (frmPhotograph == null || frmPhotograph.IsDisposed || img == null)
+                return;
+            try
+            {
+                CaptureImage = img;
+                StartOCR(CaptureImage);
+                if (Setting_Other.SavePhotograph)
+                    SaveImage(img, savePath.PhotographPath);
+            }
+            catch (Exception ex)
+            {
+                RefreshLog(ex.Message);
+            }
         }
 
         private void SaveImage(Image img, string dir)
@@ -1151,7 +1152,7 @@ namespace 鹰眼OCR
         {
             ClearLog();
             HideWindow();
-            Thread.Sleep(300);
+            Thread.Sleep(200);
             try
             {
                 CaptureImage = ScreenShot();
@@ -1497,6 +1498,7 @@ namespace 鹰眼OCR
             }
         }
 
+        // 清理日志栏
         private void ClearLog()
         {
             statusLabel_Log.Text = "无";

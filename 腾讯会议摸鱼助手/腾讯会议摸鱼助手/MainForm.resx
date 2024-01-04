@@ -1,0 +1,2597 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>118, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 48</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
+    <value>contextMenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="复制ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="复制ToolStripMenuItem.Text" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="清空日志ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="清空日志ToolStripMenuItem.Text" xml:space="preserve">
+    <value>清空日志</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button_LeaveButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_LeaveButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_LeaveButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_LeaveButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 225</value>
+  </data>
+  <data name="button_LeaveButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button_LeaveButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="button_LeaveButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_LeaveButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_LeaveButtonPosition.Name" xml:space="preserve">
+    <value>button_LeaveButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_LeaveButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_LeaveButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_LeaveButtonPosition.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_OkButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_OkButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_OkButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_OkButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 193</value>
+  </data>
+  <data name="button_OkButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_OkButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="button_OkButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_OkButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_OkButtonPosition.Name" xml:space="preserve">
+    <value>button_OkButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_OkButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_OkButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_OkButtonPosition.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 159</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_ChangeNameButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_ChangeNameButtonPosition.Name" xml:space="preserve">
+    <value>button_ChangeNameButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_ChangeNameButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_ChangeNameButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_ChangeNameButtonPosition.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="button_MemberButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_MemberButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_MemberButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_MemberButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 125</value>
+  </data>
+  <data name="button_MemberButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_MemberButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="button_MemberButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_MemberButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_MemberButtonPosition.Name" xml:space="preserve">
+    <value>button_MemberButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_MemberButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_MemberButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_MemberButtonPosition.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="textBox_LeaveButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 225</value>
+  </data>
+  <data name="textBox_LeaveButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_LeaveButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="textBox_LeaveButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveButtonPosition.Name" xml:space="preserve">
+    <value>textBox_LeaveButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveButtonPosition.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="textBox_OkButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 193</value>
+  </data>
+  <data name="textBox_OkButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_OkButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="textBox_OkButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_OkButtonPosition.Name" xml:space="preserve">
+    <value>textBox_OkButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_OkButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_OkButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_OkButtonPosition.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="textBox_MemberButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 126</value>
+  </data>
+  <data name="textBox_MemberButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_MemberButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="textBox_MemberButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_MemberButtonPosition.Name" xml:space="preserve">
+    <value>textBox_MemberButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_MemberButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_MemberButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_MemberButtonPosition.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="textBox_ChangeNameButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 161</value>
+  </data>
+  <data name="textBox_ChangeNameButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_ChangeNameButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="textBox_ChangeNameButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChangeNameButtonPosition.Name" xml:space="preserve">
+    <value>textBox_ChangeNameButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChangeNameButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChangeNameButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChangeNameButtonPosition.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 228</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 17</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>离开会议按钮坐标：</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 196</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>确认按钮坐标：</value>
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 165</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>改名按钮坐标：</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 131</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>成员按钮坐标：</value>
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 25</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>聊天按钮坐标：</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 58</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>输入框坐标：</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="button_SendButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_SendButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_SendButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_SendButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 89</value>
+  </data>
+  <data name="button_SendButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_SendButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="button_SendButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_SendButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_SendButtonPosition.Name" xml:space="preserve">
+    <value>button_SendButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_SendButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_SendButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_SendButtonPosition.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 94</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>发送按钮坐标：</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="button_InputBoxPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_InputBoxPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_InputBoxPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_InputBoxPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 53</value>
+  </data>
+  <data name="button_InputBoxPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_InputBoxPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="button_InputBoxPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_InputBoxPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_InputBoxPosition.Name" xml:space="preserve">
+    <value>button_InputBoxPosition</value>
+  </data>
+  <data name="&gt;&gt;button_InputBoxPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_InputBoxPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_InputBoxPosition.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="textBox_ChatButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 22</value>
+  </data>
+  <data name="textBox_ChatButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_ChatButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="textBox_ChatButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChatButtonPosition.Name" xml:space="preserve">
+    <value>textBox_ChatButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChatButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChatButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_ChatButtonPosition.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="button_ChatButtonPosition.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_ChatButtonPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="button_ChatButtonPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_ChatButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 21</value>
+  </data>
+  <data name="button_ChatButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="button_ChatButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="button_ChatButtonPosition.Text" xml:space="preserve">
+    <value>设置坐标</value>
+  </data>
+  <data name="button_ChatButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置按下鼠标右键退出设置</value>
+  </data>
+  <data name="&gt;&gt;button_ChatButtonPosition.Name" xml:space="preserve">
+    <value>button_ChatButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;button_ChatButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_ChatButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button_ChatButtonPosition.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="textBox_InputBoxPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 54</value>
+  </data>
+  <data name="textBox_InputBoxPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_InputBoxPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="textBox_InputBoxPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputBoxPosition.Name" xml:space="preserve">
+    <value>textBox_InputBoxPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputBoxPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputBoxPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputBoxPosition.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="textBox_SendButtonPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 91</value>
+  </data>
+  <data name="textBox_SendButtonPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="textBox_SendButtonPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="textBox_SendButtonPosition.ToolTip" xml:space="preserve">
+    <value>在任意位置右键退出</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendButtonPosition.Name" xml:space="preserve">
+    <value>textBox_SendButtonPosition</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendButtonPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendButtonPosition.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendButtonPosition.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="tabPage2.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="button_TestPush.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_TestPush.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_TestPush.Location" type="System.Drawing.Point, System.Drawing">
+    <value>275, 81</value>
+  </data>
+  <data name="button_TestPush.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 29</value>
+  </data>
+  <data name="button_TestPush.TabIndex" type="System.Int32, mscorlib">
+    <value>99</value>
+  </data>
+  <data name="button_TestPush.Text" xml:space="preserve">
+    <value>测试</value>
+  </data>
+  <data name="&gt;&gt;button_TestPush.Name" xml:space="preserve">
+    <value>button_TestPush</value>
+  </data>
+  <data name="&gt;&gt;button_TestPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_TestPush.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;button_TestPush.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 87</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 17</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>98</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>注：关注公众号后请在公众号里关闭消息免打扰</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBox_Uid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 54</value>
+  </data>
+  <data name="textBox_Uid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 23</value>
+  </data>
+  <data name="textBox_Uid.TabIndex" type="System.Int32, mscorlib">
+    <value>97</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uid.Name" xml:space="preserve">
+    <value>textBox_Uid</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uid.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uid.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 60</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>96</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>在线推送UID:</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 25</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>在线推送UUID:</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="textBox_Uuid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 19</value>
+  </data>
+  <data name="textBox_Uuid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 23</value>
+  </data>
+  <data name="textBox_Uuid.TabIndex" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uuid.Name" xml:space="preserve">
+    <value>textBox_Uuid</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uuid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uuid.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;textBox_Uuid.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 245</value>
+  </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>333, 113</value>
+  </data>
+  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>114</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>提醒设置</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBox_ListboxName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 219</value>
+  </data>
+  <data name="textBox_ListboxName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 23</value>
+  </data>
+  <data name="textBox_ListboxName.TabIndex" type="System.Int32, mscorlib">
+    <value>106</value>
+  </data>
+  <data name="&gt;&gt;textBox_ListboxName.Name" xml:space="preserve">
+    <value>textBox_ListboxName</value>
+  </data>
+  <data name="&gt;&gt;textBox_ListboxName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_ListboxName.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;textBox_ListboxName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBox_SendReminderKeyword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 182</value>
+  </data>
+  <data name="textBox_SendReminderKeyword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 23</value>
+  </data>
+  <data name="textBox_SendReminderKeyword.TabIndex" type="System.Int32, mscorlib">
+    <value>112</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendReminderKeyword.Name" xml:space="preserve">
+    <value>textBox_SendReminderKeyword</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendReminderKeyword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendReminderKeyword.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;textBox_SendReminderKeyword.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBox_LeaveKeyword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 147</value>
+  </data>
+  <data name="textBox_LeaveKeyword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 23</value>
+  </data>
+  <data name="textBox_LeaveKeyword.TabIndex" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveKeyword.Name" xml:space="preserve">
+    <value>textBox_LeaveKeyword</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveKeyword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveKeyword.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;textBox_LeaveKeyword.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 222</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>113</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>改名列表名字：</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 185</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>111</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>发送提醒关键字：</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 150</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>108</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>离会关键字：</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 2</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 262</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>110</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>相对坐标 设置</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="button_QueryName.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_QueryName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_QueryName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 58</value>
+  </data>
+  <data name="button_QueryName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 31</value>
+  </data>
+  <data name="button_QueryName.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="button_QueryName.Text" xml:space="preserve">
+    <value>查询点名关键字</value>
+  </data>
+  <data name="&gt;&gt;button_QueryName.Name" xml:space="preserve">
+    <value>button_QueryName</value>
+  </data>
+  <data name="&gt;&gt;button_QueryName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_QueryName.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;button_QueryName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBox_NameKeyword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 95</value>
+  </data>
+  <data name="textBox_NameKeyword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 23</value>
+  </data>
+  <data name="textBox_NameKeyword.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;textBox_NameKeyword.Name" xml:space="preserve">
+    <value>textBox_NameKeyword</value>
+  </data>
+  <data name="&gt;&gt;textBox_NameKeyword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_NameKeyword.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_NameKeyword.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 98</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>点名关键字：</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBox_AutoReplyText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 26</value>
+  </data>
+  <data name="textBox_AutoReplyText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 23</value>
+  </data>
+  <data name="textBox_AutoReplyText.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;textBox_AutoReplyText.Name" xml:space="preserve">
+    <value>textBox_AutoReplyText</value>
+  </data>
+  <data name="&gt;&gt;textBox_AutoReplyText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_AutoReplyText.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_AutoReplyText.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 30</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>自动回复文字：</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>333, 134</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>109</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>自动回复点名</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="button_RecoveryConfig.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_RecoveryConfig.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt</value>
+  </data>
+  <data name="button_RecoveryConfig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_RecoveryConfig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>512, 305</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button_RecoveryConfig.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button_RecoveryConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 31</value>
+  </data>
+  <data name="button_RecoveryConfig.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
+  <data name="button_RecoveryConfig.Text" xml:space="preserve">
+    <value>恢复默认配置</value>
+  </data>
+  <data name="&gt;&gt;button_RecoveryConfig.Name" xml:space="preserve">
+    <value>button_RecoveryConfig</value>
+  </data>
+  <data name="&gt;&gt;button_RecoveryConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_RecoveryConfig.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;button_RecoveryConfig.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="tabPage2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 28</value>
+  </data>
+  <data name="tabPage2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>633, 316</value>
+  </data>
+  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Name" xml:space="preserve">
+    <value>panel_Color</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPage1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 28</value>
+  </data>
+  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>633, 316</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Name" xml:space="preserve">
+    <value>button_StartAsrThread</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Parent" xml:space="preserve">
+    <value>panel_Color</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_Color.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="panel_Color.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 276</value>
+  </data>
+  <data name="panel_Color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>633, 40</value>
+  </data>
+  <data name="panel_Color.TabIndex" type="System.Int32, mscorlib">
+    <value>85</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Name" xml:space="preserve">
+    <value>panel_Color</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;panel_Color.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_StartAsrThread.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_StartAsrThread.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 10.5pt</value>
+  </data>
+  <data name="button_StartAsrThread.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_StartAsrThread.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 0</value>
+  </data>
+  <data name="button_StartAsrThread.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 40</value>
+  </data>
+  <data name="button_StartAsrThread.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
+  <data name="button_StartAsrThread.Text" xml:space="preserve">
+    <value>启动语音识别</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Name" xml:space="preserve">
+    <value>button_StartAsrThread</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.Parent" xml:space="preserve">
+    <value>panel_Color</value>
+  </data>
+  <data name="&gt;&gt;button_StartAsrThread.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
+    <value>listView1</value>
+  </data>
+  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 13</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 244</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>83</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 244</value>
+  </data>
+  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 43</value>
+  </data>
+  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
+    <value>listView1</value>
+  </data>
+  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Name" xml:space="preserve">
+    <value>checkBox_AutoSendReminder</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Name" xml:space="preserve">
+    <value>checkBox_AutoLeave</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Name" xml:space="preserve">
+    <value>checkBox_AutoStart</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Name" xml:space="preserve">
+    <value>checkBox_AutoReply</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Name" xml:space="preserve">
+    <value>checkBox_AutoEnterMeeting</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 19</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 196</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 149</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.TabIndex" type="System.Int32, mscorlib">
+    <value>96</value>
+  </data>
+  <data name="checkBox_AutoSendReminder.Text" xml:space="preserve">
+    <value>发送公众号提醒</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Name" xml:space="preserve">
+    <value>checkBox_AutoSendReminder</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoSendReminder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBox_AutoLeave.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_AutoLeave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_AutoLeave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 119</value>
+  </data>
+  <data name="checkBox_AutoLeave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 21</value>
+  </data>
+  <data name="checkBox_AutoLeave.TabIndex" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="checkBox_AutoLeave.Text" xml:space="preserve">
+    <value>自动离开会议</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Name" xml:space="preserve">
+    <value>checkBox_AutoLeave</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoLeave.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox_AutoStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_AutoStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_AutoStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 34</value>
+  </data>
+  <data name="checkBox_AutoStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 21</value>
+  </data>
+  <data name="checkBox_AutoStart.TabIndex" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="checkBox_AutoStart.Text" xml:space="preserve">
+    <value>自启动</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Name" xml:space="preserve">
+    <value>checkBox_AutoStart</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoStart.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkBox_AutoReply.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_AutoReply.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_AutoReply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 91</value>
+  </data>
+  <data name="checkBox_AutoReply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 21</value>
+  </data>
+  <data name="checkBox_AutoReply.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="checkBox_AutoReply.Text" xml:space="preserve">
+    <value>自动回复点名</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Name" xml:space="preserve">
+    <value>checkBox_AutoReply</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoReply.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 61</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 21</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.TabIndex" type="System.Int32, mscorlib">
+    <value>92</value>
+  </data>
+  <data name="checkBox_AutoEnterMeeting.Text" xml:space="preserve">
+    <value>自动进入会议</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Name" xml:space="preserve">
+    <value>checkBox_AutoEnterMeeting</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_AutoEnterMeeting.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Name" xml:space="preserve">
+    <value>label_Tip</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Name" xml:space="preserve">
+    <value>button_SendReply</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Name" xml:space="preserve">
+    <value>textBox_InputReply</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 115</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 100</value>
+  </data>
+  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>一键回复</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label_Tip.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_Tip.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="label_Tip.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 8pt</value>
+  </data>
+  <data name="label_Tip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_Tip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 25</value>
+  </data>
+  <data name="label_Tip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 16</value>
+  </data>
+  <data name="label_Tip.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label_Tip.Text" xml:space="preserve">
+    <value>在此输入内容...</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Name" xml:space="preserve">
+    <value>label_Tip</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;label_Tip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_SendReply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_SendReply.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_SendReply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 59</value>
+  </data>
+  <data name="button_SendReply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 28</value>
+  </data>
+  <data name="button_SendReply.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="button_SendReply.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Name" xml:space="preserve">
+    <value>button_SendReply</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;button_SendReply.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBox_InputReply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 22</value>
+  </data>
+  <data name="textBox_InputReply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 23</value>
+  </data>
+  <data name="textBox_InputReply.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Name" xml:space="preserve">
+    <value>textBox_InputReply</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;textBox_InputReply.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Name" xml:space="preserve">
+    <value>listBox_Name</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 9</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 100</value>
+  </data>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>双击列表改名</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="listBox_Name.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="listBox_Name.ItemHeight" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="listBox_Name.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="listBox_Name.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 78</value>
+  </data>
+  <data name="listBox_Name.TabIndex" type="System.Int32, mscorlib">
+    <value>92</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Name" xml:space="preserve">
+    <value>listBox_Name</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;listBox_Name.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Name" xml:space="preserve">
+    <value>textBox_Log</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 13</value>
+  </data>
+  <data name="groupBox4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="groupBox4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 244</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>76</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>日志</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBox_Log.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="textBox_Log.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt</value>
+  </data>
+  <data name="textBox_Log.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 20</value>
+  </data>
+  <data name="textBox_Log.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="textBox_Log.MaxLength" type="System.Int32, mscorlib">
+    <value>3276700</value>
+  </data>
+  <data name="textBox_Log.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="textBox_Log.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="textBox_Log.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 220</value>
+  </data>
+  <data name="textBox_Log.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="textBox_Log.Text" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Name" xml:space="preserve">
+    <value>textBox_Log</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;textBox_Log.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 10pt</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabControl1.Padding" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>641, 348</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 17</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>641, 348</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAAAAAAAAAIABoYwAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAAAFz
+        UkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7DAAAOwwHHb6hkAABi/UlEQVR4Xu1dB5ic
+        VbmOFCFAdv6yIYAgotgQUMTCvSBNpalYEbyCCtgRpSigKKtclRqS3fnLzO4mAUKNBRAJ4AVCEykRQsru
+        /GVmSza995697/v9/2w2cZKdmZ1t4bzPc57ZnfnLKV895zvfGaagoKCgoKCgoKCgoKCgoKCgoKCgoKCg
+        oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
+        oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
+        oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgsLuj823Dajr3GDap
+        c0987jUs3bn3sEkz335krb/PoaNfGn5wes5+o26btj8/Dx3dPvzwCS37DsNvvGZYeurew2qm7BXfu8ew
+        Tjxr2DAWBQWFQQswLZm6qmGmsV+q6eBEXeYIsy7zAa3O+7CZbv+45nifMhzvM5rjf95IBufpTniB4QTn
+        aU5wru4EZybs4DS9LjzRTIUf0+zssbz3QMd7t24Hh+1ntRxk1PpV8ZsUFBT6HdTEUzr3orYeac08IDGm
+        RdvfCQ9MuC3v0q3gQ0ad9wkzGZyq2d7nqqzM1xNJ/2Iw92W6HV6j29nfGk54m2F7jmH7d+uW/xAEwd91
+        238YQuAefNcARq/F3zcbbngDhMMvNCv4iZ7MfFdz/W8mXP9rRtL/rF4ffGhEssk0GxeNoPUgVgOthchK
+        UFBQ6BOAwcxk8yEJxz9Or8+daVjhd8D0V+uO9zvDyd6ip4KxYOIUGHoCmPg+aPS/aLb/GP5/Cv+/gP9f
+        xe/T8b9nOH6bYQcL8f0SfLcIv81GCVGa8P00CIJXcM0LuPZp/P44Ph/Bd3/W3fBu3c1CSHi/Nl3/x4bl
+        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
+        l7zQcrknILdBd/xV0PhZMP0/DDdnMSMQMyCxDyQVmpwroPLzKbzFwBBW2VVne19hGC5M4lotlbtPZz4A
+        RuM5wVww2xaxCOT03R0j8AZKCOC9ZHzGODC+QCIfUTdaMIxERN042QkBF6KOL0CQPWDawf9CCHzLTLV+
+        2ky3fECdvaegQKSn7s18eWCIg7ihRU+HZ2vJ4DKN8fiwDHTLnwpmmqPb4Up8cnvwBonQi83sbdF53ayE
+        fCm0ts8iFgRLrMXzJa/NtyvdnseSfxd/ozBgxCD3I7ghowu5QWkhPpsgzJj2qx7m/s9NJziX5wrqN09N
+        xDsT1ay+gkIhcLLQdJrfLxNiKe8r3KSjyam8gQuGfQgM9i8wVZbhsTKjTssgvw+Aa+nxbrmuCD+ZcS8U
+        4ddNaDD6jv66RAuyxBGDvJcRgnxOXsNzLwBXLiLrYyHqMwsC4AUIkEfw950QCLfqycxVYP5v61ZwFoXa
+        AelMddw8BQWFHkENCb9YMunW+lX7pV47uNoJj9cd7wLN9q7XU2EjmO05MCA3+SwGAy6HBl6B72glQAv7
+        a1Akvh//c8adO/eYlWcTPqGxZX/ANpNe/odVIfH/cs1G3sN7o2fwWXL0+Wo9lVuBa+fjumn4fAh14orG
+        z7ll2LRbTpPUZaNnGsxHIGv4apeegkIF0Nn5NrOx+ZBEMvgoJw8NO7wYzPcLMOj/QtveBgFQB6ZNixaG
+        zw2mfQgMzV1/MMWDF8G8r+H/Gbjex+/t+HsRylLcswjXdKBwkq6ZjI1rX8U1uMd/Btc8ge/+hvsYyHSP
+        7mYZ2XiD4QY/YabfhBucKjkT6/1D5ZATBQWFPgJXENLRybycPU/cNF3fz5p5EI+4glA42rC8T5p2cJpp
+        +1/gxpmE5V+iJb3LdTu8Vneyv+N6O65xwdATwcQPozyG8giY/T4wPawKP4nfbgGj/xYC5RrN8n6qW973
+        tJR/Ib4/T082n6klm485oPb1kXp6aoIZh+IZ/L2kbgoKCgOImil7kSm5W254EtYCl9nqWj6gubkPRym6
+        vZONpP9ZMwUBYQVfZyYdMPv5pht8UXcyZ3NLMw/uMNPZj2uu92EejsITe3HNYfulmg7mJF78JgUFhUEN
+        amSurXM+gTvoeLYAtHVXnj8ICi7F8TM655/+esu+kUbHtdx8w3vPY67Amj3wQKXhFRQUFBQUFBQUFBQU
+        FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU
+        FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU
+        FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU
+        FBQUFIrDsGH/D1j4HBpERqCaAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>腾讯会议摸鱼助手</value>
+  </data>
+  <data name="&gt;&gt;复制ToolStripMenuItem.Name" xml:space="preserve">
+    <value>复制ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;复制ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;清空日志ToolStripMenuItem.Name" xml:space="preserve">
+    <value>清空日志ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;清空日志ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

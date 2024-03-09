@@ -372,6 +372,7 @@ namespace 自动进入钉钉直播
         {
             using Process pro = new();
             pro.StartInfo.FileName = exe;
+            pro.StartInfo.UseShellExecute = true;
             pro.Start();
         }
 

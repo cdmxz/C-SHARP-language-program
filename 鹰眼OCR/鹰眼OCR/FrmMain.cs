@@ -282,6 +282,10 @@ namespace 鹰眼OCR
             pdfToImage.GetOnePageEvent += PdfCallback;
             string ver = Application.ProductVersion;
             this.label_SoftwareName.Text += " V" + ver.Remove(ver.Length - 4);
+
+
+            
+
         }
 
         private Image CaptureImage
@@ -729,8 +733,8 @@ namespace 鹰眼OCR
             ConfigFile.ReadFile(KeyName.Position_Y, ref pos_y);
             int.TryParse(pos_x, out int x);
             int.TryParse(pos_y, out int y);
-            int w = (int)Screen.PrimaryScreen.Bounds.Width;
-            int h = (int)Screen.PrimaryScreen.Bounds.Height;
+            int w = Screen.PrimaryScreen.Bounds.Width;
+            int h = Screen.PrimaryScreen.Bounds.Height;
             if (x > 0 && y > 0 && x < w && y < h)
                 this.Location = new Point(x, y);
         }
@@ -1918,7 +1922,7 @@ namespace 鹰眼OCR
 
         private void comboBox_SourceLang_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (comboBox_SourceLang.SelectedItem.ToString().IndexOf("自动") != -1)
+            if (comboBox_SourceLang.SelectedItem.ToString().Contains("自动"))
                 button_SwitchTranLang.Enabled = false;
             else
                 button_SwitchTranLang.Enabled = true;

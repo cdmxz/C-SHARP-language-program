@@ -1,14 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Net.Mime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-using System.Windows.Forms;
 
 namespace 鹰眼OCR.OCR
 {

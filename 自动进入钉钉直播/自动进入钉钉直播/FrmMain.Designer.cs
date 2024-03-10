@@ -49,6 +49,7 @@
             pictureBox1 = new PictureBox();
             button_DelConfig = new Button();
             button_SaveConfig = new Button();
+            label1_52url = new Label();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox4 = new GroupBox();
@@ -95,7 +96,7 @@
             label19.FlatStyle = FlatStyle.Flat;
             label19.Font = new Font("微软雅黑", 9.75F, FontStyle.Bold | FontStyle.Italic);
             label19.ForeColor = Color.DeepSkyBlue;
-            label19.Location = new Point(318, 292);
+            label19.Location = new Point(347, 292);
             label19.Margin = new Padding(5, 0, 5, 0);
             label19.Name = "label19";
             label19.Size = new Size(80, 26);
@@ -127,7 +128,7 @@
             checkBox11_ShowTop.FlatStyle = FlatStyle.System;
             checkBox11_ShowTop.Font = new Font("微软雅黑", 9F);
             checkBox11_ShowTop.Location = new Point(9, 104);
-            checkBox11_ShowTop.Margin = new Padding(5, 5, 5, 5);
+            checkBox11_ShowTop.Margin = new Padding(5);
             checkBox11_ShowTop.Name = "checkBox11_ShowTop";
             checkBox11_ShowTop.Size = new Size(205, 25);
             checkBox11_ShowTop.TabIndex = 7;
@@ -144,9 +145,9 @@
             button5_start.Font = new Font("微软雅黑", 20F, FontStyle.Bold);
             button5_start.ForeColor = Color.DodgerBlue;
             button5_start.Location = new Point(233, 219);
-            button5_start.Margin = new Padding(5, 5, 5, 5);
+            button5_start.Margin = new Padding(5);
             button5_start.Name = "button5_start";
-            button5_start.Size = new Size(364, 49);
+            button5_start.Size = new Size(364, 60);
             button5_start.TabIndex = 12;
             button5_start.Text = "开启";
             toolTip1.SetToolTip(button5_start, "启动");
@@ -159,7 +160,7 @@
             checkBox12_SaveToDesk.FlatStyle = FlatStyle.System;
             checkBox12_SaveToDesk.Font = new Font("微软雅黑", 9F);
             checkBox12_SaveToDesk.Location = new Point(9, 28);
-            checkBox12_SaveToDesk.Margin = new Padding(5, 5, 5, 5);
+            checkBox12_SaveToDesk.Margin = new Padding(5);
             checkBox12_SaveToDesk.Name = "checkBox12_SaveToDesk";
             checkBox12_SaveToDesk.Size = new Size(193, 25);
             checkBox12_SaveToDesk.TabIndex = 6;
@@ -175,7 +176,7 @@
             linkLabel1.BorderStyle = BorderStyle.FixedSingle;
             linkLabel1.Font = new Font("微软雅黑", 10F, FontStyle.Bold | FontStyle.Italic);
             linkLabel1.LinkColor = Color.SlateBlue;
-            linkLabel1.Location = new Point(509, 292);
+            linkLabel1.Location = new Point(518, 292);
             linkLabel1.Margin = new Padding(5, 0, 5, 0);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(80, 26);
@@ -199,7 +200,7 @@
             checkBox13_preventSleep.FlatStyle = FlatStyle.System;
             checkBox13_preventSleep.Font = new Font("微软雅黑", 9F);
             checkBox13_preventSleep.Location = new Point(9, 68);
-            checkBox13_preventSleep.Margin = new Padding(5, 5, 5, 5);
+            checkBox13_preventSleep.Margin = new Padding(5);
             checkBox13_preventSleep.Name = "checkBox13_preventSleep";
             checkBox13_preventSleep.Size = new Size(130, 25);
             checkBox13_preventSleep.TabIndex = 67;
@@ -213,7 +214,7 @@
             button2_AddStart.FlatStyle = FlatStyle.Flat;
             button2_AddStart.Font = new Font("微软雅黑", 9F);
             button2_AddStart.Location = new Point(13, 32);
-            button2_AddStart.Margin = new Padding(5, 5, 5, 5);
+            button2_AddStart.Margin = new Padding(5);
             button2_AddStart.Name = "button2_AddStart";
             button2_AddStart.Size = new Size(87, 31);
             button2_AddStart.TabIndex = 69;
@@ -227,7 +228,7 @@
             button3_DelStart.FlatStyle = FlatStyle.Flat;
             button3_DelStart.Font = new Font("微软雅黑", 9F);
             button3_DelStart.Location = new Point(13, 72);
-            button3_DelStart.Margin = new Padding(5, 5, 5, 5);
+            button3_DelStart.Margin = new Padding(5);
             button3_DelStart.Name = "button3_DelStart";
             button3_DelStart.Size = new Size(87, 31);
             button3_DelStart.TabIndex = 70;
@@ -259,7 +260,7 @@
             label25.FlatStyle = FlatStyle.Flat;
             label25.Font = new Font("微软雅黑", 9.75F, FontStyle.Bold | FontStyle.Italic);
             label25.ForeColor = Color.DodgerBlue;
-            label25.Location = new Point(413, 292);
+            label25.Location = new Point(431, 292);
             label25.Margin = new Padding(5, 0, 5, 0);
             label25.Name = "label25";
             label25.Size = new Size(84, 26);
@@ -271,10 +272,10 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Tomato;
-            pictureBox1.Location = new Point(0, 77);
-            pictureBox1.Margin = new Padding(5, 5, 5, 5);
+            pictureBox1.Location = new Point(24, 77);
+            pictureBox1.Margin = new Padding(5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(366, 35);
+            pictureBox1.Size = new Size(304, 35);
             pictureBox1.TabIndex = 75;
             pictureBox1.TabStop = false;
             toolTip1.SetToolTip(pictureBox1, "pictureBox控件存在的意义就是为了获取不同缩放比下的截图区域大小");
@@ -284,7 +285,7 @@
             button_DelConfig.FlatStyle = FlatStyle.Flat;
             button_DelConfig.Font = new Font("微软雅黑", 8F);
             button_DelConfig.Location = new Point(111, 32);
-            button_DelConfig.Margin = new Padding(5, 5, 5, 5);
+            button_DelConfig.Margin = new Padding(5);
             button_DelConfig.Name = "button_DelConfig";
             button_DelConfig.Size = new Size(80, 31);
             button_DelConfig.TabIndex = 75;
@@ -298,7 +299,7 @@
             button_SaveConfig.FlatStyle = FlatStyle.Flat;
             button_SaveConfig.Font = new Font("微软雅黑", 8F);
             button_SaveConfig.Location = new Point(111, 72);
-            button_SaveConfig.Margin = new Padding(5, 5, 5, 5);
+            button_SaveConfig.Margin = new Padding(5);
             button_SaveConfig.Name = "button_SaveConfig";
             button_SaveConfig.Size = new Size(80, 31);
             button_SaveConfig.TabIndex = 76;
@@ -306,6 +307,23 @@
             toolTip1.SetToolTip(button_SaveConfig, "保存到配置文件");
             button_SaveConfig.UseVisualStyleBackColor = true;
             button_SaveConfig.Click += button_SaveConfig_Click;
+            // 
+            // label1_52url
+            // 
+            label1_52url.AutoSize = true;
+            label1_52url.BorderStyle = BorderStyle.FixedSingle;
+            label1_52url.Cursor = Cursors.Hand;
+            label1_52url.FlatStyle = FlatStyle.Flat;
+            label1_52url.Font = new Font("微软雅黑", 9.75F, FontStyle.Bold | FontStyle.Italic);
+            label1_52url.ForeColor = Color.LightSalmon;
+            label1_52url.Location = new Point(264, 292);
+            label1_52url.Margin = new Padding(5, 0, 5, 0);
+            label1_52url.Name = "label1_52url";
+            label1_52url.Size = new Size(80, 26);
+            label1_52url.TabIndex = 76;
+            label1_52url.Text = "吾爱首发";
+            toolTip1.SetToolTip(label1_52url, "点此处打开吾爱网址");
+            label1_52url.Click += label1_52url_Click;
             // 
             // groupBox1
             // 
@@ -316,9 +334,9 @@
             groupBox1.Controls.Add(button2_AddStart);
             groupBox1.Font = new Font("微软雅黑", 9F);
             groupBox1.Location = new Point(12, 154);
-            groupBox1.Margin = new Padding(5, 5, 5, 5);
+            groupBox1.Margin = new Padding(5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(5, 5, 5, 5);
+            groupBox1.Padding = new Padding(5);
             groupBox1.Size = new Size(211, 114);
             groupBox1.TabIndex = 71;
             groupBox1.TabStop = false;
@@ -332,9 +350,9 @@
             groupBox2.Controls.Add(checkBox11_ShowTop);
             groupBox2.Font = new Font("微软雅黑", 9F);
             groupBox2.Location = new Point(12, 9);
-            groupBox2.Margin = new Padding(5, 5, 5, 5);
+            groupBox2.Margin = new Padding(5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(5, 5, 5, 5);
+            groupBox2.Padding = new Padding(5);
             groupBox2.Size = new Size(211, 136);
             groupBox2.TabIndex = 72;
             groupBox2.TabStop = false;
@@ -347,9 +365,9 @@
             groupBox4.Controls.Add(textBox1_log);
             groupBox4.Font = new Font("微软雅黑", 9F);
             groupBox4.Location = new Point(230, 0);
-            groupBox4.Margin = new Padding(5, 5, 5, 5);
+            groupBox4.Margin = new Padding(5);
             groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(5, 5, 5, 5);
+            groupBox4.Padding = new Padding(5);
             groupBox4.Size = new Size(366, 209);
             groupBox4.TabIndex = 74;
             groupBox4.TabStop = false;
@@ -361,6 +379,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(604, 321);
+            Controls.Add(label1_52url);
             Controls.Add(label25);
             Controls.Add(groupBox1);
             Controls.Add(groupBox4);
@@ -371,7 +390,7 @@
             Controls.Add(label19);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             MaximizeBox = false;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
@@ -413,5 +432,6 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.Button button_SaveConfig;
         private System.Windows.Forms.Button button_DelConfig;
+        private Label label1_52url;
     }
 }

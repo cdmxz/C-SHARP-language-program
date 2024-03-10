@@ -18,10 +18,10 @@ namespace 自动进入钉钉直播
             // 截图高度和宽度（pictureBox控件存在的意义就是为了获取不同缩放比下的截图区域大小）
             rectCapture.Width = pictureBox1.Width;
             rectCapture.Height = pictureBox1.Height;
-          
+
             //SetDarkMode();
         }
-       
+
         /// <summary>
         /// 钉钉窗口信息
         /// </summary>
@@ -56,12 +56,15 @@ namespace 自动进入钉钉直播
         /// <summary>
         /// OCR识别关键字（当OCR识别到以下关键字时，判定直播已开启）
         /// </summary>
-        private static readonly char[] keyWords = { '群', '正', '在', '直', '播' };
+        private static readonly string[] keyWords = ["群", "正", "在", "直", "播"];
+        /// <summary>
+        /// 用户自定义的OCR关键字
+        /// </summary>
+        private static string[]? customKeyWords;
 
 
         private CancellationTokenSource? cts;
         private const int interval = 10;// 检测间隔10秒
-        private bool showTop;
         private TesseractOcr? localOCR;             // OCR
         private Rectangle rectCapture;                  // 截图坐标宽度和高度
         private string? dingPath;                       // 钉钉安装路径                    
@@ -71,11 +74,27 @@ namespace 自动进入钉钉直播
         // 钉钉窗口始终显示在最顶层
         private void checkBox11_ShowTop_CheckedChanged(object sender, EventArgs e)
         {
+            IntPtr hwnd = Api.FindWindow(DingInfo.WindowClassName, null);
+            // 查找钉钉窗口句柄
+            if (hwnd == IntPtr.Zero)
+            {
+                UpdateLog("获取钉钉窗口句柄 失败");
+                return;
+            }
+
+            // 将钉钉窗口显示到最前方
             if (checkBox11_ShowTop.Checked)
+            {
+                var res = Api.SetWindowPos(hwnd, Api.HWND_TOPMOST, 0, 0, 0, 0, Api.SWP_NOMOVE | Api.SWP_NOSIZE);
                 UpdateLog("顶置钉钉窗口");
+            }
             else
+            {
+                Api.SetWindowPos(hwnd, Api.HWND_NOTOPMOST, 0, 0, 0, 0, Api.SWP_NOMOVE | Api.SWP_NOSIZE);
                 UpdateLog("取消顶置钉钉窗口");
-            showTop = checkBox11_ShowTop.Checked;
+            }
+
+
         }
 
         // 添加自启动
@@ -180,14 +199,13 @@ namespace 自动进入钉钉直播
         //    }
         //}
 
-        
-        //加载窗口时读取配置文件
+
+        //加载窗口时读取配置文件和关键字文件
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Text += "V" + Application.ProductVersion.Remove(Application.ProductVersion.Length - 4);
             try
             {
-                string s;
                 if (ConfigFile.Exist)
                 {
                     string tmp = ConfigFile.Read(checkBox11_ShowTop.Text, "False");
@@ -200,6 +218,20 @@ namespace 自动进入钉钉直播
             catch
             {
                 UpdateLog("配置文件数据有误");
+            }
+            // 加载关键字文件
+            try
+            {
+                string file = GetCurrentDir() + "//关键字.txt";
+                if (File.Exists(file))
+                {
+                    customKeyWords = File.ReadAllLines(file);
+                    UpdateLog("加载关键字.txt");
+                }
+            }
+            catch (Exception ex)
+            {
+                UpdateLog("加载关键字.txt失败，原因：" + ex.Message);
             }
             //try
             //{
@@ -301,17 +333,11 @@ namespace 自动进入钉钉直播
                         else
                             lastTime = DateTime.Now;
                         // 判断钉钉是否在运行
-                        if (!DingDingIsRun())
+                        if (!IsRunDingDing())
                         {
                             UpdateLogInvoke("检测到钉钉未运行");
                             UpdateLogInvoke("打开钉钉...");
                             OpenDingDingAndWait();
-                        }
-                        // 如果启用将钉钉窗口显示到最顶层
-                        if (showTop)
-                        {
-                            Api.SetForegroundWindowByClassName(DingInfo.WindowClassName);
-                            Thread.Sleep(200);
                         }
                         // 如果正在直播
                         if (LiveIsStart())
@@ -342,10 +368,10 @@ namespace 自动进入钉钉直播
         }
 
         #region 打开网址
-        private void label20_Click(object sender, EventArgs e) => OpenUrl("https://www.52pojie.cn/thread-1168398-3-1.html");
+        private void label1_52url_Click(object sender, EventArgs e) => OpenUrl("https://www.52pojie.cn/thread-1168398-1-1.html");
         private void label19_Click(object sender, EventArgs e) => OpenUrl("https://cdmxz.github.io");
         private void label25_Click(object sender, EventArgs e) => OpenUrl("https://github.com/cdmxz/");
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenUrl("https://shimo.im/docs/b8467ba8b9db4e29/");
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenUrl("https://kdocs.cn/l/csom1nmsCM5q");
         #endregion
 
         // 打开网址
@@ -377,7 +403,7 @@ namespace 自动进入钉钉直播
         }
 
         // 判断钉钉是否在运行
-        private bool DingDingIsRun()
+        private bool IsRunDingDing()
         {
             // 寻找钉钉进程，判断钉钉是否在运行
             foreach (Process pro in Process.GetProcesses())
@@ -424,7 +450,15 @@ namespace 自动进入钉钉直播
                 if (text != null)
                 {
                     // 识别关键字
-                    var list = keyWords.Where(kw => text.Contains(kw));
+                    IEnumerable<string>? list = null;
+                    if (customKeyWords != null)
+                    {
+                        list = customKeyWords.Where(kw => text.Contains(kw));
+                    }
+                    if (list == null || !list.Any())
+                    {
+                        list = keyWords.Where(kw => text.Contains(kw));
+                    }
                     return list.Any();
                 }
             }
@@ -500,5 +534,7 @@ namespace 自动进入钉钉直播
             ConfigFile.Write(DingInfo.KeyName, dingPath);
             UpdateLog("保存配置文件成功");
         }
+
+
     }
 }

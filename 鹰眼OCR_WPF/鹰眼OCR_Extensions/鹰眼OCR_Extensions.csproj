@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.8" />
+	  <PackageReference Include="NAudio" Version="2.2.1" />
+	  <PackageReference Include="NAudio.Asio" Version="2.2.1" />
+	  <PackageReference Include="NAudio.Core" Version="2.2.1" />
+	  <PackageReference Include="NAudio.Midi" Version="2.2.1" />
+	  <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+	  <PackageReference Include="NAudio.WinForms" Version="2.2.1" />
+	  <PackageReference Include="NAudio.WinMM" Version="2.2.1" />
+	  <PackageReference Include="PDFtoImage" Version="4.1.0" />
+	  <PackageReference Include="ZXing.Net" Version="0.16.9" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
+  </ItemGroup>
+
+</Project>

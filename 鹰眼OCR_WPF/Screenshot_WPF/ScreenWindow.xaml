@@ -1,0 +1,80 @@
+﻿<Window x:Class="Screenshot_WPF.ScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screenshot_WPF"
+        mc:Ignorable="d"
+        Height="800"
+        Width="1000"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        x:Name="MainWindow"
+        KeyUp="ScreenWindow_KeyUp"
+        Closing="MainWindow_Closing">
+
+    <Window.Resources>
+        <WindowChrome x:Key="WindowChromeKey">
+            <WindowChrome.CaptionHeight>0</WindowChrome.CaptionHeight>
+            <!-- <WindowChrome.ResizeBorderThickness>
+                <Thickness>1</Thickness>
+            </WindowChrome.ResizeBorderThickness> -->
+        </WindowChrome>
+
+        <Style TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome"
+                    Value="{StaticResource WindowChromeKey}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}"
+                             Value="Maximized">
+                    <Setter Property="WindowChrome.WindowChrome"
+                            Value="{x:Null}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}"
+                             Value="Normal">
+                    <Setter Property="WindowChrome.WindowChrome"
+                            Value="{StaticResource WindowChromeKey}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Ellipse">
+            <Setter Property="Height"
+                    Value="8" />
+            <Setter Property="Width"
+                    Value="8" />
+            <Setter Property="Fill"
+                    Value="DeepSkyBlue" />
+        </Style>
+    
+    </Window.Resources>
+
+
+    <Canvas Name="MainCanvas"
+            KeyUp="ScreenWindow_KeyUp"
+            MouseLeftButtonDown="ScreenWindow_MouseLeftButtonDown"
+            MouseMove="ScreenWindow_MouseMove"
+            MouseLeftButtonUp="ScreenWindow_MouseLeftButtonUp"
+            MouseRightButtonUp="ScreenWindow_MouseRightButtonUp"
+            Cursor="Cross">
+
+        <Image x:Name="imgCtl" />
+
+        <Rectangle Name="Mask"
+                   Fill="Black"
+                   Opacity="0.5"
+                   Width="{Binding Path=Width,ElementName=MainWindow}"
+                   Height="{Binding Path=Height,ElementName=MainWindow}" />
+
+        <Border Name="Bord"
+                BorderThickness="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Cursor="Cross"
+                BorderBrush="DodgerBlue" />
+        <Ellipse x:Name="Ellipse_LeftTop"/>
+        <Ellipse x:Name="Ellipse_LeftBottom"/>
+        <Ellipse x:Name="Ellipse_RightTop"/>
+        <Ellipse x:Name="Ellipse_RightBottom"/>
+    </Canvas>
+</Window>

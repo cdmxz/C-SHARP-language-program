@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="鹰眼OCR_WPFCore.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:鹰眼OCR_WPFCore.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White"
+             HorizontalContentAlignment="Center">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="FontSize"
+                        Value="20" />
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel Margin="40">
+        <DockPanel DockPanel.Dock="Top">
+            <Border Width="200"
+                    BorderBrush="#FFF2F2F2"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                <Image Source="/Resources/Images/鹰眼128x128.png"
+                       Height="128" />
+            </Border>
+
+            <Border  Margin="40,0,0,0"
+                     BorderThickness="1"
+                     BorderBrush="#FFF2F2F2"
+                     Padding="5"
+                     CornerRadius="8"
+                     MinWidth="600">
+                <StackPanel>
+                    <TextBlock Text="介绍："
+                               FontSize="25" />
+                    <TextBlock Text="    鹰眼OCR 是基于.NET 8.0的文字识别程序。" />
+                    <TextBlock Text="    感谢您的使用！" />
+                    <TextBlock Text="&#x000A;注：" />
+                    <TextBlock Text="    本程序图片素材均来源于网络，仅供学习之用，&#x000A;    感谢原作者的分享。！" />
+                </StackPanel>
+            </Border>
+        </DockPanel>
+
+        <TextBlock DockPanel.Dock="Bottom"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Foreground="CornflowerBlue"
+                   Text="Copyright (C) 2020-2024 鹰眼OCR" />
+    </DockPanel>
+</UserControl>

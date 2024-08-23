@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="鹰眼OCR_WPFCore.Views.OptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:鹰眼OCR_WPFCore.Views"
+             xmlns:controls="clr-namespace:鹰眼OCR_Skin.Controls;assembly=鹰眼OCR_Skin"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:viewmodels="clr-namespace:鹰眼OCR_WPFCore.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DataContext="{d:DesignInstance Type=viewmodels:OptionViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="900"
+             Background="White"
+             HorizontalAlignment="Center">
+
+    <UserControl.Resources>
+        <Style TargetType="CheckBox"
+               BasedOn="{StaticResource ResourceKey={x:Type CheckBox}}">
+            <Setter Property="Margin"
+                    Value="5" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="40,20">
+        <StackPanel>
+            <TextBlock Text="百度Api Key"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10" />
+
+            <Border BorderBrush="#FFF2F2F2"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Padding="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="OCR:  "
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="AK:"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding ViewData.ApiKey}"
+                                 Width="300"
+                                 Margin="10,0"
+                                 ToolTip="文字识别ApiKey" />
+
+                        <TextBlock Text="SK:"
+                                   VerticalAlignment="Center"
+                                   Margin="21,0,0,0" />
+                        <TextBox Text="{Binding ViewData.SecretKey}"
+                                 Width="300"
+                                 Margin="12,0,15,0"
+                                 ToolTip="文字识别SecretKey" />
+
+                        <Button Content="测试"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BtnBlue}"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="TestOCR" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,5,0,0">
+                        <TextBlock Text="翻译:  "
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="ID:"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding ViewData.AppId}"
+                                 Width="300"
+                                 Margin="16,0,10,0"
+                                 ToolTip="百度翻译AppId" />
+
+                        <TextBlock Text="PW:"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0" />
+                        <TextBox Text="{Binding ViewData.Password}"
+                                 Width="300"
+                                 Margin="7,0,15,0"
+                                 ToolTip="百度翻译Password" />
+
+                        <Button Content="测试"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BtnBlue}"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="TestTranslate" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Margin="0,40,0,0">
+            <TextBlock Text="选项"
+                       FontSize="26"
+                       FontWeight="Bold" />
+
+            <Border BorderBrush="#FFF2F2F2"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Padding="10"
+                    Margin="0,10">
+                <WrapPanel>
+                    <CheckBox Content="保存截图到本地"
+                              IsChecked="{Binding ViewData.IsSaveScreenshotToLocal}" />
+                    <CheckBox Content="保存截图到剪切板"
+                              IsChecked="{Binding ViewData.IsSaveScreenshotToClipboard}" />
+                    <CheckBox Content="自动下载表格"
+                              IsChecked="{Binding ViewData.IsAutoDownloadTable}" />
+                    <CheckBox Content="保存录音"
+                              IsChecked="{Binding ViewData.IsSaveRecording}" />
+                    <CheckBox Content="保存语音合成"
+                              IsChecked="{Binding ViewData.IsSaveSpeechSynthesis}" />
+                    <CheckBox Content="保存拍照"
+                              IsChecked="{Binding ViewData.IsSavePhoto}" />
+                    <CheckBox Content="识别后添加到末尾"
+                              IsChecked="{Binding ViewData.IsAddToEndAfterRecognition}" />
+                    <CheckBox Content="识别后复制"
+                              IsChecked="{Binding ViewData.IsCopyAfterRecognition}" />
+                    <CheckBox Content="识别后翻译"
+                              IsChecked="{Binding ViewData.IsTranslateAfterRecognition}" />
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5">
+                        <TextBlock Text="PDF识别每页延迟"
+                                   VerticalAlignment="Center" />
+                        <ui:NumberBox SpinButtonPlacementMode="Inline"
+                                      Value="200"
+                                      SmallChange="100"
+                                      LargeChange="1000"
+                                      Maximum="3000"
+                                      Minimum="100"
+                                      Width="130"
+                                      IsReadOnly="True"
+                                      Margin="5,0" />
+                        <TextBlock Text="毫秒"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                    <Button Content="查看本地数据"
+                            HorizontalAlignment="Right"
+                            Margin="200,10,0,10"
+                            Style="{StaticResource BtnBlue}"
+                            Command="{Binding ExecuteCommand}"
+                            CommandParameter="OpenLocal" />
+
+                    <Button Content="删除本地数据"
+                            HorizontalAlignment="Right"
+                            Margin="10,10"
+                            Padding="7"
+                            Foreground="Red"
+                            Command="{Binding ExecuteCommand}"
+                            CommandParameter="DeleteLocal">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseRightButtonUp">
+                                <i:InvokeCommandAction   Command="{Binding ExecuteCommand}"
+                                                         CommandParameter="ConfirmDeleteLocal" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </WrapPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

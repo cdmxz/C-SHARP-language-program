@@ -1,0 +1,156 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<Copyright>Copyright ©  2020-2024 鹰眼OCR</Copyright>
+		<Product>鹰眼OCR</Product>
+		<AssemblyTitle>鹰眼OCR</AssemblyTitle>
+		<Version>3.0.0</Version>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AssemblyName>鹰眼OCR_WPF</AssemblyName>
+		<PublishSingleFile>true</PublishSingleFile>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\icon.ico" />
+		<None Remove="Resources\喇叭.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\icon.ico" />
+		<Resource Include="Resources\Images\key.png" />
+		<Resource Include="Resources\Images\关于.png" />
+		<Resource Include="Resources\Images\更新.png" />
+		<Resource Include="Resources\Images\选项.png" />
+		<Resource Include="Resources\Images\首页.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\OCR测试图片.png" />
+		<Resource Include="Resources\Images\喇叭.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\表格.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\查找.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\打开.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\导出.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\导入.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\二维码.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\二维码_1.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\翻译.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\公式.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\关闭.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\截图.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\朗读.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\拍照.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\切换.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\设置.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\身份证.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\识别类型.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\手写文字识别.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\数字.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\通用文字识别.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\通用文字识别_高精度.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\银行卡.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\鹰眼.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\鹰眼128x128.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\语音识别.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\重试.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\最大化.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\最小化.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.8" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+		<PackageReference Include="Notification.Wpf" Version="8.0.0" />
+		<PackageReference Include="OpenCvSharp4" Version="4.10.0.20240616" />
+		<PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20240616" />
+		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20240616" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="WPF-UI" Version="3.0.5" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Screenshot_WPF\Screenshot_WPF.csproj" />
+		<ProjectReference Include="..\鹰眼OCR_Common\鹰眼OCR_Common.csproj" />
+		<ProjectReference Include="..\鹰眼OCR_Extensions\鹰眼OCR_Extensions.csproj" />
+		<ProjectReference Include="..\鹰眼OCR_Skin\鹰眼OCR_Skin.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+</Project>

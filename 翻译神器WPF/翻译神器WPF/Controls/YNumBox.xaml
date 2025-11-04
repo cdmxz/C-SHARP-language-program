@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="翻译神器WPF.Controls.YNumBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:翻译神器WPF.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="40"
+             d:DesignWidth="150"
+             d:DataContext="{d:DesignInstance Type=local:YNumBox, IsDesignTimeCreatable=True}">
+    <Grid Height="40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:YNumBox},
+                                Path=Value, Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus}"
+                 PreviewTextInput="TextBox_PreviewTextInput"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 VerticalContentAlignment="Center"
+                 FontSize="16"
+                 BorderThickness="0"
+                 DataObject.Pasting="TextBox_Pasting"
+                 Cursor="IBeam"
+                 LostFocus="TextBox_LostFocus"
+                 />
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <RepeatButton x:Name="UpButton"
+                          Click="UpButton_Click"
+                          Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YNumBox},Path=UpCommand}"
+                          Content="▲"
+                          HorizontalAlignment="Center"
+                          Padding="2" />
+
+            <Border Grid.Row="1"
+                    Height="1"
+                    Background="Gray"
+                    Margin="2,0" />
+
+            <RepeatButton x:Name="DownButton"
+                          Click="DownButton_Click"
+                          Grid.Row="2"
+                          Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YNumBox},Path=DownCommand}"
+                          Content="▼"
+                          HorizontalAlignment="Center"
+                          Padding="2" />
+        </Grid>
+    </Grid>
+</UserControl>

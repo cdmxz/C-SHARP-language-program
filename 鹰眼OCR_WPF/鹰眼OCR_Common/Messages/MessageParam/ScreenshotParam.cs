@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
+
 namespace 鹰眼OCR_Common.Messages.MessageParam
 {
     /// <summary>
@@ -17,7 +18,7 @@ namespace 鹰眼OCR_Common.Messages.MessageParam
         /// <summary>
         /// 选择的截图区域，坐标为屏幕坐标
         /// </summary>
-        public Rectangle CaptureRectangle { get; set; }
+        public Rectangle CaptureRect { get; set; }
 
 
         /// <summary>

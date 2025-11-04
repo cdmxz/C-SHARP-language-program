@@ -74,7 +74,7 @@ namespace 鹰眼OCR_Extensions.Audio
         }
 
 
-        private void DisposeObject<T>(ref T obj)
+        private static void DisposeObject<T>(ref T obj)
         {
             if (obj == null)
             {

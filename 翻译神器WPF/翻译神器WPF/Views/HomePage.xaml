@@ -1,0 +1,38 @@
+﻿<Page x:Class="翻译神器WPF.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:翻译神器WPF.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="400"
+      d:DesignWidth="500"
+      Title="HomeView">
+
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Center"
+                    DockPanel.Dock="Top">
+            <TextBlock Margin="0,10,0,30"
+                       FontSize="30"
+                       Foreground="#FF5AADFF"
+                       FontWeight="Bold"
+                       Text="使用方法：" />
+            <TextBlock FontSize="24"
+                       Padding="30,0,0,0"
+                       Foreground="#FF5AADFF">
+        1、按下截图热键<LineBreak /><LineBreak />2、用鼠标选取需要翻译的区域<LineBreak /><LineBreak />3、查看翻译结果
+            </TextBlock>
+        </StackPanel>
+
+        <TextBlock  FontSize="16"
+                    Margin="20,0,0,20"
+                    DockPanel.Dock="Bottom"
+                    VerticalAlignment="Bottom"
+                    Foreground="#808080"
+                    FontWeight="Bold">
+提示:<LineBreak />1、长按CTRL键可一直显示译文窗口<LineBreak />2、鼠标右键可关闭译文窗口<LineBreak />3、延迟为0时不会自动关闭译文窗口
+        </TextBlock>
+    </DockPanel>
+
+
+</Page>

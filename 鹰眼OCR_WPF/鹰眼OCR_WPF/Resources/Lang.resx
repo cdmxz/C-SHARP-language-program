@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AddToEndAfterOCR" xml:space="preserve">
+    <value>识别后添加到末尾</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>鹰眼OCR</value>
+  </data>
+  <data name="AutoDownloadTable" xml:space="preserve">
+    <value>自动下载表格</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright (C) 2020-2024 鹰眼OCR</value>
+  </data>
+  <data name="CopyToClipboardAfterOCR" xml:space="preserve">
+    <value>识别后复制</value>
+  </data>
+  <data name="DeleteLocalData" xml:space="preserve">
+    <value>删除本地数据</value>
+  </data>
+  <data name="FixedScreenshotArea" xml:space="preserve">
+    <value>固定截图区域</value>
+  </data>
+  <data name="FixedScreenshotHotkey" xml:space="preserve">
+    <value>固定截图热键</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="Hotkey" xml:space="preserve">
+    <value>热键</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>介绍：</value>
+  </data>
+  <data name="Introduction_Line_1" xml:space="preserve">
+    <value>鹰眼OCR是基于.NET9.0的文字识别程序。</value>
+  </data>
+  <data name="Introduction_Line_2" xml:space="preserve">
+    <value>感谢您的使用！</value>
+  </data>
+  <data name="KeyTitle" xml:space="preserve">
+    <value>百度 ApiKey</value>
+  </data>
+  <data name="Millisecond" xml:space="preserve">
+    <value>毫秒</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>注：</value>
+  </data>
+  <data name="Note_Line_1" xml:space="preserve">
+    <value>本程序图片素材均来源于网络，仅供学习之用，</value>
+  </data>
+  <data name="Note_Line_2" xml:space="preserve">
+    <value>感谢原作者的分享！</value>
+  </data>
+  <data name="PDF_OCR_Delay" xml:space="preserve">
+    <value>PDF识别每页延迟</value>
+  </data>
+  <data name="PhotographHotkey" xml:space="preserve">
+    <value>拍照热键</value>
+  </data>
+  <data name="RecordingHotkey" xml:space="preserve">
+    <value>录音热键</value>
+  </data>
+  <data name="SavePhoto" xml:space="preserve">
+    <value>保存拍照</value>
+  </data>
+  <data name="SaveRecording" xml:space="preserve">
+    <value>保存录音</value>
+  </data>
+  <data name="SaveScreenshotToClipboard" xml:space="preserve">
+    <value>保存截图到剪切板</value>
+  </data>
+  <data name="SaveScreenshotToLocal" xml:space="preserve">
+    <value>保存截图到本地</value>
+  </data>
+  <data name="SaveSpeechSynthesis" xml:space="preserve">
+    <value>保存语音合成</value>
+  </data>
+  <data name="ScreenshotHotkey" xml:space="preserve">
+    <value>截图热键</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="TranslateAtferOCR" xml:space="preserve">
+    <value>识别后翻译</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>翻译</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpdateLog" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本信息</value>
+  </data>
+  <data name="ViewLocalData" xml:space="preserve">
+    <value>查看本地数据</value>
+  </data>
+  <data name="Speaker" xml:space="preserve">
+    <value>发音人</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>语速</value>
+  </data>
+  <data name="GeneralText" xml:space="preserve">
+    <value>通用文字</value>
+  </data>
+  <data name="High-precisionText" xml:space="preserve">
+    <value>通用高精度</value>
+  </data>
+  <data name="HandwrittenText" xml:space="preserve">
+    <value>手写文字</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>二维码</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>表格</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>公式</value>
+  </data>
+  <data name="IDCard" xml:space="preserve">
+    <value>身份证</value>
+  </data>
+  <data name="BankCard" xml:space="preserve">
+    <value>银行卡</value>
+  </data>
+  <data name="CH-ENMixture" xml:space="preserve">
+    <value>中英混合</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>英文</value>
+  </data>
+  <data name="Portuguese" xml:space="preserve">
+    <value>葡萄牙语</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>法语</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>德语</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>意大利语</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>西班牙语</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日语</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>韩语</value>
+  </data>
+  <data name="PhotoSurface" xml:space="preserve">
+    <value>照片面</value>
+  </data>
+  <data name="NationalEmblemSurface" xml:space="preserve">
+    <value>国徽面</value>
+  </data>
+  <data name="Initializing" xml:space="preserve">
+    <value>初始化</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="FixedScreenshot" xml:space="preserve">
+    <value>固定截图</value>
+  </data>
+  <data name="SetCoordinates" xml:space="preserve">
+    <value>设置固定截图坐标</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>未设置</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>测试</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+</root>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screenshot_WPF"
+        
         mc:Ignorable="d"
         Height="800"
         Width="1000"
@@ -11,17 +12,19 @@
         WindowStartupLocation="CenterScreen"
         x:Name="MainWindow"
         KeyUp="ScreenWindow_KeyUp"
-        Closing="MainWindow_Closing">
+        KeyDown="ScreenWindow_KeyDown"
+        Closing="ScreenWindow_Closing">
 
     <Window.Resources>
         <WindowChrome x:Key="WindowChromeKey">
             <WindowChrome.CaptionHeight>0</WindowChrome.CaptionHeight>
-            <!-- <WindowChrome.ResizeBorderThickness>
-                <Thickness>1</Thickness>
-            </WindowChrome.ResizeBorderThickness> -->
+            <WindowChrome.ResizeBorderThickness>
+                <Thickness>0</Thickness>
+            </WindowChrome.ResizeBorderThickness>
         </WindowChrome>
 
-        <Style TargetType="Window">
+
+    <Style TargetType="Window">
             <Setter Property="WindowChrome.WindowChrome"
                     Value="{StaticResource WindowChromeKey}" />
             <Style.Triggers>
@@ -46,9 +49,8 @@
             <Setter Property="Fill"
                     Value="DeepSkyBlue" />
         </Style>
-    
-    </Window.Resources>
 
+    </Window.Resources>
 
     <Canvas Name="MainCanvas"
             KeyUp="ScreenWindow_KeyUp"
@@ -58,7 +60,16 @@
             MouseRightButtonUp="ScreenWindow_MouseRightButtonUp"
             Cursor="Cross">
 
-        <Image x:Name="imgCtl" />
+        <Image x:Name="imgCtl"
+               Stretch="Uniform" 
+               UseLayoutRounding="True"/>
+
+
+        <!--<Image x:Name="imgCtl"
+               Stretch="None"
+               UseLayoutRounding="True"
+               SnapsToDevicePixels="True"
+               Source="C:\Users\Administrator\Desktop\1.png" />-->
 
         <Rectangle Name="Mask"
                    Fill="Black"
@@ -72,9 +83,52 @@
                 VerticalAlignment="Top"
                 Cursor="Cross"
                 BorderBrush="DodgerBlue" />
-        <Ellipse x:Name="Ellipse_LeftTop"/>
-        <Ellipse x:Name="Ellipse_LeftBottom"/>
-        <Ellipse x:Name="Ellipse_RightTop"/>
-        <Ellipse x:Name="Ellipse_RightBottom"/>
+        <Ellipse x:Name="Ellipse_LeftTop" />
+        <Ellipse x:Name="Ellipse_LeftBottom" />
+        <Ellipse x:Name="Ellipse_RightTop" />
+        <Ellipse x:Name="Ellipse_RightBottom" />
+
+        <!-- 放大镜 -->
+        <StackPanel x:Name="MagnifierPanel"
+                    Width="100"
+                    Panel.ZIndex="999">
+            <Grid x:Name="MagnifierGrid"
+                  Width="100"
+                  Height="100">
+                <!--<Border Background="#DDFFFFFF"
+                        BorderBrush="#88000000"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Width="100"
+                        Height="100" />-->
+                <Image x:Name="MagnifierImage"
+                       Stretch="Fill" />
+                <Canvas IsHitTestVisible="False">
+
+                    <Line Stroke="DodgerBlue"
+                          StrokeThickness="2"
+                          X1="0"
+                          Y1="50"
+                          X2="100"
+                          Y2="50" />
+                    <Line Stroke="DodgerBlue"
+                          StrokeThickness="2"
+                          X1="50"
+                          Y1="0"
+                          X2="50"
+                          Y2="100" />
+                </Canvas>
+            </Grid>
+
+            <TextBlock x:Name="MagnifierInfoText"
+                       Background="#CC000000"
+                       Foreground="White"
+                       FontSize="12"
+                       Padding="4"
+                       HorizontalAlignment="Center"
+                       Width="100"
+                       TextAlignment="Center" />
+        </StackPanel>
+
     </Canvas>
 </Window>

@@ -1,0 +1,156 @@
+﻿<Window x:Class="翻译神器WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+        xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf"
+        xmlns:local="clr-namespace:翻译神器WPF"
+        xmlns:viewmodels="clr-namespace:翻译神器WPF.ViewModels"
+        xmlns:converters="clr-namespace:翻译神器WPF.Converters"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel,IsDesignTimeCreatable=True}"
+        mc:Ignorable="d"
+        Title="{Binding Title}"
+        ResizeMode="CanMinimize"
+        Height="400"
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        Loaded="MainWindow_Loaded"
+        Closed="MainWindow_Closed"
+        IsVisibleChanged="Window_IsVisibleChanged">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding WindowStateChangedCommand}"
+                                   CommandParameter="ContentRendered" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="StateChanged">
+            <i:InvokeCommandAction Command="{Binding WindowStateChangedCommand}"
+                                   CommandParameter="StateChanged" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding WindowStateChangedCommand}"
+                                   CommandParameter="Closed" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="KeyDown">
+            <i:InvokeCommandAction Command="{Binding KeyDownCommand}"
+                                   PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <Style x:Key="Item"
+               TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Padding"
+                    Value="8" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+        </Style>
+
+        <converters:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="0 0 1 0"
+                BorderBrush="DarkGray">
+            <DockPanel Grid.Column="0">
+                <StackPanel DockPanel.Dock="Top">
+                    <Image Source="pack://application:,,,/Resources/icon_128x128.ico"
+                           Width="50"
+                           Height="50"
+                           HorizontalAlignment="Center"
+                           Margin="0,20,0,10" />
+                    <Label Content="Hi~"
+                           FontSize="16"
+                           HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom"
+                            Margin="0 20 0 0">
+                    <ItemsControl ItemsSource="{Binding NavigationItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Background="{Binding IsSelected, Converter={StaticResource BoolToBrushConverter}}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.SelectNavigationItemCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                   CommandParameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock Text="{Binding Name}"
+                                               TextAlignment="Center"
+                                               Width="{Binding RelativeSource={RelativeSource AncestorType=StackPanel, Mode=FindAncestor},Path=ActualWidth}"
+                                               Style="{StaticResource Item}"
+                                               Foreground="{Binding IsSelected, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=Foreground}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Frame x:Name="frame"
+               Content="{Binding CurrentPage}"
+               NavigationUIVisibility="Hidden"
+               Grid.Column="1" />
+
+        <notifications:NotificationArea Panel.ZIndex="999"
+                                        Grid.ColumnSpan="2"
+                                        x:Name="WindowArea"
+                                        HorizontalContentAlignment="Center"
+                                        Position="BottomCenter"
+                                        MaxItems="1"
+                                        MaxWidth="500" />
+
+        <tb:TaskbarIcon x:Name="trayIcon"
+                        IconSource="/Resources/icon_128x128.ico"
+                        ToolTipText="双击此处显示窗口"
+                        DoubleClickCommand="{Binding TaskbarIconCommand}"
+                        DoubleClickCommandParameter="Show">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="截图"
+                              Command="{Binding TaskbarIconCommand}"
+                              CommandParameter="Screenshot" />
+                    <MenuItem Header="显示"
+                              Command="{Binding TaskbarIconCommand}"
+                              CommandParameter="Show">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/IconShow.png"
+                                   Width="16"
+                                   Height="16" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="隐藏"
+                              Command="{Binding TaskbarIconCommand}"
+                              CommandParameter="Hide">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/IconHide.png"
+                                   Width="16"
+                                   Height="16" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="退出"
+                              Command="{Binding TaskbarIconCommand}"
+                              CommandParameter="Exit">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/IconExit.png"
+                                   Width="14"
+                                   Height="14" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>

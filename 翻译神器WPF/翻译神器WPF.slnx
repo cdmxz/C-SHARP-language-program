@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../鹰眼OCR_WPF/Screenshot_WPF/Screenshot_WPF.csproj" />
+  <Project Path="翻译神器WPF/翻译神器WPF.csproj">
+    <Platform Solution="*|x86" Project="x86" />
+    <Build Solution="*|x86" Project="false" />
+  </Project>
+</Solution>

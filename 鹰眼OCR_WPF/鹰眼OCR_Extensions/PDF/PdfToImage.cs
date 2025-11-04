@@ -12,6 +12,41 @@ namespace 鹰眼OCR_Extensions.PDF
 
         public event EventHandler<GotOnePageEventArgs>? GotOnePageEvent;
 
+        private int _currentIndex = 0;
+        private int _total = 0;
+        public int CurrentIndex => _currentIndex;
+        public int Total => _total;
+        private readonly string _base64 = string.Empty;
+        public PdfToImage() { }
+        public PdfToImage(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                throw new ArgumentException("文件不存在");
+            }
+            var bytes = File.ReadAllBytes(fileName);
+            _base64 = Convert.ToBase64String(bytes);
+            _total = Conversion.GetPageCount(_base64);
+        }
+
+        public Bitmap GetNext()
+        {
+            if (_currentIndex > _total)
+            {
+                throw new InvalidOperationException("没有下一页了");
+            }
+            using MemoryStream s = new();
+            Conversion.SavePng(s, _base64, new Index(_currentIndex));
+            var img = (Bitmap)Image.FromStream(s);
+            _currentIndex++;
+            return img;
+        }
+
+        public bool HasNext()
+        {
+            return _currentIndex <= _total;
+        }
+
         /// <summary>
         /// 获取PDF文件每一页的图像
         /// </summary>
@@ -43,25 +78,6 @@ namespace 鹰眼OCR_Extensions.PDF
             }, ct);
         }
 
-        /// <summary>
-        /// 获取PDF文件每一页的图像
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="sleepTime"></param>
-        [Obsolete]
-        public void GetImages(string fileName, int sleepTime)
-        {
-            int pageCount = Conversion.GetPageCount(fileName);
-            for (int i = 1; i <= pageCount; i++)
-            {
-                using var skBmp = Conversion.ToImage(File.ReadAllBytes(fileName), null, i);
-                using MemoryStream s = new();
-                skBmp.Encode(s, SkiaSharp.SKEncodedImageFormat.Png, 100);
-                Bitmap img = (Bitmap)Image.FromStream(s);
-                OnGetOnePage(img, i, pageCount);// 获取完一页的图像时引发事件
-                Thread.Sleep(sleepTime);
-            }
-        }
 
         // 获取完一页的图像时引发事件
         private void OnGetOnePage(Bitmap img, int current, int total)

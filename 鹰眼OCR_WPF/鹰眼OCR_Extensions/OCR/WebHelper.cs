@@ -33,7 +33,7 @@ namespace 鹰眼OCR_Extensions.OCR
             host += string.IsNullOrEmpty(token) ? "" : token;
             var httpClient = new HttpClient
             {
-                Timeout = TimeSpan.FromMilliseconds(10000)
+                Timeout = TimeSpan.FromMilliseconds(30000)
             };
 
             var content = new StringContent(param, Encoding.UTF8, contentType);
@@ -47,7 +47,7 @@ namespace 鹰眼OCR_Extensions.OCR
             host += string.IsNullOrEmpty(token) ? "" : token;
             var httpClient = new HttpClient
             {
-                Timeout = TimeSpan.FromMilliseconds(10000)
+                Timeout = TimeSpan.FromMilliseconds(30000)
             };
 
             var content = new StringContent(param, Encoding.UTF8, contentType);

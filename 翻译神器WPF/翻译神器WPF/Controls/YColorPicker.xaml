@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="翻译神器WPF.Controls.YColorPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:翻译神器WPF.Controls"
+             xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WPFDevelopers;component/Themes/Theme.xaml" />
+                <wd:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <!-- 将内部控件 SelectedColor 双向绑定到本控件依赖属性 -->
+    <wd:ColorPicker Background="Transparent"
+                    ColorType="HEX"
+                    BorderThickness="0"
+                    SelectedColor="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType=local:YColorPicker}, Mode=TwoWay}" />
+</UserControl>

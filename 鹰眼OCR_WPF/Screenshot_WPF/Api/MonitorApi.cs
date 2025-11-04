@@ -45,7 +45,7 @@ namespace Screenshot_WPF.Api
                 Bottom = mi.rcMonitor.bottom,
                 Width = Math.Abs(mi.rcMonitor.right - mi.rcMonitor.left),
                 Height = Math.Abs(mi.rcMonitor.bottom - mi.rcMonitor.top)
-            });
+            }); 
             return true;
         }
 

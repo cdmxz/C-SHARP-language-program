@@ -1,0 +1,49 @@
+﻿<Page x:Class="翻译神器WPF.Views.UpdatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:翻译神器WPF.Views"
+      xmlns:viewmodels="clr-namespace:翻译神器WPF.ViewModels"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance Type=viewmodels:UpdatePageViewModel,IsDesignTimeCreatable=True}"
+      d:DesignHeight="400"
+      d:DesignWidth="500"
+      Title="UpdatePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="DarkGray"
+                BorderThickness="1"
+                CornerRadius="3"
+                Padding="10"
+                Margin="10"
+                Grid.Row="0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <TextBlock Text="{Binding UpdateInfo}"
+                           FontSize="16"
+                           TextWrapping="Wrap">
+                    <TextBlock.ContextMenu>
+                        <ContextMenu IsEnabled="{Binding ButtonIsEnabled}">
+                            <MenuItem Header="复制链接和密码"
+                                      Command="{Binding CopyUrlCommand}" />
+                        </ContextMenu>
+                    </TextBlock.ContextMenu>
+                </TextBlock>
+            </ScrollViewer>
+        </Border>
+        <Button Content="打开下载链接"
+                Padding="8"
+                Margin="0,10,10,40"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                Command="{Binding OpenUrlCommand}"
+                IsEnabled="{Binding ButtonIsEnabled}"
+                Cursor="" />
+    </Grid>
+</Page>

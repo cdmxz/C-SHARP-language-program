@@ -8,9 +8,6 @@ namespace 鹰眼OCR_Extensions.WinApi
     /// </summary>
     public class WinApi
     {
-        [DllImport("user32.dll", EntryPoint = "FindWindow")]// 查找窗口句柄
-        public extern static nint FindWindow(string? lpClassName, string? lpWindowName);
-
 
         [DllImport("user32.dll", EntryPoint = "PostMessage")]
         public static extern int PostMessage(IntPtr hwnd, int Msg, IntPtr wParam, IntPtr lParam);

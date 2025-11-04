@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
+
 
 
 namespace Screenshot_WPF.Api
@@ -11,18 +11,6 @@ namespace Screenshot_WPF.Api
     /// </summary>
     public static class WinApi
     {
-        [StructLayout(LayoutKind.Sequential)]
-        public struct POINT
-        {
-            public POINT(Point p)
-            {
-                X = p.X;
-                Y = p.Y;
-            }
-            public int X;
-            public int Y;
-        }
-
         [StructLayout(LayoutKind.Sequential)]
         public struct TagRECT
         {
@@ -89,6 +77,18 @@ namespace Screenshot_WPF.Api
         private static extern bool IsIconic(IntPtr hWnd);
 
 
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern int GetWindowTextLength(IntPtr hWnd);
+
+        // 正确的 EnumChildWindows P/Invoke，使用专门的回调签名
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool EnumChildWindows(IntPtr hWndParent, EnumChildProc lpEnumFunc, IntPtr lParam);
+
+        private delegate bool EnumChildProc(IntPtr hWnd, IntPtr lParam);
 
 
         /// <summary>
@@ -107,10 +107,10 @@ namespace Screenshot_WPF.Api
         /// </summary>
         /// <param name="hWnd"></param>
         /// <returns></returns>
-        public static Rectangle GetWindowRectByHandle(nint hWnd)
+        private static Rect GetWindowRectByHandle(nint hWnd)
         {
             GetWindowRect(hWnd, out TagRECT tagRect);
-            return tagRect.ToRectangle();
+            return tagRect.ToRect();
         }
 
         /// <summary>
@@ -118,15 +118,15 @@ namespace Screenshot_WPF.Api
         /// </summary>
         /// <param name="hWnd"></param>
         /// <returns></returns>
-        public static Rectangle GetWindowSizeByHandle(nint hWnd)
+        private static Rect GetWindowSizeByHandle(nint hWnd)
         {
             if (hWnd == nint.Zero)
             {
-                return new Rectangle();
+                return new Rect();
             }
 
             _ = DwmGetWindowAttribute(hWnd, DWMWINDOWATTRIBUTE.DWMWA_EXTENDED_FRAME_BOUNDS, out TagRECT rect, Marshal.SizeOf(typeof(TagRECT)));
-            return rect.ToRectangle();
+            return rect.ToRect();
         }
 
 
@@ -136,9 +136,9 @@ namespace Screenshot_WPF.Api
         /// </summary>
         /// <param name="handle">窗口句柄</param>
         /// <returns></returns>
-        public static Rectangle GetWindowRect(nint handle)
+        public static Rect GetWindowRect(nint handle)
         {
-            Rectangle rect;
+            Rect rect;
             if (IsParentWindow(handle))
             {
                 rect = GetWindowSizeByHandle(handle);
@@ -147,15 +147,11 @@ namespace Screenshot_WPF.Api
             {
                 rect = GetWindowRectByHandle(handle);
             }
-
             return rect;
         }
 
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern int GetWindowTextLength(IntPtr hWnd);
+
         /// <summary>
         /// 获取窗口标题
         /// </summary>
@@ -174,41 +170,82 @@ namespace Screenshot_WPF.Api
             return sb.ToString();
         }
 
-
         /// <summary>
-        /// 获取桌面上所有的可见窗口
+        /// 获取桌面上所有的可见窗口及其可见控件
         /// </summary>
         /// <returns></returns>
         public static WindowInfo[] GetVisibleWindows(IntPtr exclude)
         {
-            List<WindowInfo> windows = [];
+            List<WindowInfo> windows = new List<WindowInfo>();
 
-            // 回调函数
-            EnumWindowsProc callback = (hWnd, lParam) =>
+            // 枚举顶层窗口的回调函数
+            EnumWindowsProc enumWindowsCallback = (hWnd, lParam) =>
             {
                 if (hWnd != exclude && IsWindowVisible(hWnd) && !IsIconic(hWnd))
                 {
-                    Rectangle rect = GetWindowSizeByHandle(hWnd);
+                    string title = GetWindowTitle(hWnd);
+                    Rect rect = GetWindowRect(hWnd);
                     if (rect.Width > 0 && rect.Height > 0)
                     {
-                        windows.Add(new WindowInfo(hWnd, rect));
+                        var windowInfo = new WindowInfo(title, hWnd, rect);
+
+                        // 枚举该窗口下的所有可见子控件，并添加到 windowInfo.Children
+                        var children = new List<WindowInfo>();
+                        EnumChildProc enumChildCallback = (childHwnd, childParam) =>
+                        {
+                            if (IsWindowVisible(childHwnd) && !IsIconic(childHwnd))
+                            {
+                                Rect childRect = GetWindowRect(childHwnd);
+                                if (childRect.Width > 0 && childRect.Height > 0)
+                                {
+                                    var childInfo = new WindowInfo(GetWindowTitle(childHwnd), childHwnd, childRect);
+                                    children.Add(childInfo);
+                                }
+                            }
+                            return true; // 继续枚举
+                        };
+
+                        EnumChildWindows(hWnd, enumChildCallback, IntPtr.Zero);
+
+                        windowInfo.Childrens = RemoveDuplicateByRect(children);
+                        windows.Add(windowInfo);
                     }
                 }
                 return true; // 继续枚举
             };
 
             // 枚举所有顶层窗口
-            EnumWindows(callback, IntPtr.Zero);
+            EnumWindows(enumWindowsCallback, IntPtr.Zero);
 
-            return windows.ToArray();
+            // 去重：按 x,y,width,height 完全相等保留第一个
+            var unique = RemoveDuplicateByRect(windows);
+            return unique.ToArray();
         }
+
+        private static List<WindowInfo> RemoveDuplicateByRect(List<WindowInfo> list)
+        {
+            var seen = new HashSet<(int X, int Y, int W, int H)>();
+            var result = new List<WindowInfo>(list.Count);
+            foreach (var w in list)
+            {
+                var r = w.Rect;
+                // 避免精度问题
+                var key = ((int)r.X, (int)r.Y, (int)r.Width, (int)r.Height);
+                if (seen.Add(key))
+                {
+                    result.Add(w);
+                }
+            }
+            return result;
+        }
+
 
         /// <summary>
         /// 扩展方法
         /// </summary>
         /// <param name="rect"></param>
         /// <returns></returns>
-        public static Rectangle ToRectangle(this TagRECT rect)
+        public static Rect ToRect(this TagRECT rect)
         {
             return new(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
         }

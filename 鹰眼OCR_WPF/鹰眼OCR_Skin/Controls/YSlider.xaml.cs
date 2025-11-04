@@ -14,19 +14,17 @@ namespace 鹰眼OCR_Skin.Controls
             this.panel.DataContext = this;
         }
 
-
-
         public double Value
         {
             get => (double)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        // 默认为双向绑定
+        // Using a DependencyProperty as the backing store for Value. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(YSlider));
-
-
+            DependencyProperty.Register("Value", typeof(double), typeof(YSlider),
+                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public double MaxValue
         {
@@ -34,11 +32,9 @@ namespace 鹰眼OCR_Skin.Controls
             set => SetValue(MaxValueProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for MaxValue.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for MaxValue. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MaxValueProperty =
             DependencyProperty.Register("MaxValue", typeof(double), typeof(YSlider));
-
-
 
         public double MinValue
         {
@@ -46,10 +42,9 @@ namespace 鹰眼OCR_Skin.Controls
             set => SetValue(MinValueProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for MinValue.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for MinValue. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MinValueProperty =
             DependencyProperty.Register("MinValue", typeof(double), typeof(YSlider));
-
 
         public string Text
         {
@@ -57,12 +52,8 @@ namespace 鹰眼OCR_Skin.Controls
             set => SetValue(TextProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Text. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(YSlider));
-
-
-
-
     }
 }

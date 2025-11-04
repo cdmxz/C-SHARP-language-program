@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "翻译神器WPF": {
+      "commandName": "Project",
+      "commandLineArgs": "-auto"
+    }
+  }
+}

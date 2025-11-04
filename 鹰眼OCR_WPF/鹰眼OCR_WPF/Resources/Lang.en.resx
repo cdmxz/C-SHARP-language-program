@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AddToEndAfterOCR" xml:space="preserve">
+    <value>Add to the end after OCR</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>YYOCR</value>
+  </data>
+  <data name="AutoDownloadTable" xml:space="preserve">
+    <value>Automatically download excel</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright (C) 2020-2024 YYOCR</value>
+  </data>
+  <data name="CopyToClipboardAfterOCR" xml:space="preserve">
+    <value>Copy after OCR</value>
+  </data>
+  <data name="DeleteLocalData" xml:space="preserve">
+    <value>Delete local data</value>
+  </data>
+  <data name="FixedScreenshotArea" xml:space="preserve">
+    <value>Fixed screenshot area</value>
+  </data>
+  <data name="FixedScreenshotHotkey" xml:space="preserve">
+    <value>Fixed screenshot hotkeys</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Hotkey" xml:space="preserve">
+    <value>Hotkey</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>Introduction:</value>
+  </data>
+  <data name="Introduction_Line_1" xml:space="preserve">
+    <value>YYOCR is based on NET9.0 text recognition program.</value>
+  </data>
+  <data name="Introduction_Line_2" xml:space="preserve">
+    <value>Thank you for using it!</value>
+  </data>
+  <data name="KeyTitle" xml:space="preserve">
+    <value>Baidu ApiKey</value>
+  </data>
+  <data name="Millisecond" xml:space="preserve">
+    <value>millisecond</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="Note_Line_1" xml:space="preserve">
+    <value>The image materials of this program are all sourced from the internet and are only for learning purposes,</value>
+  </data>
+  <data name="Note_Line_2" xml:space="preserve">
+    <value>Thank you to the original author for sharing!</value>
+  </data>
+  <data name="PDF_OCR_Delay" xml:space="preserve">
+    <value>PDF recognition page delay</value>
+  </data>
+  <data name="PhotographHotkey" xml:space="preserve">
+    <value>Photo hotkey</value>
+  </data>
+  <data name="RecordingHotkey" xml:space="preserve">
+    <value>Recording hotkeys</value>
+  </data>
+  <data name="SavePhoto" xml:space="preserve">
+    <value>Save Photo</value>
+  </data>
+  <data name="SaveRecording" xml:space="preserve">
+    <value>Save recording</value>
+  </data>
+  <data name="SaveScreenshotToClipboard" xml:space="preserve">
+    <value>Save screenshot to clipboard</value>
+  </data>
+  <data name="SaveScreenshotToLocal" xml:space="preserve">
+    <value>Save screenshot to local</value>
+  </data>
+  <data name="SaveSpeechSynthesis" xml:space="preserve">
+    <value>Save speech synthesis</value>
+  </data>
+  <data name="ScreenshotHotkey" xml:space="preserve">
+    <value>Screenshot hotkeys</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TranslateAtferOCR" xml:space="preserve">
+    <value>Translate after OCR</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Translation</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateLog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ViewLocalData" xml:space="preserve">
+    <value>View local data</value>
+  </data>
+  <data name="Speaker" xml:space="preserve">
+    <value>Speaker</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>SpeechRate</value>
+  </data>
+  <data name="GeneralText" xml:space="preserve">
+    <value>General text</value>
+  </data>
+  <data name="High-precisionText" xml:space="preserve">
+    <value>High-precision text</value>
+  </data>
+  <data name="HandwrittenText" xml:space="preserve">
+    <value>Handwritten text</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>QR code</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>table</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>formula</value>
+  </data>
+  <data name="IDCard" xml:space="preserve">
+    <value>ID card</value>
+  </data>
+  <data name="BankCard" xml:space="preserve">
+    <value>bank card</value>
+  </data>
+  <data name="CH-ENMixture" xml:space="preserve">
+    <value>CH-EN Mixture</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Portuguese" xml:space="preserve">
+    <value>Portuguese</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>Korean</value>
+  </data>
+  <data name="PhotoSurface" xml:space="preserve">
+    <value>Photo surface</value>
+  </data>
+  <data name="NationalEmblemSurface" xml:space="preserve">
+    <value>National Emblem Surface</value>
+  </data>
+  <data name="Initializing" xml:space="preserve">
+    <value>Initializing...</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="FixedScreenshot" xml:space="preserve">
+    <value>Fixed Screenshot</value>
+  </data>
+  <data name="SetCoordinates" xml:space="preserve">
+    <value>Set fixed screenshot coordinates</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+</root>

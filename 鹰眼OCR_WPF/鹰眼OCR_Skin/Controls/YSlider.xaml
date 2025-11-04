@@ -17,7 +17,7 @@
                    VerticalAlignment="Center"
                    Margin="0,0,5,0" />
         <Slider x:Name="Slider"
-                Value="{Binding Value}"
+                Value="{Binding Value,Mode=TwoWay}"
                 Minimum="{Binding MinValue}"
                 Maximum="{Binding MaxValue}"
                 IsSnapToTickEnabled="True"

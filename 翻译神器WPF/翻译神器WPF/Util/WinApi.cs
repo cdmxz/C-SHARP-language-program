@@ -1,0 +1,118 @@
+﻿using System.Drawing;
+using System.Runtime.InteropServices;
+
+namespace 翻译神器WPF.Util
+{
+    class WinApi
+    {
+        public const int SC_NOMAL = 0xF120;   // 窗体还原消息
+        public const int SC_MINIMIZE = 0xF020;// 窗体最小化消息
+        public const int SC_MAXIMIZE = 0xF030;// 窗体最大化消息
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct TagRECT
+        {
+            public int left;
+            public int top;
+            public int right;
+            public int bottom;
+        }
+
+        // 判断按键是否按下
+        [DllImport("user32.dll")]
+        public static extern int GetAsyncKeyState(int vKey);
+
+        public const int VK_MENU = 0x12;
+        public const int VK_CONTROL = 0x17;
+
+        // 将 虚拟密钥代码转换为扫描代码
+
+        [DllImport("user32.dll")]
+        public extern static uint MapVirtualKey(uint uCode, uint uMapType);
+
+        public const int KEYEVENTF_KEYUP = 0x0002; // 释放按键
+        public const int MAPVK_VK_TO_VSC = 0;      // 虚拟密钥代码转换为扫描代码
+
+
+        [DllImport("user32.dll", EntryPoint = "GetKeyNameTextW")]
+        public static extern int GetKeyNameTextW(int lParam, [Out()][MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder lpString, int cchSize);
+
+
+        // 发送键盘消息
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+        // 激活并显示窗口
+        [DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
+        public static extern bool SetForegroundWindow(IntPtr hwnd);
+
+        // 查找窗口句柄
+        [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Unicode)]
+        public extern static IntPtr FindWindow(string? lpClassName, string? lpWindowName);
+
+        // 屏幕坐标转窗口坐标
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern bool ClientToScreen(IntPtr hWnd, ref Point pt);
+
+        // 指定窗口的显示状态
+        [DllImport("user32.dll", EntryPoint = "ShowWindow", CharSet = CharSet.Auto)]
+        public static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
+        public const int SW_SHOWNORMAL = 1;// 激活并显示窗口。如果窗口最小化或最大化，系统将窗口恢复到其原始大小和位置。
+
+        //注册热键
+        [DllImport("user32.dll")]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+        // 释放注册的的热键
+        [DllImport("user32.dll")]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+
+        [DllImport("user32.dll", EntryPoint = "PostMessage")]
+        public static extern int PostMessage(IntPtr hwnd, int Msg, IntPtr wParam, IntPtr lParam);
+
+
+        /// <summary>
+        /// 获取窗口句柄，并判断是否有效，无效则抛出异常
+        /// </summary>
+        /// <param name="windowTitle">窗口标题</param>
+        /// <param name="windowClass">窗口类名</param>
+        /// <returns></returns>
+        public static IntPtr FindWindowHandle(string windowTitle, string windowClass)
+        {
+            string? title = string.IsNullOrEmpty(windowTitle) ? null : windowTitle;
+            string? className = string.IsNullOrEmpty(windowClass) ? null : windowClass;
+            if (title is null && className is null)
+                throw new ArgumentException("请设置 窗口标题或窗口类名！");
+            IntPtr hwnd = FindWindow(className, title);
+            if (IntPtr.Zero == hwnd)
+                throw new Exception("找不到对应的窗口句柄！");
+            return hwnd;
+        }
+
+        /// <summary>
+        /// 把窗口显示到最前方并等待millisec毫秒
+        /// </summary>
+        /// <param name="hwnd">窗口句柄</param>
+        /// <param name="millisec">等待毫秒数</param>
+        public static void SetForegroundWindowAndWait(IntPtr hwnd, int millisec)
+        {
+            SetForegroundWindow(hwnd);
+            Thread.Sleep(millisec);
+        }
+
+        public const int WAIT_MILLISECONDS = 500;
+
+        /// <summary>
+        /// 发送按键
+        /// </summary>
+        /// <param name="key"></param>
+        public static void SendKey(uint key)
+        {
+            // 模拟按下按键
+            keybd_event((byte)key, (byte)MapVirtualKey((uint)key, MAPVK_VK_TO_VSC), 0, 0);
+            Thread.Sleep(50);
+            keybd_event((byte)key, (byte)MapVirtualKey((uint)key, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP, 0);
+        }
+    }
+}

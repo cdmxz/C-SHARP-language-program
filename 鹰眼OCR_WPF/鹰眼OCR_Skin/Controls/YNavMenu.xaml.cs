@@ -77,7 +77,6 @@ namespace 鹰眼OCR_Skin.Controls
         /// 设置其它YNavMenu控件的IsSelected为false
         /// </summary>
         /// <param name="curObj"></param>
-        [RelayCommand]
         public void Click(object curObj)
         {
             if (curObj is DependencyObject dependencyObject)
@@ -109,11 +108,17 @@ namespace 鹰眼OCR_Skin.Controls
 
         }
 
-        private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Click(sender);
             // 执行Command
             Command?.Execute(CommandParameter);
+        }
+
+
+        private void UserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
         }
 
     }

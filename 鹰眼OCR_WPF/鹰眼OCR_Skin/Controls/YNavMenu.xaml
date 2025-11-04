@@ -9,7 +9,8 @@
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="140"
-             MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
+             MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
+             PreviewMouseDoubleClick="UserControl_PreviewMouseDoubleClick">
 
     <UserControl.Resources>
         <converts:NullableToBooleanConverter x:Key="NullableToBooleanConverter" />
@@ -34,7 +35,7 @@
                         <Setter Property="BorderThickness"
                                 Value="0 0 0 4" />
                     </DataTrigger>
-                    
+
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
                             <Condition Binding="{Binding IsMouseOver, TargetNullValue='False'}"

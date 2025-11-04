@@ -1,0 +1,59 @@
+﻿<Page x:Class="翻译神器WPF.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:翻译神器WPF.Views"
+      xmlns:viewmodels="clr-namespace:翻译神器WPF.ViewModels"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance Type=viewmodels:AboutPageViewModel}"
+      d:DesignHeight="400"
+      d:DesignWidth="500"
+      Title="AboutPage">
+
+    <StackPanel Margin="10">
+        <TextBlock Text="{Binding Title}"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   Foreground="#FF17ABE3"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,0" />
+
+        <Border BorderThickness="1"
+                Margin="20"
+                HorizontalAlignment="Center">
+            <Border.BorderBrush>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle StrokeDashArray="4 2"
+                                   Stroke="DodgerBlue"
+                                   StrokeThickness="1"
+                                   Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                   Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}" />
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.BorderBrush>
+
+            <Image Source="pack://application:,,,/Resources/icon_128x128.ico"
+                   Width="100"
+                   Height="100" />
+        </Border>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,0">
+            <TextBlock Text="发布论坛：" />
+            <Label Content="52pojie"
+                   Foreground="Blue"
+                   Cursor="Hand" />
+
+        </StackPanel>
+
+        <TextBlock Margin="0,70,0,0"
+                   FontSize="20"
+                   Text="Copyright ©  2020-2025 翻译神器"
+                   HorizontalAlignment="Center"
+                   Foreground="Gray" />
+
+    </StackPanel>
+</Page>

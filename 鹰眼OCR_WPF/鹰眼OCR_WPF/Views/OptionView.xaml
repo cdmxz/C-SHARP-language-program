@@ -1,0 +1,183 @@
+﻿<UserControl x:Class="鹰眼OCR_WPF.Views.OptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:鹰眼OCR_WPF.Manager"
+             xmlns:controls="clr-namespace:鹰眼OCR_Skin.Controls;assembly=鹰眼OCR_Skin"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:viewmodels="clr-namespace:鹰眼OCR_WPF.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DataContext="{d:DesignInstance Type=viewmodels:OptionViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="900"
+             Background="White">
+
+    <UserControl.Resources>
+        <Style TargetType="CheckBox"
+               BasedOn="{StaticResource ResourceKey={x:Type CheckBox}}">
+            <Setter Property="Margin"
+                    Value="5" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="40,20">
+        <StackPanel>
+            <TextBlock Text="{Binding [KeyTitle],Source={x:Static local:LanguageManager.Instance}}"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10" />
+
+            <Border BorderBrush="#FFF2F2F2"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Padding="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="OCR:"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="AK:"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding ViewData.ApiKey}"
+                                 Width="300"
+                                 Margin="10,0"
+                                 ToolTip="文字识别ApiKey" />
+
+                        <TextBlock Text="SK:"
+                                   VerticalAlignment="Center"
+                                   Margin="21,0,0,0" />
+                        <TextBox Text="{Binding ViewData.SecretKey}"
+                                 Width="300"
+                                 Margin="12,0,15,0"
+                                 ToolTip="文字识别SecretKey" />
+
+                        <Button Content="{Binding [Test],Source={x:Static local:LanguageManager.Instance}}"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BtnBlue}"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="TestOCR" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,5,0,0">
+                        <TextBlock Text="{Binding [Translation],Source={x:Static local:LanguageManager.Instance},StringFormat={}{0}:}"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="ID:"
+                                   VerticalAlignment="Center"
+                                   Margin="8,0,0,0" />
+                        <TextBox Text="{Binding ViewData.AppId}"
+                                 Width="300"
+                                 Margin="13,0,10,0"
+                                 ToolTip="百度翻译AppId" />
+
+                        <TextBlock Text="PW:"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0" />
+                        <TextBox Text="{Binding ViewData.Password}"
+                                 Width="300"
+                                 Margin="7,0,15,0"
+                                 ToolTip="百度翻译Password" />
+
+                        <Button Content="{Binding [Test],Source={x:Static local:LanguageManager.Instance}}"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BtnBlue}"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="TestTranslate" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Margin="0,40,0,0">
+            <TextBlock Text="选项"
+                       FontSize="26"
+                       FontWeight="Bold" />
+
+            <Border BorderBrush="#FFF2F2F2"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Padding="10"
+                    Margin="0,10">
+                <StackPanel>
+                    <WrapPanel>
+                        <CheckBox Content="{Binding [SaveScreenshotToLocal],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsSaveScreenshotToLocal}" />
+                        <CheckBox Content="{Binding [SaveScreenshotToClipboard],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsSaveScreenshotToClipboard}" />
+                        <CheckBox Content="{Binding [AutoDownloadTable],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsAutoDownloadTable}" />
+                        <CheckBox Content="{Binding [SaveRecording],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsSaveRecording}" />
+                        <CheckBox Content="{Binding [SaveSpeechSynthesis],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsSaveSpeechSynthesis}" />
+                        <CheckBox Content="{Binding [SavePhoto],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsSavePhoto}" />
+                        <CheckBox Content="{Binding [AddToEndAfterOCR],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsAddToEndAfterRecognition}" />
+                        <CheckBox Content="{Binding [CopyToClipboardAfterOCR],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsCopyAfterRecognition}" />
+                        <CheckBox Content="{Binding [TranslateAtferOCR],Source={x:Static local:LanguageManager.Instance}}"
+                                  IsChecked="{Binding ViewData.IsTranslateAfterRecognition}" />
+                    </WrapPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5">
+                        <TextBlock Text="{Binding [Language],Source={x:Static local:LanguageManager.Instance}}"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 5 0" />
+                        <ComboBox ToolTip="切换语言"
+                                  MinWidth="140"
+                                  DisplayMemberPath="DisplayName"
+                                  SelectedIndex="{Binding ViewData.SelectedLanguageIndex}"
+                                  ItemsSource="{Binding LanguageList}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ExecuteCommand}"
+                                                           CommandParameter="LanguageChanged" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+
+                        <TextBlock  Text="{Binding [PDF_OCR_Delay],Source={x:Static local:LanguageManager.Instance}}"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0" />
+                        <ui:NumberBox SpinButtonPlacementMode="Inline"
+                                      Value="200"
+                                      SmallChange="100"
+                                      LargeChange="1000"
+                                      Maximum="3000"
+                                      Minimum="100"
+                                      Width="130"
+                                      IsReadOnly="True"
+                                      Margin="5,0" />
+                        <TextBlock  Text="{Binding [Millisecond],Source={x:Static local:LanguageManager.Instance}}"
+                                   VerticalAlignment="Center" />
+
+                        <Button Content="{Binding [ViewLocalData],Source={x:Static local:LanguageManager.Instance}}"
+                                Margin="60,0,0,0"
+                                Style="{StaticResource BtnBlue}"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="OpenLocal" />
+
+                        <Button Content="{Binding [DeleteLocalData],Source={x:Static local:LanguageManager.Instance}}"
+                                Margin="20,0,0,0"
+                                Padding="7"
+                                Foreground="Red"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="DeleteLocal">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseRightButtonUp">
+                                    <i:InvokeCommandAction   Command="{Binding ExecuteCommand}"
+                                                             CommandParameter="ConfirmDeleteLocal" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
